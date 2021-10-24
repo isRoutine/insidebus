@@ -17,6 +17,11 @@ public class MenuScript : MonoBehaviour
         
     }
 
+    public void goToMainMenu() 
+    {
+        SceneManager.LoadScene("MainMenu Scene");
+    }
+
     public void goToOptionsMenu() 
     {
         SceneManager.LoadScene("Options Scene");
