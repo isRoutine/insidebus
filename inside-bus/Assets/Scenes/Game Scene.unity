@@ -1729,3 +1729,5 @@ MonoBehaviour:
   man: {fileID: 6287225194137866323, guid: 8e36feddc84a9cf48864734aefe8ee37, type: 3}
   delay: 0
   amountSpawned: 0
+  movimento: {x: 0, y: 0}
+  men: []

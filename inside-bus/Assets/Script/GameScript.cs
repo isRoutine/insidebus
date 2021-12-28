@@ -6,21 +6,21 @@ using UnityEngine.UIElements;
 public class GameScript : MonoBehaviour
 {
     public float start;
+    public int menInside;
     public GameObject man;
     public float delay;
     public int amountSpawned;
     public Vector2 movimento;
-    public List<GameObject> men ;
+    public LinkedList<GameObject> men ;
 
     // Start is called before the first frame update
     void Start()
     {
         start = Time.time;
-
+        menInside = 0;
         delay = 0;
         amountSpawned = 0;
-
-        men = new List<GameObject>();
+        men = new LinkedList<GameObject>();
         movimento = new Vector2();
         
     }
@@ -30,25 +30,31 @@ public class GameScript : MonoBehaviour
     {
         Debug.Log(Time.time);
 
-
-        if ( delay >=5 )
+        if ( delay >=1 )
         {
             GameObject temp = Instantiate(man, new Vector2(0, -4), Quaternion.identity);
             temp.name = "Man" + amountSpawned.ToString();
-
-            men.Add(temp);
-
+            men.AddFirst(temp);
             delay = 0;
             amountSpawned++;
         }
 
-        foreach (GameObject m in men)
-        {
-            movimento.y = m.transform.position.y;
-            movimento.y += 0.5f * Time.deltaTime;
-            m.transform.position = movimento;
+        LinkedListNode<GameObject> m = men.First;
+        while (m != null){
+            movimento.y = m.Value.transform.position.y;
+            if (movimento.y <= +2){ // punto in cui si devono fermare
+            	movimento.y += 0.5f * Time.deltaTime;
+            	m.Value.transform.position = movimento;        	
+            }
+            else {
+            	menInside++;
+            	Debug.Log(menInside.ToString());
+            	GameObject temp = m.Value;
+            	men.RemoveLast();
+        		Destroy(temp);    	
+            }
+            m = m.Next;
         }
-
         delay += Time.deltaTime;
     }
 }
