@@ -1726,8 +1726,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   start: 0
-  man: {fileID: 6287225194137866323, guid: 8e36feddc84a9cf48864734aefe8ee37, type: 3}
+  menInside: 0
+  man: {fileID: 6630764080099803021, guid: 96f61503a025a4939a61fbf70000964d, type: 3}
   delay: 0
   amountSpawned: 0
   movimento: {x: 0, y: 0}
-  men: []
