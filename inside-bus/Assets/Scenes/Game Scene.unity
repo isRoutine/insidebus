@@ -1725,9 +1725,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51dd0676ba1fd514c9732d36e7f36254, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  start: 0
-  menInside: 0
-  man: {fileID: 6630764080099803021, guid: 96f61503a025a4939a61fbf70000964d, type: 3}
+  man: {fileID: 3610393287836599252, guid: 96f61503a025a4939a61fbf70000964d, type: 3}
+  moveSpeed: 1
   delay: 0
   amountSpawned: 0
-  movimento: {x: 0, y: 0}
+  menInside: 0
