@@ -5,7 +5,10 @@ using UnityEngine;
 public class MaleScript : MonoBehaviour
 {
 
-	public float moveSpeed = 1f;
+	public float hValue;
+	public float vValue;
+	public float moveSpeed;
+
 	public Rigidbody2D rb;
 	public Animator Animator;
 	Vector2 movement;
@@ -22,14 +25,14 @@ public class MaleScript : MonoBehaviour
         //Input
         //movement.x = Input.GetAxisRaw("Horizontal"); // return int from -1 to 1
         //movement.y = Input.GetAxisRaw("Vertical"); // return int from -1 to 1
-
-        Animator.SetFloat("Horizontal", 0);
-        Animator.SetFloat("Vertical", 1);
-        //Animator.SetFloat("Speed", movement.sqrMagnitude);
+        
+        Animator.SetFloat("Horizontal", hValue);
+        Animator.SetFloat("Vertical", vValue);
+        Animator.SetFloat("Speed", moveSpeed);
   
     }
 
     void FixedUpdate(){
-    	//rb.MovePosition(rb.position + (movement * moveSpeed * Time.fixedDeltaTime));
     }
+
 }
