@@ -24,8 +24,8 @@ public class GameScript : MonoBehaviour
         menInside = 0;
         men = new LinkedList<GameObject>();
         MaleScript s =  man.GetComponent<MaleScript>();
-        s.vValue = 1f;
-        s.moveSpeed = 1f;
+        s.VerticalValue = +1.0f;
+        s.AnimationSpeed = 0.02f;
     }
 
     // Update is called once per frame

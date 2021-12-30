@@ -137,8 +137,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e15abf23ffaa443896098e84739ffbc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hValue: 0
-  vValue: 0
-  moveSpeed: 0
-  rb: {fileID: 3610393287836599248}
+  HorizontalValue: 0
+  VerticalValue: 0
+  AnimationSpeed: 0
+  RigidBody: {fileID: 3610393287836599248}
   Animator: {fileID: 3610393287836599254}
