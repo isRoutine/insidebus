@@ -62,4 +62,9 @@ public class GameScript : MonoBehaviour
         }
         delay += Time.fixedDeltaTime;
     }
+
+    void VerificaRisposta()
+    {
+        AnswerScript gino = (AnswerScript)GetComponent();
+    }
 }

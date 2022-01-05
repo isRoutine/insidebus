@@ -11,7 +11,9 @@ public class AnswerScript : MonoBehaviour
     
     public Button moreButton;
     public Button lessButton;
-  
+    public Button answerButton;
+    public bool flag;
+    public int risposta;
 
     public int AnswerValue {
         get { return answerValue; }
@@ -21,15 +23,18 @@ public class AnswerScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        flag = false;
         answerText = GetComponent<Text>() as Text;
-        moreButton.onClick.AddListener(onClickTask);
-        lessButton.onClick.AddListener(onClickTask1);
+        moreButton.onClick.AddListener(MoreTask);
+        lessButton.onClick.AddListener(LessTask);
+        answerButton.onClick.AddListener(AnswerTask);
     }
 
     // Update is called once per frame
     void Update()
     {
-
+        moreButton.interactable = !flag;
+        lessButton.interactable = !flag;
     }
 
     // se utente preme il tasto al centro, cambia lo 
@@ -40,12 +45,25 @@ public class AnswerScript : MonoBehaviour
     {
         int numero = Convert.ToInt32(answerText.text);
         answerText.text = (numero + 1).ToString();
+     
     }
 
-    void onClickTask1()
+    void LessTask()
     {
         int numero = Convert.ToInt32(answerText.text);
-        if(numero > 0)
-            answerText.text = (numero - 1).ToString();
+        if (numero > 0)
+                answerText.text = (numero - 1).ToString();
+        
     }
+
+    void AnswerTask()
+    {
+        flag = !flag;
+    }
+
+    int GetRisposta()
+    {
+        return risposta;
+    }
+
 }

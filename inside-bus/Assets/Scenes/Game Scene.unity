@@ -476,6 +476,9 @@ MonoBehaviour:
   answerText: {fileID: 180281157}
   moreButton: {fileID: 831094173}
   lessButton: {fileID: 1360851790}
+  answerButton: {fileID: 198643176}
+  flag: 0
+  risposta: 0
 --- !u!1 &198643174
 GameObject:
   m_ObjectHideFlags: 0
