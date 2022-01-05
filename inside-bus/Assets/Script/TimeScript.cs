@@ -9,6 +9,12 @@ public class TimeScript : MonoBehaviour
     public Text timeText;
     public float seconds, minutes;
 
+
+    public float TimerValue {
+        get { return timerValue; }
+        set { timerValue = value; }
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -32,4 +38,7 @@ public class TimeScript : MonoBehaviour
         timeText.text = string.Format("{0:00}:{1:00}", minutes, seconds);
 
     }
+
+
+    
 }
