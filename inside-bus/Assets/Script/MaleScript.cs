@@ -33,6 +33,11 @@ public class MaleScript : MonoBehaviour
         return VerticalValue;
     }
 
+    public float ExtVerticalValue {
+        get { return VerticalValue; }
+        set { VerticalValue = value; }
+    }
+
     public void SetAnimationSpeed(float value){ 
         AnimationSpeed = value;
     }

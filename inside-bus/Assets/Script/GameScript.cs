@@ -13,6 +13,7 @@ public class GameScript : MonoBehaviour
     public float delay;
     public int amountSpawned;
     public int menInside;
+    public AnswerScript AnswerScript;
 
 
     // Start is called before the first frame update
@@ -23,7 +24,7 @@ public class GameScript : MonoBehaviour
         amountSpawned = 0;
         menInside = 0;
         men = new LinkedList<GameObject>();
-        MaleScript s =  man.GetComponent<MaleScript>();
+        MaleScript s =  man.GetComponent<MaleScript>() as MaleScript;
         s.VerticalValue = +1.0f;
         s.AnimationSpeed = 0.02f;
     }
