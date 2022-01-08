@@ -13,10 +13,15 @@ public class AnswerScript : MonoBehaviour
     public Button lessButton;
     public Button answerButton;
     public bool flag;
-    public int risposta;
+    public bool click;
+
+    public void IsClicked()
+    {
+        click = true;
+    }
 
     public int AnswerValue {
-        get { return answerValue; }
+        get { return Convert.ToInt32(answerText.text); }
         set { answerValue = value; }
     }
 
@@ -24,10 +29,12 @@ public class AnswerScript : MonoBehaviour
     void Start()
     {
         flag = false;
+        click = false;
         answerText = GetComponent<Text>() as Text;
         moreButton.onClick.AddListener(MoreTask);
         lessButton.onClick.AddListener(LessTask);
         answerButton.onClick.AddListener(AnswerTask);
+ 
     }
 
     // Update is called once per frame
@@ -41,14 +48,14 @@ public class AnswerScript : MonoBehaviour
     // stato di un flag boolenao, inizialmente false
     
 
-    void onClickTask()
+    public void MoreTask()
     {
         int numero = Convert.ToInt32(answerText.text);
         answerText.text = (numero + 1).ToString();
      
     }
 
-    void LessTask()
+    public void LessTask()
     {
         int numero = Convert.ToInt32(answerText.text);
         if (numero > 0)
@@ -56,14 +63,10 @@ public class AnswerScript : MonoBehaviour
         
     }
 
-    void AnswerTask()
+    public void AnswerTask()
     {
         flag = !flag;
-    }
 
-    int GetRisposta()
-    {
-        return risposta;
     }
 
 }

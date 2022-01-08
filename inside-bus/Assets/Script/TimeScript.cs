@@ -1,5 +1,7 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Globalization;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -13,6 +15,12 @@ public class TimeScript : MonoBehaviour
     public float TimerValue {
         get { return timerValue; }
         set { timerValue = value; }
+    }
+
+    public float TimerValueAttuale
+    {
+        get { timeText.text = string.Format("{0:00}:{1:00}", minutes, seconds);
+            return float.Parse(timeText.text, CultureInfo.InvariantCulture.NumberFormat); }
     }
 
     // Start is called before the first frame update
@@ -30,7 +38,7 @@ public class TimeScript : MonoBehaviour
             timerValue -= Time.deltaTime;
         }
         else {
-            timerValue += 90;
+            timerValue = 0;
         }
 
         minutes = (int)(timerValue / 60f);
@@ -39,6 +47,4 @@ public class TimeScript : MonoBehaviour
 
     }
 
-
-    
 }

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.UIElements;
 
 public class GameScript : MonoBehaviour
@@ -13,7 +14,6 @@ public class GameScript : MonoBehaviour
     public float delay;
     public int amountSpawned;
     public int menInside;
-    public AnswerScript AnswerScript;
 
 
     // Start is called before the first frame update
@@ -61,10 +61,7 @@ public class GameScript : MonoBehaviour
             m = m.Next;
         }
         delay += Time.fixedDeltaTime;
+
     }
 
-    void VerificaRisposta()
-    {
-        AnswerScript gino = (AnswerScript)GetComponent();
-    }
 }
