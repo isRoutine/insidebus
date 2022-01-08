@@ -17,12 +17,6 @@ public class TimeScript : MonoBehaviour
         set { timerValue = value; }
     }
 
-    public float TimerValueAttuale
-    {
-        get { timeText.text = string.Format("{0:00}:{1:00}", minutes, seconds);
-            return float.Parse(timeText.text, CultureInfo.InvariantCulture.NumberFormat); }
-    }
-
     // Start is called before the first frame update
     void Start()
     {
