@@ -1,5 +1,7 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Globalization;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -30,7 +32,7 @@ public class TimeScript : MonoBehaviour
             timerValue -= Time.deltaTime;
         }
         else {
-            timerValue += 90;
+            timerValue = 0;
         }
 
         minutes = (int)(timerValue / 60f);
@@ -39,6 +41,4 @@ public class TimeScript : MonoBehaviour
 
     }
 
-
-    
 }
