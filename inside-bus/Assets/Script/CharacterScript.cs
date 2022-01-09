@@ -46,7 +46,7 @@ public class CharacterScript : MonoBehaviour
     {
     	toSpawn = new Queue<Character>(); // queue of character waiting for spawn
         spawned = new LinkedList<GameObject>(); //list of character already spawned
-        startPosition = new Vector2(2, -4); // default start position for all characters
+        startPosition = new Vector2(0.7f, -4); // default start position for all characters
         visible = 0; // number of character now in action, visible on the screen
         amountSpawned = 0; // number of character spawned 
         MaleScript s =  male.GetComponent<MaleScript>() as MaleScript;
