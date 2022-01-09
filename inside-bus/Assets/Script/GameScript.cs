@@ -9,7 +9,6 @@ public class GameScript : MonoBehaviour
 
     public GameObject man;
     public LinkedList<GameObject> men;
-    public Rigidbody2D rb;
     public float moveSpeed = 1f;
     public float delay;
     public int amountSpawned;
@@ -24,13 +23,9 @@ public class GameScript : MonoBehaviour
         amountSpawned = 0;
         menInside = 0;
         men = new LinkedList<GameObject>();
-
-        Animator ani = man.GetComponent(typeof (Animator)) as Animator;
-        ani.SetFloat("Horizontal", 0);
-        ani.SetFloat("Vertical", 1);
-
-        Rigidbody2D rb = man.GetComponent(typeof (Rigidbody2D)) as Rigidbody2D;
-        
+        MaleScript s =  man.GetComponent<MaleScript>();
+        s.VerticalValue = +1.0f;
+        s.AnimationSpeed = 0.02f;
     }
 
     // Update is called once per frame
@@ -38,13 +33,10 @@ public class GameScript : MonoBehaviour
     {
         //Debug.Log(Time.time);
 
-        if ( delay >=1 )
+        if ( delay >=3 )
         {
             GameObject temp = Instantiate(man, new Vector2(0, -4), Quaternion.identity);
-            temp.name = "Man" + amountSpawned.ToString();
-            Animator ani = temp.GetComponent(typeof (Animator)) as Animator;
-            ani.SetFloat("Horizontal", 0);
-            ani.SetFloat("Vertical", 1);           
+            temp.name = "Man" + amountSpawned.ToString();         
             men.AddFirst(temp);
             delay = 0;
             amountSpawned++;
