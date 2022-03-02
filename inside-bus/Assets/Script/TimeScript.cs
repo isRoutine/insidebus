@@ -12,7 +12,8 @@ public class TimeScript : MonoBehaviour
     public float seconds, minutes;
 
 
-    public float TimerValue {
+    public float TimerValue 
+    {
         get { return timerValue; }
         set { timerValue = value; }
     }
