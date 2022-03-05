@@ -1,12 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
-using UnityEngine.UIElements;
 
 public class GameScript : MonoBehaviour
 {
-
 
     public GameObject man;
     public LinkedList<GameObject> men;
@@ -14,7 +11,6 @@ public class GameScript : MonoBehaviour
     public float delay;
     public int amountSpawned;
     public int menInside;
-
 
     // Start is called before the first frame update
     void Start()
@@ -27,6 +23,7 @@ public class GameScript : MonoBehaviour
         MaleScript s =  man.GetComponent<MaleScript>() as MaleScript;
         s.VerticalValue = +1.0f;
         s.AnimationSpeed = 0.02f;
+
     }
 
     // Update is called once per frame
