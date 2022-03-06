@@ -30,6 +30,7 @@ public class PauseScript : MonoBehaviour
         answer.lessButtonGO.SetActive(true);
         answer.moreButtonGO.SetActive(true);
         answer.answerButtonGO.SetActive(true);
+        pauseButton.SetActive(true);
         home.SetActive(true);
         GameIsPaused = false;
         Time.timeScale = 1f;

@@ -10,6 +10,8 @@ public class MenuScript : MonoBehaviour
     public GameObject OptionsMenuUI;
     public GameObject playButton;
     public GameObject optionsButton;
+    public GameObject ScoreboardMenuUI;
+    public GameObject scoreboardButton;
 
     // Start is called before the first frame update
     void Start()
@@ -45,8 +47,11 @@ public class MenuScript : MonoBehaviour
 
     public void goToRankingsScene()
     {
-        SceneManager.LoadScene("Rankings Scene");
-        Time.timeScale = 1f;
+        playButton.SetActive(false);
+        optionsButton.SetActive(false);
+        scoreboardButton.SetActive(false);
+        ScoreboardMenuUI.SetActive(true);
+        Time.timeScale = 0f;
     }
 
 }
