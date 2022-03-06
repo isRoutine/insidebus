@@ -11,10 +11,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Game Scene.unity
     guid: 2d57c26efc440a745ad91b9386987f5b
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Options Scene.unity
     guid: ca4be37d2633876429b7e52345c19630
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Rankings Scene.unity
     guid: 6fa8e0d975ded9d409f147e4a1d46b86
   m_configObjects: {}

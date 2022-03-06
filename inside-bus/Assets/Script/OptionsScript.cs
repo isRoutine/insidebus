@@ -36,6 +36,7 @@ public class OptionsScript : MonoBehaviour
             OptionsMenuUI.SetActive(false);
             menu.optionsButton.SetActive(true);
             menu.playButton.SetActive(true);
+            menu.scoreboardButton.SetActive(true);
             Time.timeScale = 1f;
         }
     }
