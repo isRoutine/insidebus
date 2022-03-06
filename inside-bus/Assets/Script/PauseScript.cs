@@ -1,22 +1,21 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
-using UnityEngine.UI;
 
 public class PauseScript : MonoBehaviour
 {
     public GameObject PauseMenuUI;
-    private int currentSceneIndex;
+    public GameObject OptionsMenuUI;
+    public GameObject pauseButton;
+    public GameObject home;
+
+    public AnswerScript answer;
+    
     public static bool GameIsPaused = false;
     public bool flag = false;
 
     // Start is called before the first frame update
     void Start()
     {
-        GameIsPaused = true;
-        currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
-
+       
     }
 
     // Update is called once per frame
@@ -28,6 +27,11 @@ public class PauseScript : MonoBehaviour
     public void ResumeGame()
     {
         PauseMenuUI.SetActive(false);
+        answer.lessButtonGO.SetActive(true);
+        answer.moreButtonGO.SetActive(true);
+        answer.answerButtonGO.SetActive(true);
+        home.SetActive(true);
+        GameIsPaused = false;
         Time.timeScale = 1f;
 
     }
@@ -36,14 +40,19 @@ public class PauseScript : MonoBehaviour
     {
         flag = true;
         PauseMenuUI.SetActive(false);
-        PlayerPrefs.SetInt("SavedScene", currentSceneIndex);
-        SceneManager.LoadScene("Options Scene");
+        OptionsMenuUI.SetActive(true);
         Time.timeScale = 0f;
 
     }
 
     public void goToPause()
     {
+        pauseButton.SetActive(false);
+        home.SetActive(false);
+        GameIsPaused = true;
+        answer.lessButtonGO.SetActive(false);
+        answer.moreButtonGO.SetActive(false);
+        answer.answerButtonGO.SetActive(false);
         PauseMenuUI.SetActive(true);
         Time.timeScale = 0f;
     }

@@ -5,8 +5,9 @@ using UnityEngine.SceneManagement;
 
 public class OptionsScript : MonoBehaviour
 {
-    private int prevScene;
+    public GameObject OptionsMenuUI;
     public PauseScript pause;
+    public MenuScript menu;
 
     // Start is called before the first frame update
     void Start()
@@ -22,23 +23,23 @@ public class OptionsScript : MonoBehaviour
 
     public void goBack()
     {
-        prevScene = PlayerPrefs.GetInt("SavedScene");
-        if (pause.flag == true)
+        if (pause != null)
         {
-            SceneManager.LoadScene(prevScene);
-            pause.PauseMenuUI.SetActive(true);
-            pause.flag = false;
-            Time.timeScale = 1f;
-        }
-        else
-        {
-            if (prevScene >= 0)
+            if (pause.flag == true)
             {
-                SceneManager.LoadScene(prevScene);
-                Time.timeScale = 1f;
+                OptionsMenuUI.SetActive(false);
+                pause.PauseMenuUI.SetActive(true);
+                pause.flag = false;
+                Time.timeScale = 0f;
             }
-            else
-                return;
+        }
+
+        else if(menu != null)
+        {
+            OptionsMenuUI.SetActive(false);
+            menu.optionsButton.SetActive(true);
+            menu.playButton.SetActive(true);
+            Time.timeScale = 1f;
         }
     }
 

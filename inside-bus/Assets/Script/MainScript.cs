@@ -10,6 +10,7 @@ public class MainScript : MonoBehaviour
     public AnswerScript answer;
     public CharacterScript character;
     public Text lives;
+    public Text livesBis;
     private float delay = 0;
     private bool flag = false;
     private int rispostaEsatta;
@@ -23,6 +24,12 @@ public class MainScript : MonoBehaviour
     {
         return lives;
     }
+
+    public Text getLivesBis()
+    {
+        return livesBis;
+    }
+        
     // Start is called before the first frame update
     void Start()
     {

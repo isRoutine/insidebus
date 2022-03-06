@@ -12,7 +12,13 @@ public class AnswerScript : MonoBehaviour
     public Button moreButton;
     public Button lessButton;
     public Button answerButton;
+    
+    public GameObject moreButtonGO;
+    public GameObject lessButtonGO;
+    public GameObject answerButtonGO;
+    
     public MainScript main;
+    
     public bool flag;
     public bool click;
     public bool rispostaInviata;
@@ -73,12 +79,15 @@ public class AnswerScript : MonoBehaviour
         if (rispostaInviata)
             return;
         float numero = main.timer.timerValue;
-        int vite = Convert.ToInt32(main.lives.text);
+        int vite = Convert.ToInt32(main.getLives().text);
         if (numero == 0.0f)
         {
             rispostaInviata = true;
             if (this.AnswerValue == main.getRispostaEsatta())
+            {
                 main.getLives().text = vite.ToString();
+                main.getLivesBis().text = vite.ToString();
+            }
 
             else
             {
@@ -87,11 +96,13 @@ public class AnswerScript : MonoBehaviour
                 {
                     vite = vite - diff;
                     main.getLives().text = vite.ToString();
+                    main.getLivesBis().text = vite.ToString();
                 }
                 else
                 {
                     Debug.Log("Game Over");
                     main.getLives().text = "0";
+                    main.getLivesBis().text = "0";
                 }
             }
         }

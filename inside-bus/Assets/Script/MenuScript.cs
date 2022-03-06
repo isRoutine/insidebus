@@ -7,6 +7,9 @@ using UnityEngine.UI;
 public class MenuScript : MonoBehaviour
 {
     private int currentSceneIndex;
+    public GameObject OptionsMenuUI;
+    public GameObject playButton;
+    public GameObject optionsButton;
 
     // Start is called before the first frame update
     void Start()
@@ -28,9 +31,10 @@ public class MenuScript : MonoBehaviour
 
     public void goToOptionsMenu()
     {
-        PlayerPrefs.SetInt("SavedScene", currentSceneIndex);
-        SceneManager.LoadScene("Options Scene");
-        Time.timeScale = 1f;
+        playButton.SetActive(false);
+        optionsButton.SetActive(false);
+        OptionsMenuUI.SetActive(true);
+        Time.timeScale = 0f;
     }
 
     public void goToGameScene()
