@@ -4,14 +4,19 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class MenuScript : MonoBehaviour
+public class PauseScript : MonoBehaviour
 {
+    public GameObject PauseMenuUI;
     private int currentSceneIndex;
+    public static bool GameIsPaused = false;
+    public bool flag = false;
 
     // Start is called before the first frame update
     void Start()
     {
+        GameIsPaused = true;
         currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
+
     }
 
     // Update is called once per frame
@@ -20,29 +25,27 @@ public class MenuScript : MonoBehaviour
 
     }
 
-    public void goToMainMenu()
+    public void ResumeGame()
     {
-        SceneManager.LoadScene("MainMenu Scene");
+        PauseMenuUI.SetActive(false);
         Time.timeScale = 1f;
+
     }
 
     public void goToOptionsMenu()
     {
+        flag = true;
+        PauseMenuUI.SetActive(false);
         PlayerPrefs.SetInt("SavedScene", currentSceneIndex);
         SceneManager.LoadScene("Options Scene");
-        Time.timeScale = 1f;
+        Time.timeScale = 0f;
+
     }
 
-    public void goToGameScene()
+    public void goToPause()
     {
-        SceneManager.LoadScene("Game Scene");
-        Time.timeScale = 1f;
-    }
-
-    public void goToRankingsScene()
-    {
-        SceneManager.LoadScene("Rankings Scene");
-        Time.timeScale = 1f;
+        PauseMenuUI.SetActive(true);
+        Time.timeScale = 0f;
     }
 
 }
