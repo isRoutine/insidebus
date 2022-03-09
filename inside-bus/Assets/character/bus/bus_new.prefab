@@ -97,7 +97,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 08600affa174e114e95d14eb8fb28aeb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bus: {fileID: 0}
+  HorizontalValue: 0
+  VerticalValue: 1
+  AnimationSpeed: 0.02
+  RigidBody: {fileID: -2618153928221972625}
+  Animator: {fileID: -9096492507397307860}
 --- !u!50 &-2618153928221972625
 Rigidbody2D:
   serializedVersion: 4
