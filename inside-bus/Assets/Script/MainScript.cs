@@ -9,11 +9,14 @@ public class MainScript : MonoBehaviour
     public TimeScript timer;
     public AnswerScript answer;
     public CharacterScript character;
+    //public BusScript bus;
     public Text lives;
     public Text livesBis;
+    public GameObject GameOverUI;
     private float delay = 0;
     private bool flag = false;
     private int rispostaEsatta;
+    private int score;
 
     public int getRispostaEsatta()
     {
@@ -51,12 +54,26 @@ public class MainScript : MonoBehaviour
         if (delay > 3 && (flag == false)) {
             flag = true;
             character.Spawn("model1", 5, 1f);
+            //bus.Spawn("model1", 1, 1f);
             Debug.Log("inviato " + delay);
         }
 
         //Debug.Log(delay);
         delay += Time.fixedDeltaTime;
-        
+
+
+        int vite = Convert.ToInt32(this.lives);
+        if (answer.rispostaInviata && (vite != 0))
+        {
+            int diff = Math.Abs(this.rispostaEsatta - Convert.ToInt32(answer.answerText));
+            if (diff > 0)
+                score = score + (200 * diff);
+            else
+                score = score + (200 * this.rispostaEsatta);
+            Debug.Log("Score" + score.ToString());
+            answer.rispostaInviata = false;
+        }
+
     }
 
 }
