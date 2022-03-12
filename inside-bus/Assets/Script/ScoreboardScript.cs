@@ -27,6 +27,8 @@ public class ScoreboardScript : MonoBehaviour
             menu.optionsButton.SetActive(true);
             menu.playButton.SetActive(true);
             menu.scoreboardButton.SetActive(true);
+            menu.title.SetActive(true);
+            menu.titleShadow.SetActive(true);
             Time.timeScale = 1f;
         }
     }

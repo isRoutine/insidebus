@@ -6,6 +6,14 @@ public class PauseScript : MonoBehaviour
     public GameObject OptionsMenuUI;
     public GameObject pauseButton;
     public GameObject home;
+    public GameObject time;
+    public GameObject timeShadow;
+    public GameObject x;
+    public GameObject xShadow;
+    public GameObject lives;
+    public GameObject livesShadow;
+    public GameObject timetext;
+    public GameObject timetextShadow;
 
     public AnswerScript answer;
     
@@ -32,6 +40,14 @@ public class PauseScript : MonoBehaviour
         answer.answerButtonGO.SetActive(true);
         pauseButton.SetActive(true);
         home.SetActive(true);
+        time.SetActive(true);
+        timeShadow.SetActive(true);
+        x.SetActive(true);
+        xShadow.SetActive(true);
+        lives.SetActive(true);
+        livesShadow.SetActive(true);
+        timetext.SetActive(true);
+        timetextShadow.SetActive(true);
         GameIsPaused = false;
         Time.timeScale = 1f;
 
@@ -54,6 +70,14 @@ public class PauseScript : MonoBehaviour
         answer.lessButtonGO.SetActive(false);
         answer.moreButtonGO.SetActive(false);
         answer.answerButtonGO.SetActive(false);
+        time.SetActive(false);
+        timeShadow.SetActive(false);
+        x.SetActive(false);
+        xShadow.SetActive(false);
+        lives.SetActive(false);
+        livesShadow.SetActive(false);
+        timetext.SetActive(false);
+        timetextShadow.SetActive(false);
         PauseMenuUI.SetActive(true);
         Time.timeScale = 0f;
     }

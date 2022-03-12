@@ -12,11 +12,14 @@ public class MenuScript : MonoBehaviour
     public GameObject optionsButton;
     public GameObject ScoreboardMenuUI;
     public GameObject scoreboardButton;
+    public GameObject title;
+    public GameObject titleShadow;
 
     // Start is called before the first frame update
     void Start()
     {
         currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
+        
     }
 
     // Update is called once per frame
@@ -37,6 +40,8 @@ public class MenuScript : MonoBehaviour
         optionsButton.SetActive(false);
         OptionsMenuUI.SetActive(true);
         scoreboardButton.SetActive(false);
+        title.SetActive(false);
+        titleShadow.SetActive(false);
         Time.timeScale = 0f;
     }
 
@@ -46,12 +51,14 @@ public class MenuScript : MonoBehaviour
         Time.timeScale = 1f;
     }
 
-    public void goToRankingsScene()
+    public void goToRankingsPanel()
     {
         playButton.SetActive(false);
         optionsButton.SetActive(false);
         scoreboardButton.SetActive(false);
         ScoreboardMenuUI.SetActive(true);
+        title.SetActive(false);
+        titleShadow.SetActive(false);
         Time.timeScale = 0f;
     }
 
