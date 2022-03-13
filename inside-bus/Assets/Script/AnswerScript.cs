@@ -108,7 +108,6 @@ public class AnswerScript : MonoBehaviour
                     answerButtonGO.SetActive(false);
                     lessButtonGO.SetActive(false);
                     moreButtonGO.SetActive(false);
-                    pause.home.SetActive(false);
                     pause.pauseButton.SetActive(false);
 
                 }
