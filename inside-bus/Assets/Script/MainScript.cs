@@ -7,6 +7,7 @@ using UnityEngine.UI;
 public class MainScript : MonoBehaviour
 {
     public TimeScript timer;
+    public TimeScript timerShadow;
     public AnswerScript answer;
     public CharacterScript character;
     //public BusScript bus;
@@ -17,6 +18,12 @@ public class MainScript : MonoBehaviour
     private bool flag = false;
     private int rispostaEsatta;
     private int score;
+
+    private static System.Random random = new System.Random();
+    public double GetRandomNumber(double minimum, double maximum)
+    {
+        return random.NextDouble() * (maximum - minimum) + minimum;
+    }
 
     public int getRispostaEsatta()
     {
@@ -36,6 +43,9 @@ public class MainScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        float tempo = (float)GetRandomNumber(10, 90);
+        timer.timerValue = tempo;
+        timerShadow.timerValue = tempo;
         rispostaEsatta = 120;
     }
 

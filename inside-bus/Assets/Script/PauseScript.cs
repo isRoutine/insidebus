@@ -5,7 +5,6 @@ public class PauseScript : MonoBehaviour
     public GameObject PauseMenuUI;
     public GameObject OptionsMenuUI;
     public GameObject pauseButton;
-    public GameObject home;
     public GameObject time;
     public GameObject timeShadow;
     public GameObject x;
@@ -14,16 +13,17 @@ public class PauseScript : MonoBehaviour
     public GameObject livesShadow;
     public GameObject timetext;
     public GameObject timetextShadow;
+    public GameObject AreYouSureUI;
 
     public AnswerScript answer;
-    
-    public static bool GameIsPaused = false;
+
+    public bool GameIsPaused = false;
     public bool flag = false;
 
     // Start is called before the first frame update
     void Start()
     {
-       
+
     }
 
     // Update is called once per frame
@@ -39,7 +39,6 @@ public class PauseScript : MonoBehaviour
         answer.moreButtonGO.SetActive(true);
         answer.answerButtonGO.SetActive(true);
         pauseButton.SetActive(true);
-        home.SetActive(true);
         time.SetActive(true);
         timeShadow.SetActive(true);
         x.SetActive(true);
@@ -65,7 +64,6 @@ public class PauseScript : MonoBehaviour
     public void goToPause()
     {
         pauseButton.SetActive(false);
-        home.SetActive(false);
         GameIsPaused = true;
         answer.lessButtonGO.SetActive(false);
         answer.moreButtonGO.SetActive(false);
@@ -80,6 +78,18 @@ public class PauseScript : MonoBehaviour
         timetextShadow.SetActive(false);
         PauseMenuUI.SetActive(true);
         Time.timeScale = 0f;
+    }
+
+    public void goBack()
+    {
+        AreYouSureUI.SetActive(false);
+        PauseMenuUI.SetActive(true);
+    }
+
+    public void AreYouSure()
+    {
+        AreYouSureUI.SetActive(true);
+        PauseMenuUI.SetActive(false);
     }
 
 }

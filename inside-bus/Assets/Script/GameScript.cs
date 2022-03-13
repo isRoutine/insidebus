@@ -14,16 +14,16 @@ public class GameScript : MonoBehaviour
     public int amountSpawned;
     public int menInside;
 
+
     // Start is called before the first frame update
     void Start()
     {
-
         delay = 0;
         amountSpawned = 0;
         menInside = 0;
         men = new LinkedList<GameObject>();
         MaleScript s =  man.GetComponent<MaleScript>() as MaleScript;
-        //sBusObject bus = busObj.GetComponent<BusObject>() as BusObject;
+        //BusObject bus = busObj.GetComponent<BusObject>() as BusObject;
         s.VerticalValue = +1.0f;
         s.AnimationSpeed = 0.02f;
 
