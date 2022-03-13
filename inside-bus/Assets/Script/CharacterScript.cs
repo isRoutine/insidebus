@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-class Character {
+public class Character {
     private GameObject figure;
     private float time;
 
@@ -50,8 +50,8 @@ public class CharacterScript : MonoBehaviour
         visible = 0; // number of character now in action, visible on the screen
         amountSpawned = 0; // number of character spawned 
         MaleScript s =  male.GetComponent<MaleScript>() as MaleScript;
-        s.VerticalValue = +1.0f; // setting the animation of male
-        s.AnimationSpeed = 0.02f; // setting the speed animation of male
+        s.SetVerticalValue(1.0f); // setting the animation of male
+        s.SetAnimationSpeed(0.02f); // setting the speed animation of male
     }
 
     // Update is called once per frame

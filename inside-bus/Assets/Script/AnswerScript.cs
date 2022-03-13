@@ -16,9 +16,10 @@ public class AnswerScript : MonoBehaviour
     public GameObject moreButtonGO;
     public GameObject lessButtonGO;
     public GameObject answerButtonGO;
-    
+
     public MainScript main;
-    
+    public PauseScript pause;
+
     public bool flag;
     public bool click;
     public bool rispostaInviata;
@@ -103,6 +104,13 @@ public class AnswerScript : MonoBehaviour
                     Debug.Log("Game Over");
                     main.getLives().text = "0";
                     main.getLivesBis().text = "0";
+                    main.GameOverUI.SetActive(true);
+                    answerButtonGO.SetActive(false);
+                    lessButtonGO.SetActive(false);
+                    moreButtonGO.SetActive(false);
+                    pause.home.SetActive(false);
+                    pause.pauseButton.SetActive(false);
+
                 }
             }
         }
