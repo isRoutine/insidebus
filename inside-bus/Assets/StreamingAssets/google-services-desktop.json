@@ -1,0 +1,36 @@
+{
+  "client": [
+    {
+      "services": {
+        "appinvite_service": {
+          "status": 1
+        }, 
+        "analytics_service": {
+          "status": 0
+        }
+      }, 
+      "oauth_client": [
+        {
+          "client_id": "940153251822-d02g3e23o5sfk68bqtmur5d8jj1o2cad.apps.googleusercontent.com"
+        }
+      ], 
+      "api_key": [
+        {
+          "current_key": "AIzaSyDwqBrhnOpHKAfkhNtsGzLwPpIPuAZaOW0"
+        }
+      ], 
+      "client_info": {
+        "mobilesdk_app_id": "1:940153251822:ios:852ba6e565e29dcb3bd0ff", 
+        "android_client_info": {
+          "package_name": "com.company.InsideBus"
+        }
+      }
+    }
+  ], 
+  "configuration_version": "1", 
+  "project_info": {
+    "storage_bucket": "counthem-e7ce1.appspot.com", 
+    "project_id": "counthem-e7ce1", 
+    "project_number": "940153251822"
+  }
+}
