@@ -19,7 +19,7 @@ public class CameraScript : MonoBehaviour
     	else 
     		aspect = aspect_y / aspect_x;
 
-    	Debug.Log(s + " -- > " + aspect);
+    	//Debug.Log(s + " -- > " + aspect);
 
 
 
