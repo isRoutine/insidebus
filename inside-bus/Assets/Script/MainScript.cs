@@ -81,7 +81,6 @@ public class MainScript : MonoBehaviour
             else
                 score = score + (200 * this.rispostaEsatta);
             Debug.Log("Score" + score.ToString());
-            answer.rispostaInviata = false;
         }
 
     }
