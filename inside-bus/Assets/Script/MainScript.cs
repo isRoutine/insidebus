@@ -80,7 +80,9 @@ public class MainScript : MonoBehaviour
                 score = score + (200 * diff);
             else
                 score = score + (200 * this.rispostaEsatta);
+            
             Debug.Log("Score" + score.ToString());
+            answer.rispostaInviata = false;
         }
 
     }
