@@ -1,0 +1,46 @@
+using UnityEngine;
+
+public class OptionsScript : MonoBehaviour
+{
+    public GameObject OptionsMenuUI;
+    public PauseScript pause;
+    public MenuScript menu;
+
+    // Start is called before the first frame update
+    void Start()
+    {
+
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+
+    }
+
+    public void goBack()
+    {
+        if (pause != null)
+        {
+            if (pause.flag == true)
+            {
+                OptionsMenuUI.SetActive(false);
+                pause.PauseMenuUI.SetActive(true);
+                pause.flag = false;
+                Time.timeScale = 0f;
+            }
+        }
+
+        else if(menu != null)
+        {
+            OptionsMenuUI.SetActive(false);
+            menu.optionsButton.SetActive(true);
+            menu.playButton.SetActive(true);
+            menu.scoreboardButton.SetActive(true);
+            menu.title.SetActive(true);
+            menu.titleShadow.SetActive(true);
+            Time.timeScale = 1f;
+        }
+    }
+
+}
