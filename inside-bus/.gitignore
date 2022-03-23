@@ -57,6 +57,8 @@ sysinfo.txt
 
 #FireBase so file 
 FirebaseCppApp-8_7_0.so
+.so.meta
+.DS_Store
 
 # Builds
 *.apk
