@@ -43,7 +43,7 @@ public class MainScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        float tempo = (float)GetRandomNumber(10, 90);
+        float tempo = (float)GetRandomNumber(0, 10);
         timer.timerValue = tempo;
         timerShadow.timerValue = tempo;
         rispostaEsatta = 120;

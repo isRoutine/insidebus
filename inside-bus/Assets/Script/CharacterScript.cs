@@ -25,6 +25,8 @@ public class Character {
 public class CharacterScript : MonoBehaviour
 {
 	public GameObject male;
+    public GameObject bus;
+    public Rigidbody2D busBody;
 	private Queue<Character> toSpawn;
     private LinkedList<GameObject> spawned;
     private Vector2 startPosition;
@@ -44,7 +46,11 @@ public class CharacterScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-    	toSpawn = new Queue<Character>(); // queue of character waiting for spawn
+        busBody = bus.GetComponent<Rigidbody2D>();
+        Vector2 v = new Vector2(7f, 0.89f);
+        busBody.position = v;
+
+        toSpawn = new Queue<Character>(); // queue of character waiting for spawn
         spawned = new LinkedList<GameObject>(); //list of character already spawned
         startPosition = new Vector2(-0.7f, -6); // default start position for all characters
         visible = 0; // number of character now in action, visible on the screen
@@ -65,7 +71,7 @@ public class CharacterScript : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-
+        
         if(toSpawn.Count > 0 || flag){
 
             if(toSpawn.Count > 0){
@@ -100,6 +106,20 @@ public class CharacterScript : MonoBehaviour
             }
             timing += Time.fixedDeltaTime;
         }
+
+        BusScript b = bus.GetComponent<BusScript>() as BusScript;
+
+        if (busBody.position.x > -0.03f)
+            busBody.MovePosition(busBody.position + (new Vector2(-0.5f, 0) * Time.fixedDeltaTime * 2f));
+
+        else
+        {
+            b.EnginesOff();
+            b.Idle();
+            b.Open();
+            b.Close();
+        }
+            
     }
 }
 
