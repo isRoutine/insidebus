@@ -3,24 +3,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-class Bus : Character {
-
-    private GameObject figure;
-    private float time;
-
-    public Bus(GameObject bus, float time) : base(bus, time)
-    {
-        this.figure = bus;
-        this.time = time;
-    }
-
-}
-
 public class BusScript : MonoBehaviour
 {
     
     public Animator animator;
-
+    private bool isFlying = false;
 
     //Start is called before the first frame update
     void Start()
@@ -47,6 +34,7 @@ public class BusScript : MonoBehaviour
     public void Fly()
     {
         animator.SetTrigger("fly");
+        isFlying = true;
     }
 
     public void Open()
@@ -62,5 +50,10 @@ public class BusScript : MonoBehaviour
     public void Idle()
     {
         animator.SetTrigger("idle");
+    }
+
+    public bool getState()
+    {
+        return isFlying;
     }
 }

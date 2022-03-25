@@ -30,10 +30,11 @@ public class CharacterScript : MonoBehaviour
     private Queue<Character> toSpawn;
     private LinkedList<GameObject> spawned;
     private Vector2 startPosition;
-    private int visible;
+    public int visible;
     private int amountSpawned;
     private int SpawnedBus;
     private float timing = 0;
+    private float delay = 0;
     private bool flag = false;
 
 
@@ -116,6 +117,7 @@ public class CharacterScript : MonoBehaviour
                     GameObject temp = c.Value;
                     spawned.RemoveLast();
                     Destroy(temp);
+                    visible--;
                 }
                 c = c.Next;
             }
@@ -129,18 +131,34 @@ public class CharacterScript : MonoBehaviour
             busSpawned.name = "Bus" + SpawnedBus;
         }
 
-        Rigidbody2D busBody = busSpawned.GetComponent(typeof(Rigidbody2D)) as Rigidbody2D;
-
-        if (busBody.position.x > -0.03f)
-            busBody.MovePosition(busBody.position + (new Vector2(-0.5f, 0) * Time.fixedDeltaTime * 2f));
-
-        else
+        if (busSpawned != null)
         {
+            Rigidbody2D busBody = busSpawned.GetComponent(typeof(Rigidbody2D)) as Rigidbody2D;
             BusScript b = busSpawned.GetComponent<BusScript>() as BusScript;
-            b.EnginesOff();
-            b.Idle();
-            b.Open();
-            b.Close();
+
+            if (busBody.position.x > -0.03f)
+                busBody.MovePosition(busBody.position + (new Vector2(-0.5f, 0) * Time.fixedDeltaTime * 2f));
+            else
+            {
+                b.EnginesOff();
+                b.Idle();
+                b.Open();
+                b.Close();
+            }
+
+            if (visible == 0 && busBody.position.x <= -0.038f)
+            {
+                b.EnginesOn();
+                b.Fly();
+                //if(b.GetComponent<Animator>().GetComponent<Animation>().IsPlaying("bus_fly"))
+                    busBody.MovePosition(busBody.position + (new Vector2(-0.5f, 0) * Time.fixedDeltaTime * 2f));
+            }
+
+            if (busBody.position.x < -6.5f)
+            {
+                Destroy(busSpawned);
+                //SpawnedBus = 0;
+            }
         }
     }
 }
