@@ -43,7 +43,7 @@ public class MainScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        float tempo = (float)GetRandomNumber(0, 10);
+        float tempo = (float)GetRandomNumber(0, 30);
         timer.timerValue = tempo;
         timerShadow.timerValue = tempo;
         rispostaEsatta = 120;
@@ -63,8 +63,8 @@ public class MainScript : MonoBehaviour
 
         if (delay > 3 && (flag == false)) {
             flag = true;
-            character.Spawn("model1", 5, 1f);
-            //bus.Spawn("model1", 1, 1f);
+            character.SpawnMen("model1", 5, 1f);
+            character.SpawnBus("model2", 1, 1f);
             Debug.Log("inviato " + delay);
         }
 
