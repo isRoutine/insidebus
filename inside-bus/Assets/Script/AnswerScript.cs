@@ -145,6 +145,14 @@ public class AnswerScript : MonoBehaviour
     public void DarkTimer()
     {
         AnswerPanel.SetActive(true);
+
+        
+        Color c = AnswerPanel.GetComponent<Image>().color;
+        c.a = 0.0005f;
+        
+        if(AnswerPanel.GetComponent<Image>().color.a < 0.60f)
+            AnswerPanel.GetComponent<Image>().color += c;
+
         pause.pauseButton.SetActive(false);
         pause.time.SetActive(false);
         pause.timeShadow.SetActive(false);
