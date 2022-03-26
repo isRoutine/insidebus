@@ -33,8 +33,8 @@ public class LoginScript : MonoBehaviour
         }
 
         // Firebase user has been created.
-        resultText.text = "Sing Up is successful";
-        Debug.Log("Sing Up is successful");
+        resultText.text = "Sign Up is successful";
+        Debug.Log("Sign Up is successful");
         Firebase.Auth.FirebaseUser newUser = task.Result;
         Debug.LogFormat("Firebase user created successfully: {0} ({1})",
             newUser.DisplayName, newUser.UserId);
@@ -53,8 +53,8 @@ public class LoginScript : MonoBehaviour
         }
 
 
-        resultText.text = "Sing In is successful";
-        Debug.Log("Sing In is successful");
+        resultText.text = "Sign In is successful";
+        Debug.Log("Sign In is successful");
 
         /*invio email di verifica
         Firebase.Auth.FirebaseUser us = auth.CurrentUser;

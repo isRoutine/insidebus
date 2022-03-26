@@ -12,17 +12,22 @@ public class AnswerScript : MonoBehaviour
     public Button moreButton;
     public Button lessButton;
     public Button answerButton;
-    
+
     public GameObject moreButtonGO;
     public GameObject lessButtonGO;
     public GameObject answerButtonGO;
 
     public MainScript main;
     public PauseScript pause;
+    public GameObject AnswerPanel;
 
     public bool flag;
     public bool click;
     public bool rispostaInviata;
+
+    public float timerValue;
+    public Text timeText;
+    public float seconds, minutes;
 
     public void IsClicked()
     {
@@ -41,10 +46,7 @@ public class AnswerScript : MonoBehaviour
         flag = false;
         click = false;
         rispostaInviata = false;
-        answerText = GetComponent<Text>() as Text;
-        moreButton.onClick.AddListener(MoreTask);
-        lessButton.onClick.AddListener(LessTask);
-        answerButton.onClick.AddListener(AnswerTask);
+        //answerText = GetComponent<Text>() as Text;
 
     }
 
@@ -53,6 +55,28 @@ public class AnswerScript : MonoBehaviour
     {
         moreButton.interactable = !flag;
         lessButton.interactable = !flag;
+
+        if (main.timer.timerValue == 0.0f && rispostaInviata == false)
+        {
+            timerValue += Time.deltaTime;
+            minutes = (int)(timerValue / 60f);
+            seconds = (int)(timerValue % 60f);
+            timeText.text = string.Format("{0:00}:{1:00}", minutes, seconds);
+            DarkTimer();
+        }
+        else
+        {
+            AnswerPanel.SetActive(false);
+            pause.pauseButton.SetActive(true);
+            pause.time.SetActive(true);
+            pause.timeShadow.SetActive(true);
+            pause.timetext.SetActive(true);
+            pause.timetextShadow.SetActive(true);
+            pause.lives.SetActive(true);
+            pause.livesShadow.SetActive(true);
+            pause.x.SetActive(true);
+            pause.xShadow.SetActive(true);
+        }
     }
 
     // se utente preme il tasto al centro, cambia lo 
@@ -105,6 +129,8 @@ public class AnswerScript : MonoBehaviour
                     main.getLives().text = "0";
                     main.getLivesBis().text = "0";
                     main.GameOverUI.SetActive(true);
+                    Time.timeScale = 0f;
+                    AnswerPanel.SetActive(false);
                     answerButtonGO.SetActive(false);
                     lessButtonGO.SetActive(false);
                     moreButtonGO.SetActive(false);
@@ -114,6 +140,28 @@ public class AnswerScript : MonoBehaviour
             }
         }
 
+    }
+
+    public void DarkTimer()
+    {
+        AnswerPanel.SetActive(true);
+
+        
+        Color c = AnswerPanel.GetComponent<Image>().color;
+        c.a = 0.0005f;
+        
+        if(AnswerPanel.GetComponent<Image>().color.a < 0.60f)
+            AnswerPanel.GetComponent<Image>().color += c;
+
+        pause.pauseButton.SetActive(false);
+        pause.time.SetActive(false);
+        pause.timeShadow.SetActive(false);
+        pause.timetext.SetActive(false);
+        pause.timetextShadow.SetActive(false);
+        pause.lives.SetActive(false);
+        pause.livesShadow.SetActive(false);
+        pause.x.SetActive(false);
+        pause.xShadow.SetActive(false);
     }
 
 }

@@ -12,7 +12,6 @@ public class TimeScript : MonoBehaviour
     public Text timeText;
     public float seconds, minutes;
 
-
     public float TimerValue 
     {
         get { return timerValue; }
