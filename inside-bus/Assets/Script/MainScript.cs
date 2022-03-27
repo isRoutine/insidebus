@@ -10,7 +10,6 @@ public class MainScript : MonoBehaviour
     public TimeScript timerShadow;
     public AnswerScript answer;
     public CharacterScript character;
-    //public BusScript bus;
     public Text lives;
     public Text livesBis;
     public GameObject GameOverUI;
@@ -43,7 +42,7 @@ public class MainScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        float tempo = (float)GetRandomNumber(0, 30);
+        float tempo = (float)GetRandomNumber(5, 30);
         timer.timerValue = tempo;
         timerShadow.timerValue = tempo;
         rispostaEsatta = 120;
