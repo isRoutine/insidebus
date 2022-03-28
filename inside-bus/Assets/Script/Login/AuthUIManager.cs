@@ -1,3 +1,5 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
@@ -18,26 +20,33 @@ public class AuthUIManager : MonoBehaviour
     private TMP_Text verifyEmailText;
 
 
-    private void Awake() {
-        if (instance == null){
+    private void Awake()
+    {
+        if (instance == null)
+        {
             instance = this;
-        }else if (instance!=this){
+        }
+        else if (instance != this)
+        {
             Destroy(gameObject);
         }
     }
 
-    private void ClearUI(){
+    private void ClearUI()
+    {
         loginUI.SetActive(false);
         registerUI.SetActive(false);
         FirebaseManager.instance.ClearOutputs();
     }
 
-    public void LoginScreen(){
+    public void LoginScreen()
+    {
         ClearUI();
         loginUI.SetActive(true);
     }
 
-    public void RegisterScreen(){
+    public void RegisterScreen()
+    {
         ClearUI();
         registerUI.SetActive(true);
     }
