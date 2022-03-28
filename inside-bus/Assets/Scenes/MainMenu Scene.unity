@@ -452,7 +452,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 415710055}
         m_TargetAssemblyTypeName: MenuScript, Assembly-CSharp
-        m_MethodName: goToOptionsMenu
+        m_MethodName: goToLoginScene
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1387,6 +1387,7 @@ MonoBehaviour:
   OptionsMenuUI: {fileID: 349417858}
   playButton: {fileID: 1765997898}
   optionsButton: {fileID: 2110856338}
+  logoutButton: {fileID: 81098115}
   ScoreboardMenuUI: {fileID: 622244149}
   scoreboardButton: {fileID: 64477213}
   title: {fileID: 1684154996}
