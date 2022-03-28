@@ -5,16 +5,22 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
 
-    private void Awake() {
+    private void Awake()
+    {
         DontDestroyOnLoad(gameObject);
-        if (instance == null){
+        if (instance == null)
+        {
             instance = this;
-        }else if (instance!=this){
+        }
+        else if (instance != this)
+        {
             Destroy(instance.gameObject);
         }
     }
 
-    public void ChangeScene (int _sceneIndex) {
+    public void ChangeScene(int _sceneIndex)
+    {
         SceneManager.LoadSceneAsync(_sceneIndex);
     }
+
 }
