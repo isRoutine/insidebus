@@ -21,6 +21,10 @@ public class BusScript : MonoBehaviour
         
     }
 
+    public Animator getAnimator(){
+        return animator;
+    }
+
     public void EnginesOff()
     {
         animator.SetTrigger("engines_off");
