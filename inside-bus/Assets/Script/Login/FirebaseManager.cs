@@ -144,13 +144,13 @@ public class FirebaseManager : MonoBehaviour
             if (user.IsEmailVerified)
             {       //controllo se email è verificata
                 yield return new WaitForSeconds(1f);
-                GameManager.instance.ChangeScene(1);
+                GameManager.instance.ChangeScene(0);
             }
             else
             {
                 //TODO: Send Verification Email
                 //per ora
-                GameManager.instance.ChangeScene(1);
+                GameManager.instance.ChangeScene(0);
             }
         }
     }
