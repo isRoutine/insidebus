@@ -152,7 +152,7 @@ public class CharacterScript : MonoBehaviour
         {
             SpawnedBus = 1;
             busSpawned = Instantiate(bus, BUS_ENTRY , Quaternion.identity);
-            busSpawned.name = "Bus" + SpawnedBus;
+            busSpawned.name = "Bus";
         }
 
         if (busSpawned != null)
@@ -160,7 +160,7 @@ public class CharacterScript : MonoBehaviour
             Rigidbody2D busBody = busSpawned.GetComponent(typeof(Rigidbody2D)) as Rigidbody2D;
             BusScript b = busSpawned.GetComponent<BusScript>() as BusScript;
 
-            if (busBody.position.x > -0.03f)
+            if (busBody.position.x > BUS_STOP.x)
                 busBody.MovePosition(busBody.position + (new Vector2(-0.5f, 0) * Time.fixedDeltaTime * 2f));
             else
             {
