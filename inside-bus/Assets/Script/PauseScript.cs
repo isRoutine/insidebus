@@ -38,15 +38,7 @@ public class PauseScript : MonoBehaviour
         answer.lessButtonGO.SetActive(true);
         answer.moreButtonGO.SetActive(true);
         answer.answerButtonGO.SetActive(true);
-        pauseButton.SetActive(true);
-        time.SetActive(true);
-        timeShadow.SetActive(true);
-        x.SetActive(true);
-        xShadow.SetActive(true);
-        lives.SetActive(true);
-        livesShadow.SetActive(true);
-        timetext.SetActive(true);
-        timetextShadow.SetActive(true);
+        FillUI();
         GameIsPaused = false;
         Time.timeScale = 1f;
 
@@ -63,19 +55,11 @@ public class PauseScript : MonoBehaviour
 
     public void goToPause()
     {
-        pauseButton.SetActive(false);
         GameIsPaused = true;
         answer.lessButtonGO.SetActive(false);
         answer.moreButtonGO.SetActive(false);
         answer.answerButtonGO.SetActive(false);
-        time.SetActive(false);
-        timeShadow.SetActive(false);
-        x.SetActive(false);
-        xShadow.SetActive(false);
-        lives.SetActive(false);
-        livesShadow.SetActive(false);
-        timetext.SetActive(false);
-        timetextShadow.SetActive(false);
+        ClearUI();
         PauseMenuUI.SetActive(true);
         Time.timeScale = 0f;
     }
@@ -90,6 +74,32 @@ public class PauseScript : MonoBehaviour
     {
         AreYouSureUI.SetActive(true);
         PauseMenuUI.SetActive(false);
+    }
+
+    public void FillUI()
+    {
+        pauseButton.SetActive(true);
+        time.SetActive(true);
+        timeShadow.SetActive(true);
+        timetext.SetActive(true);
+        timetextShadow.SetActive(true);
+        lives.SetActive(true);
+        livesShadow.SetActive(true);
+        x.SetActive(true);
+        xShadow.SetActive(true);
+    }
+
+    public void ClearUI()
+    {
+        pauseButton.SetActive(false);
+        time.SetActive(false);
+        timeShadow.SetActive(false);
+        timetext.SetActive(false);
+        timetextShadow.SetActive(false);
+        lives.SetActive(false);
+        livesShadow.SetActive(false);
+        x.SetActive(false);
+        xShadow.SetActive(false);
     }
 
 }

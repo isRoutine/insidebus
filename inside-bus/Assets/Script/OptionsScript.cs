@@ -34,11 +34,7 @@ public class OptionsScript : MonoBehaviour
         else if(menu != null)
         {
             OptionsMenuUI.SetActive(false);
-            menu.optionsButton.SetActive(true);
-            menu.playButton.SetActive(true);
-            menu.scoreboardButton.SetActive(true);
-            menu.title.SetActive(true);
-            menu.titleShadow.SetActive(true);
+            menu.FillUI();
             Time.timeScale = 1f;
         }
     }

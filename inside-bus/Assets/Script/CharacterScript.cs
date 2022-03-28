@@ -176,7 +176,7 @@ public class CharacterScript : MonoBehaviour
             {
                 b.EnginesOn();
                 b.Fly();
-                //if(b.GetComponent<Animator>().GetComponent<Animation>().IsPlaying("bus_fly"))
+                if (b.GetComponent<Animator>().GetBool("fly"))
                     busBody.MovePosition(busBody.position + (new Vector2(-0.5f, 0) * Time.fixedDeltaTime * 2f));
             }
 

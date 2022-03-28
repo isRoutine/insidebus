@@ -67,15 +67,7 @@ public class AnswerScript : MonoBehaviour
         else
         {
             AnswerPanel.SetActive(false);
-            pause.pauseButton.SetActive(true);
-            pause.time.SetActive(true);
-            pause.timeShadow.SetActive(true);
-            pause.timetext.SetActive(true);
-            pause.timetextShadow.SetActive(true);
-            pause.lives.SetActive(true);
-            pause.livesShadow.SetActive(true);
-            pause.x.SetActive(true);
-            pause.xShadow.SetActive(true);
+            pause.FillUI();
         }
     }
 
@@ -153,15 +145,7 @@ public class AnswerScript : MonoBehaviour
         if(AnswerPanel.GetComponent<Image>().color.a < 0.60f)
             AnswerPanel.GetComponent<Image>().color += c;
 
-        pause.pauseButton.SetActive(false);
-        pause.time.SetActive(false);
-        pause.timeShadow.SetActive(false);
-        pause.timetext.SetActive(false);
-        pause.timetextShadow.SetActive(false);
-        pause.lives.SetActive(false);
-        pause.livesShadow.SetActive(false);
-        pause.x.SetActive(false);
-        pause.xShadow.SetActive(false);
+        pause.ClearUI();
     }
 
 }

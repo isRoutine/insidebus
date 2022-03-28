@@ -10,6 +10,7 @@ public class MenuScript : MonoBehaviour
     public GameObject OptionsMenuUI;
     public GameObject playButton;
     public GameObject optionsButton;
+    public GameObject logoutButton;
     public GameObject ScoreboardMenuUI;
     public GameObject scoreboardButton;
     public GameObject title;
@@ -36,12 +37,8 @@ public class MenuScript : MonoBehaviour
 
     public void goToOptionsMenu()
     {
-        playButton.SetActive(false);
-        optionsButton.SetActive(false);
+        ClearUI();
         OptionsMenuUI.SetActive(true);
-        scoreboardButton.SetActive(false);
-        title.SetActive(false);
-        titleShadow.SetActive(false);
         Time.timeScale = 0f;
     }
 
@@ -51,15 +48,37 @@ public class MenuScript : MonoBehaviour
         Time.timeScale = 1f;
     }
 
+    public void goToLoginScene()
+    {
+        SceneManager.LoadScene("Login Scene");
+        Time.timeScale = 1f;
+    }
+
     public void goToRankingsPanel()
     {
+        ClearUI();
+        ScoreboardMenuUI.SetActive(true);
+        Time.timeScale = 0f;
+    }
+
+    public void ClearUI()
+    {
+        title.SetActive(false);
+        titleShadow.SetActive(false);
         playButton.SetActive(false);
         optionsButton.SetActive(false);
         scoreboardButton.SetActive(false);
-        ScoreboardMenuUI.SetActive(true);
-        title.SetActive(false);
-        titleShadow.SetActive(false);
-        Time.timeScale = 0f;
+        logoutButton.SetActive(false);
+    }
+
+    public void FillUI()
+    {
+        optionsButton.SetActive(true);
+        playButton.SetActive(true);
+        scoreboardButton.SetActive(true);
+        title.SetActive(true);
+        titleShadow.SetActive(true);
+        logoutButton.SetActive(true);
     }
 
 }
