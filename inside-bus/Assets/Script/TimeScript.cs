@@ -7,9 +7,9 @@ using UnityEngine.UI;
 
 public class TimeScript : MonoBehaviour
 {
-    public MainScript main;
+    [SerializeField] private MainScript main;
     public float timerValue;
-    public Text timeText;
+    private Text timeText;
     public float seconds, minutes;
 
     public float TimerValue 

@@ -6,27 +6,27 @@ using System;
 
 public class AnswerScript : MonoBehaviour
 {
-    public Text answerText;
+    [SerializeField] private Text answerText;
     private int answerValue;
 
-    public Button moreButton;
-    public Button lessButton;
-    public Button answerButton;
+    [SerializeField] private Button moreButton;
+    [SerializeField] private Button lessButton;
+    [SerializeField] private Button answerButton;
 
-    public GameObject moreButtonGO;
-    public GameObject lessButtonGO;
-    public GameObject answerButtonGO;
+    [SerializeField] private GameObject moreButtonGO;
+    [SerializeField] private GameObject lessButtonGO;
+    [SerializeField] private GameObject answerButtonGO;
 
-    public MainScript main;
-    public PauseScript pause;
-    public GameObject AnswerPanel;
+    [SerializeField] private MainScript main;
+    [SerializeField] private PauseScript pause;
+    [SerializeField] private GameObject AnswerPanel;
 
     public bool flag;
     public bool click;
     public bool rispostaInviata;
 
     public float timerValue;
-    public Text timeText;
+    [SerializeField] private Text timeText;
     public float seconds, minutes;
 
     public void IsClicked()
@@ -39,6 +39,27 @@ public class AnswerScript : MonoBehaviour
         get { return Convert.ToInt32(answerText.text); }
         set { answerValue = value; }
     }
+
+    public GameObject getMoreButton()
+    {
+        return this.moreButtonGO;
+    }
+
+    public GameObject getLessButton()
+    {
+        return this.lessButtonGO;
+    }
+
+    public GameObject getAnswerButton()
+    {
+        return this.answerButtonGO;
+    }
+
+    public Text getAnswerText()
+    {
+        return this.answerText;
+    }
+
 
     // Start is called before the first frame update
     void Start()
@@ -56,7 +77,7 @@ public class AnswerScript : MonoBehaviour
         moreButton.interactable = !flag;
         lessButton.interactable = !flag;
 
-        if (main.timer.timerValue == 0.0f && rispostaInviata == false)
+        if (main.getTimer().timerValue == 0.0f && rispostaInviata == false)
         {
             timerValue += Time.deltaTime;
             minutes = (int)(timerValue / 60f);
@@ -67,15 +88,7 @@ public class AnswerScript : MonoBehaviour
         else
         {
             AnswerPanel.SetActive(false);
-            pause.pauseButton.SetActive(true);
-            pause.time.SetActive(true);
-            pause.timeShadow.SetActive(true);
-            pause.timetext.SetActive(true);
-            pause.timetextShadow.SetActive(true);
-            pause.lives.SetActive(true);
-            pause.livesShadow.SetActive(true);
-            pause.x.SetActive(true);
-            pause.xShadow.SetActive(true);
+            pause.FillUI();
         }
     }
 
@@ -103,7 +116,7 @@ public class AnswerScript : MonoBehaviour
         flag = !flag;
         if (rispostaInviata)
             return;
-        float numero = main.timer.timerValue;
+        float numero = main.getTimer().timerValue;
         int vite = Convert.ToInt32(main.getLives().text);
         if (numero == 0.0f)
         {
@@ -128,13 +141,13 @@ public class AnswerScript : MonoBehaviour
                     Debug.Log("Game Over");
                     main.getLives().text = "0";
                     main.getLivesBis().text = "0";
-                    main.GameOverUI.SetActive(true);
+                    main.getGameOverUI().SetActive(true);
                     Time.timeScale = 0f;
                     AnswerPanel.SetActive(false);
                     answerButtonGO.SetActive(false);
                     lessButtonGO.SetActive(false);
                     moreButtonGO.SetActive(false);
-                    pause.pauseButton.SetActive(false);
+                    pause.getPauseButton().SetActive(false);
 
                 }
             }
@@ -153,15 +166,7 @@ public class AnswerScript : MonoBehaviour
         if(AnswerPanel.GetComponent<Image>().color.a < 0.60f)
             AnswerPanel.GetComponent<Image>().color += c;
 
-        pause.pauseButton.SetActive(false);
-        pause.time.SetActive(false);
-        pause.timeShadow.SetActive(false);
-        pause.timetext.SetActive(false);
-        pause.timetextShadow.SetActive(false);
-        pause.lives.SetActive(false);
-        pause.livesShadow.SetActive(false);
-        pause.x.SetActive(false);
-        pause.xShadow.SetActive(false);
+        pause.ClearUI();
     }
 
 }

@@ -32,15 +32,15 @@ public class CharacterScript : MonoBehaviour
     private Vector2 MALE_ENTRY;
 
     
-    public GameObject male;
+    [SerializeField] private GameObject male;
     private Queue<Character> toSpawn;
-    private LinkedList<GameObject> spawned;   
+    private LinkedList<GameObject> spawned;
 
-    public GameObject bus;
+    [SerializeField] private GameObject bus;
     private GameObject busSpawned;
 
     private Vector2 startPosition;
-    public int visible;
+    private int visible;
     private int amountSpawned;
     private int SpawnedBus;
     private float timing = 0;
@@ -152,7 +152,7 @@ public class CharacterScript : MonoBehaviour
         {
             SpawnedBus = 1;
             busSpawned = Instantiate(bus, BUS_ENTRY , Quaternion.identity);
-            busSpawned.name = "Bus" + SpawnedBus;
+            busSpawned.name = "Bus";
         }
 
         if (busSpawned != null)
@@ -160,7 +160,7 @@ public class CharacterScript : MonoBehaviour
             Rigidbody2D busBody = busSpawned.GetComponent(typeof(Rigidbody2D)) as Rigidbody2D;
             BusScript b = busSpawned.GetComponent<BusScript>() as BusScript;
 
-            if (busBody.position.x > -0.03f)
+            if (busBody.position.x > BUS_STOP.x)
                 busBody.MovePosition(busBody.position + (new Vector2(-0.5f, 0) * Time.fixedDeltaTime * 2f));
             else
             {
@@ -176,7 +176,7 @@ public class CharacterScript : MonoBehaviour
             {
                 b.EnginesOn();
                 b.Fly();
-                //if(b.GetComponent<Animator>().GetComponent<Animation>().IsPlaying("bus_fly"))
+                if (b.GetComponent<Animator>().GetBool("fly"))
                     busBody.MovePosition(busBody.position + (new Vector2(-0.5f, 0) * Time.fixedDeltaTime * 2f));
             }
 

@@ -9,11 +9,11 @@ public class MaleScript : MonoBehaviour
     public float HorizontalValue; // value for horizontal axis direction of animation  ; range [-1;1] ; 
     public float VerticalValue; // value for vertical axis direction of animation  ; range [-1;1] ; 
     public float AnimationSpeed; // value for animation speed  ; range [0; ...] ; 
-                                          //if this <= 0.01 --> animation in IDLE position 
-    
+                                 //if this <= 0.01 --> animation in IDLE position 
+
     // some components associated to game object...
-    public Rigidbody2D RigidBody; 
-    public Animator Animator; 
+    [SerializeField] private Rigidbody2D RigidBody;
+    [SerializeField] private Animator Animator; 
 
 
     // setters and getters 

@@ -6,14 +6,14 @@ using UnityEngine.UI;
 
 public class MainScript : MonoBehaviour
 {
-    public TimeScript timer;
-    public TimeScript timerShadow;
-    public AnswerScript answer;
-    public CharacterScript character;
-    //public BusScript bus;
-    public Text lives;
-    public Text livesBis;
-    public GameObject GameOverUI;
+    [SerializeField] private TimeScript timer;
+    [SerializeField] private TimeScript timerShadow;
+    [SerializeField] private AnswerScript answer;
+    [SerializeField] private CharacterScript character;
+    [SerializeField] private Text lives;
+    [SerializeField] private Text livesBis;
+    [SerializeField] private GameObject GameOverUI;
+    
     private float delay = 0;
     private bool flag = false;
     private int rispostaEsatta;
@@ -39,11 +39,22 @@ public class MainScript : MonoBehaviour
     {
         return livesBis;
     }
-        
+
+    public TimeScript getTimer()
+    {
+        return this.timer;
+    }
+
+    public GameObject getGameOverUI()
+    {
+        return this.GameOverUI;
+    }       
+    
+
     // Start is called before the first frame update
     void Start()
     {
-        float tempo = (float)GetRandomNumber(0, 30);
+        float tempo = (float)GetRandomNumber(5, 30);
         timer.timerValue = tempo;
         timerShadow.timerValue = tempo;
         rispostaEsatta = 120;
@@ -75,7 +86,7 @@ public class MainScript : MonoBehaviour
         int vite = Convert.ToInt32(this.lives);
         if (answer.rispostaInviata && (vite != 0))
         {
-            int diff = Math.Abs(this.rispostaEsatta - Convert.ToInt32(answer.answerText));
+            int diff = Math.Abs(this.rispostaEsatta - Convert.ToInt32(answer.getAnswerText()));
             if (diff > 0)
                 score = score + (200 * diff);
             else
