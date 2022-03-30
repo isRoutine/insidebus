@@ -375,7 +375,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   main: {fileID: 2142995967}
   timerValue: 0
-  timeText: {fileID: 0}
   seconds: 0
   minutes: 0
 --- !u!1 &112084642
@@ -5359,7 +5358,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   main: {fileID: 2142995967}
   timerValue: 0
-  timeText: {fileID: 0}
   seconds: 0
   minutes: 0
 --- !u!1 &1581842769
@@ -6320,7 +6318,6 @@ MonoBehaviour:
   OptionsMenuUI: {fileID: 0}
   playButton: {fileID: 0}
   optionsButton: {fileID: 0}
-  logoutButton: {fileID: 0}
   ScoreboardMenuUI: {fileID: 0}
   scoreboardButton: {fileID: 0}
   title: {fileID: 0}
@@ -6540,14 +6537,13 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2142995960}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f5f2c682003fe4318aa2b476c65fb2dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   male: {fileID: 3610393287836599252, guid: 96f61503a025a4939a61fbf70000964d, type: 3}
   bus: {fileID: 8484686172551651042, guid: b8af72d8d6a57ee419fa2985e0715546, type: 3}
-  visible: 0
 --- !u!82 &2142995969
 AudioSource:
   m_ObjectHideFlags: 0

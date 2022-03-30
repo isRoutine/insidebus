@@ -2,44 +2,27 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Character {
-    private GameObject figure;
-    private float time;
-
-    public Character(GameObject character, float time){
-        this.figure = character;
-        this.time = time;
-    }
-
-    public float Time{
-        get { return time; }
-        set { time = value; }
-    }
-
-    public GameObject Figure{
-        get { return figure; }
-        set { figure = value; }
-    }
-}
 
 public class CharacterScript : MonoBehaviour
 {
-    private Vector2 BUS_STOP;
-    private Vector2 BUS_ENTRY;
-    private Vector2 BUS_EXIT;
 
-    private Vector2 MALE_STOP;
-    private Vector2 MALE_ENTRY;
+    // some reference coordinates...
+    public static Vector2 BUS_STOP    = new Vector2(0,0);
+    public static Vector2 BUS_ENTRY   = new Vector2(+7f,0);
+    public static Vector2 BUS_EXIT    = new Vector2(+7f,0);
+
+    public static int MALE_TO_IN    = 1;
+    public static int MALE_TO_OUT   = 0;
+    private Vector2 MALE_STOP   = new Vector2(-1f,0);
+    private Vector2 MALE_ENTRY  = new Vector2(-1f,-1f);
 
     
-    [SerializeField] private GameObject male;
-    private Queue<Character> toSpawn;
-    private LinkedList<GameObject> spawned;
+    [SerializeField] private GameObject _male;
+    private Queue<Male> _toSpawn;
+    private LinkedList<Male> _spawned;
 
-    [SerializeField] private GameObject bus;
-    private GameObject busSpawned;
+    [SerializeField] private GameObject _bus;
 
-    private Vector2 startPosition;
     private int visible;
     private int amountSpawned;
     private int SpawnedBus;
@@ -48,50 +31,30 @@ public class CharacterScript : MonoBehaviour
     private bool flag = false;
 
 
-    public void SpawnMen(string model, int qty, float interval)
-    {
-        for (int i = 0; i < qty; i++)
-        {
-            Character c = new Character(male, interval);
-            toSpawn.Enqueue(c);
+    public void Spawn(int qty, int type){
+        float horizontalValue = 0, verticalValue;
+
+        if(type == MALE_TO_IN)
+            verticalValue = 1.0f;
+        else 
+            verticalValue = -1.0f;    
+
+        for(int i=0; i<qty; i++){
+            Male temp = new Male(horizontalValue, verticalValue);
+            _toSpawn.Enqueue(temp);
         }
     }
 
-    public void SpawnBus(string model, int qty, float interval)
-    {
-        for (int i = 0; i < qty; i++)
-        {
-            Character c = new Character(bus, interval);
-        }
-
-    }
 
     // Start is called before the first frame update
     void Start()
     {
 
-        // BUS SETUP __________________________________
-        
-        BUS_STOP    = new Vector2(0,0);
-        BUS_ENTRY   = new Vector2(+7f,0);
-        BUS_EXIT    = new Vector2(-7f,0);
+        // // MALE SETUP __________________________________
 
-        amountSpawned = 0; // number of character spawned 
-        SpawnedBus = 0;
-
-
-        // MALE SETUP __________________________________
-        
-        MALE_STOP   = new Vector2(-1f,0);
-        MALE_ENTRY  = new Vector2(-1f,-1f);
-
-        MaleScript s = male.GetComponent<MaleScript>() as MaleScript;
-        s.SetVerticalValue(1.0f); // setting the animation of male
-        s.SetAnimationSpeed(0.02f); // setting the speed animation of male
-
-        toSpawn = new Queue<Character>(); // queue of character waiting for spawn
-        spawned = new LinkedList<GameObject>();//list of character already spawned
-        visible = 0; // number of character now in action, visible on the screen
+        // toSpawn = new Queue<Character>(); // queue of character waiting for spawn
+        // spawned = new LinkedList<GameObject>();//list of character already spawned
+        // visible = 0; // number of character now in action, visible on the screen
 
     }
 
@@ -148,44 +111,44 @@ public class CharacterScript : MonoBehaviour
         //     timing += Time.fixedDeltaTime;
         // }
 
-        if (SpawnedBus == 0)
-        {
-            SpawnedBus = 1;
-            busSpawned = Instantiate(bus, BUS_ENTRY , Quaternion.identity);
-            busSpawned.name = "Bus";
-        }
+        // if (SpawnedBus == 0)
+        // {
+        //     SpawnedBus = 1;
+        //     busSpawned = Instantiate(bus, BUS_ENTRY , Quaternion.identity);
+        //     busSpawned.name = "Bus";
+        // }
 
-        if (busSpawned != null)
-        {
-            Rigidbody2D busBody = busSpawned.GetComponent(typeof(Rigidbody2D)) as Rigidbody2D;
-            BusScript b = busSpawned.GetComponent<BusScript>() as BusScript;
+        // if (busSpawned != null)
+        // {
+        //     Rigidbody2D busBody = busSpawned.GetComponent(typeof(Rigidbody2D)) as Rigidbody2D;
+        //     BusScript b = busSpawned.GetComponent<BusScript>() as BusScript;
 
-            if (busBody.position.x > BUS_STOP.x)
-                busBody.MovePosition(busBody.position + (new Vector2(-0.5f, 0) * Time.fixedDeltaTime * 2f));
-            else
-            {
-                Debug.Log("EnginesOff : " + b.getAnimator().GetBool("engines_off"));
-                b.EnginesOff();
-                //Debug.Log("EnginesOff : " + b.getAnimator().GetBool("engines_off"));
-                b.Idle();
-                b.Open();
-                b.Close();
-            }
+        //     if (busBody.position.x > BUS_STOP.x)
+        //         busBody.MovePosition(busBody.position + (new Vector2(-0.5f, 0) * Time.fixedDeltaTime * 2f));
+        //     else
+        //     {
+        //         Debug.Log("EnginesOff : " + b.getAnimator().GetBool("engines_off"));
+        //         b.EnginesOff();
+        //         //Debug.Log("EnginesOff : " + b.getAnimator().GetBool("engines_off"));
+        //         b.Idle();
+        //         b.Open();
+        //         b.Close();
+        //     }
 
-            if (visible == 0 && busBody.position.x <= -0.038f)
-            {
-                b.EnginesOn();
-                b.Fly();
-                if (b.GetComponent<Animator>().GetBool("fly"))
-                    busBody.MovePosition(busBody.position + (new Vector2(-0.5f, 0) * Time.fixedDeltaTime * 2f));
-            }
+        //     if (visible == 0 && busBody.position.x <= -0.038f)
+        //     {
+        //         b.EnginesOn();
+        //         b.Fly();
+        //         if (b.GetComponent<Animator>().GetBool("fly"))
+        //             busBody.MovePosition(busBody.position + (new Vector2(-0.5f, 0) * Time.fixedDeltaTime * 2f));
+        //     }
 
-            if (busBody.position.x < -6.5f)
-            {
-                Destroy(busSpawned);
-                //SpawnedBus = 0;
-            }
-        }
+        //     if (busBody.position.x < -6.5f)
+        //     {
+        //         Destroy(busSpawned);
+        //         //SpawnedBus = 0;
+        //     }
+        // }
     }
 }
 

@@ -74,8 +74,8 @@ public class MainScript : MonoBehaviour
 
         if (delay > 3 && (flag == false)) {
             flag = true;
-            character.SpawnMen("model1", 5, 1f);
-            character.SpawnBus("model2", 1, 1f);
+            // character.SpawnMen("model1", 5, 1f);
+            // character.SpawnBus("model2", 1, 1f);
             Debug.Log("inviato " + delay);
         }
 
