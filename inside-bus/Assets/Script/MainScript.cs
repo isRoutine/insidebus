@@ -25,27 +25,27 @@ public class MainScript : MonoBehaviour
         return random.NextDouble() * (maximum - minimum) + minimum;
     }
 
-    public int getRispostaEsatta()
+    public int GetRispostaEsatta()
     {
         return rispostaEsatta;
     }
 
-    public Text getLives()
+    public Text GetLives()
     {
         return lives;
     }
 
-    public Text getLivesBis()
+    public Text GetLivesBis()
     {
         return livesBis;
     }
 
-    public TimeScript getTimer()
+    public TimeScript GetTimer()
     {
         return this.timer;
     }
 
-    public GameObject getGameOverUI()
+    public GameObject GetGameOverUI()
     {
         return this.GameOverUI;
     }       
@@ -55,8 +55,8 @@ public class MainScript : MonoBehaviour
     void Start()
     {
         float tempo = (float)GetRandomNumber(5, 30);
-        timer.timerValue = tempo;
-        timerShadow.timerValue = tempo;
+        timer.TimerValue = tempo;
+        timerShadow.TimerValue = tempo;
         rispostaEsatta = 120;
     }
 
@@ -84,16 +84,16 @@ public class MainScript : MonoBehaviour
 
 
         int vite = Convert.ToInt32(this.lives);
-        if (answer.rispostaInviata && (vite != 0))
+        if (answer.RispostaInviata && (vite != 0))
         {
-            int diff = Math.Abs(this.rispostaEsatta - Convert.ToInt32(answer.getAnswerText()));
+            int diff = Math.Abs(this.rispostaEsatta - Convert.ToInt32(answer.GetAnswerText()));
             if (diff > 0)
                 score = score + (200 * diff);
             else
                 score = score + (200 * this.rispostaEsatta);
             
             Debug.Log("Score" + score.ToString());
-            answer.rispostaInviata = false;
+            answer.RispostaInviata = false;
         }
 
     }

@@ -40,22 +40,22 @@ public class AnswerScript : MonoBehaviour
         set { this._answerValue = value; }
     }
 
-    public GameObject getMoreButton()
+    public GameObject GetMoreButton()
     {
         return this._moreButtonGO;
     }
 
-    public GameObject getLessButton()
+    public GameObject GetLessButton()
     {
         return this._lessButtonGO;
     }
 
-    public GameObject getAnswerButton()
+    public GameObject GetAnswerButton()
     {
         return this._answerButtonGO;
     }
 
-    public Text getAnswerText()
+    public Text GetAnswerText()
     {
         return this._answerText;
     }
@@ -77,7 +77,7 @@ public class AnswerScript : MonoBehaviour
         this._moreButton.interactable = !this.Flag;
         this._lessButton.interactable = !this.Flag;
 
-        if (this._main.getTimer().TimerValue == 0.0f && this.RispostaInviata == false)
+        if (this._main.GetTimer().TimerValue == 0.0f && this.RispostaInviata == false)
         {
             this.TimerValue += Time.deltaTime;
             this.Minutes = (int)(this.TimerValue / 60f);
@@ -116,32 +116,32 @@ public class AnswerScript : MonoBehaviour
         Flag = !Flag;
         if (this.RispostaInviata)
             return;
-        float numero = this._main.getTimer().TimerValue;
-        int vite = Convert.ToInt32(this._main.getLives().text);
+        float numero = this._main.GetTimer().TimerValue;
+        int vite = Convert.ToInt32(this._main.GetLives().text);
         if (numero == 0.0f)
         {
             this.RispostaInviata = true;
-            if (this.AnswerValue == this._main.getRispostaEsatta())
+            if (this.AnswerValue == this._main.GetRispostaEsatta())
             {
-                this._main.getLives().text = vite.ToString();
-                this._main.getLivesBis().text = vite.ToString();
+                this._main.GetLives().text = vite.ToString();
+                this._main.GetLivesBis().text = vite.ToString();
             }
 
             else
             {
-                int diff = Math.Abs(this._main.getRispostaEsatta() - this.AnswerValue);
+                int diff = Math.Abs(this._main.GetRispostaEsatta() - this.AnswerValue);
                 if (vite - diff >= 0)
                 {
                     vite = vite - diff;
-                    this._main.getLives().text = vite.ToString();
-                    this._main.getLivesBis().text = vite.ToString();
+                    this._main.GetLives().text = vite.ToString();
+                    this._main.GetLivesBis().text = vite.ToString();
                 }
                 else
                 {
                     Debug.Log("Game Over");
-                    this._main.getLives().text = "0";
-                    this._main.getLivesBis().text = "0";
-                    this._main.getGameOverUI().SetActive(true);
+                    this._main.GetLives().text = "0";
+                    this._main.GetLivesBis().text = "0";
+                    this._main.GetGameOverUI().SetActive(true);
                     Time.timeScale = 0f;
                     this._answerPanel.SetActive(false);
                     this._answerButtonGO.SetActive(false);
