@@ -5,8 +5,8 @@ using UnityEngine;
 
 public class BusScript : MonoBehaviour
 {
-
-    [SerializeField] private Animator animator;
+    public GameObject bus;
+    public Animator animator;
     private bool isFlying = false;
 
     //Start is called before the first frame update
