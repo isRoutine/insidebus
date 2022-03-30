@@ -7,9 +7,9 @@ using UnityEngine.UI;
 public class VolumeScript : MonoBehaviour
 {
 
-    public AudioMixer mixer;
-    public Slider musicSlider;
-    public Slider effectsSlider;
+    [SerializeField] private AudioMixer mixer;
+    [SerializeField] private Slider musicSlider;
+    [SerializeField] private Slider effectsSlider;
 
     // Start is called before the first frame update
     void Start()

@@ -7,14 +7,13 @@ using UnityEngine.UI;
 public class MenuScript : MonoBehaviour
 {
     private int currentSceneIndex;
-    public GameObject OptionsMenuUI;
-    public GameObject playButton;
-    public GameObject optionsButton;
-    public GameObject logoutButton;
-    public GameObject ScoreboardMenuUI;
-    public GameObject scoreboardButton;
-    public GameObject title;
-    public GameObject titleShadow;
+    [SerializeField] private GameObject OptionsMenuUI;
+    [SerializeField] private GameObject playButton;
+    [SerializeField] private GameObject optionsButton;
+    [SerializeField] private GameObject ScoreboardMenuUI;
+    [SerializeField] private GameObject scoreboardButton;
+    [SerializeField] private GameObject title;
+    [SerializeField] private GameObject titleShadow;
 
     // Start is called before the first frame update
     void Start()
@@ -68,7 +67,6 @@ public class MenuScript : MonoBehaviour
         playButton.SetActive(false);
         optionsButton.SetActive(false);
         scoreboardButton.SetActive(false);
-        logoutButton.SetActive(false);
     }
 
     public void FillUI()
@@ -78,7 +76,6 @@ public class MenuScript : MonoBehaviour
         scoreboardButton.SetActive(true);
         title.SetActive(true);
         titleShadow.SetActive(true);
-        logoutButton.SetActive(true);
     }
 
 }

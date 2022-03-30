@@ -32,15 +32,15 @@ public class CharacterScript : MonoBehaviour
     private Vector2 MALE_ENTRY;
 
     
-    public GameObject male;
+    [SerializeField] private GameObject male;
     private Queue<Character> toSpawn;
-    private LinkedList<GameObject> spawned;   
+    private LinkedList<GameObject> spawned;
 
-    public GameObject bus;
+    [SerializeField] private GameObject bus;
     private GameObject busSpawned;
 
     private Vector2 startPosition;
-    public int visible;
+    private int visible;
     private int amountSpawned;
     private int SpawnedBus;
     private float timing = 0;

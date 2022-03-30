@@ -2,9 +2,9 @@ using UnityEngine;
 
 public class OptionsScript : MonoBehaviour
 {
-    public GameObject OptionsMenuUI;
-    public PauseScript pause;
-    public MenuScript menu;
+    [SerializeField] private GameObject OptionsMenuUI;
+    [SerializeField] private PauseScript pause;
+    [SerializeField] private MenuScript menu;
 
     // Start is called before the first frame update
     void Start()
@@ -25,7 +25,7 @@ public class OptionsScript : MonoBehaviour
             if (pause.flag == true)
             {
                 OptionsMenuUI.SetActive(false);
-                pause.PauseMenuUI.SetActive(true);
+                pause.getPauseMenuUI().SetActive(true);
                 pause.flag = false;
                 Time.timeScale = 0f;
             }

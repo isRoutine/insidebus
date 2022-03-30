@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class ScoreboardScript : MonoBehaviour
 {
-    public MenuScript menu;
-    public GameObject ScoreboardMenuUI;
+    [SerializeField] private MenuScript menu;
+    [SerializeField] private GameObject ScoreboardMenuUI;
 
     // Start is called before the first frame update
     void Start()

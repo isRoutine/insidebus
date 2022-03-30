@@ -2,23 +2,33 @@ using UnityEngine;
 
 public class PauseScript : MonoBehaviour
 {
-    public GameObject PauseMenuUI;
-    public GameObject OptionsMenuUI;
-    public GameObject pauseButton;
-    public GameObject time;
-    public GameObject timeShadow;
-    public GameObject x;
-    public GameObject xShadow;
-    public GameObject lives;
-    public GameObject livesShadow;
-    public GameObject timetext;
-    public GameObject timetextShadow;
-    public GameObject AreYouSureUI;
+    [SerializeField] private GameObject PauseMenuUI;
+    [SerializeField] private GameObject OptionsMenuUI;
+    [SerializeField] private GameObject pauseButton;
+    [SerializeField] private GameObject time;
+    [SerializeField] private GameObject timeShadow;
+    [SerializeField] private GameObject x;
+    [SerializeField] private GameObject xShadow;
+    [SerializeField] private GameObject lives;
+    [SerializeField] private GameObject livesShadow;
+    [SerializeField] private GameObject timetext;
+    [SerializeField] private GameObject timetextShadow;
+    [SerializeField] private GameObject AreYouSureUI;
 
-    public AnswerScript answer;
+    [SerializeField] private AnswerScript answer;
 
     public bool GameIsPaused = false;
     public bool flag = false;
+
+    public GameObject getPauseButton()
+    {
+        return this.pauseButton;
+    }
+
+    public GameObject getPauseMenuUI()
+    {
+        return this.PauseMenuUI;
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -35,9 +45,9 @@ public class PauseScript : MonoBehaviour
     public void ResumeGame()
     {
         PauseMenuUI.SetActive(false);
-        answer.lessButtonGO.SetActive(true);
-        answer.moreButtonGO.SetActive(true);
-        answer.answerButtonGO.SetActive(true);
+        answer.getLessButton().SetActive(true);
+        answer.getMoreButton().SetActive(true);
+        answer.getAnswerButton().SetActive(true);
         FillUI();
         GameIsPaused = false;
         Time.timeScale = 1f;
@@ -56,9 +66,9 @@ public class PauseScript : MonoBehaviour
     public void goToPause()
     {
         GameIsPaused = true;
-        answer.lessButtonGO.SetActive(false);
-        answer.moreButtonGO.SetActive(false);
-        answer.answerButtonGO.SetActive(false);
+        answer.getLessButton().SetActive(false);
+        answer.getMoreButton().SetActive(false);
+        answer.getAnswerButton().SetActive(false);
         ClearUI();
         PauseMenuUI.SetActive(true);
         Time.timeScale = 0f;
