@@ -7,21 +7,26 @@ using UnityEngine.UI;
 
 public class TimeScript : MonoBehaviour
 {
-    [SerializeField] private MainScript main;
-    public float timerValue;
-    private Text timeText;
-    public float seconds, minutes;
+    [SerializeField] private MainScript _main;
+    public float TimerValue;
+    private Text _timeText;
+    public float Seconds, Minutes;
 
-    public float TimerValue 
+    public float GetTimerValue()
     {
-        get { return timerValue; }
-        set { timerValue = value; }
+        return this.TimerValue;
     }
+
+    public void SetTimerValue(float value)
+    {
+        this.TimerValue = value;
+    }
+
 
     // Start is called before the first frame update
     void Start()
     {
-        timeText = GetComponent<Text>() as Text;
+        this._timeText = GetComponent<Text>() as Text;
 
     }
 
@@ -29,16 +34,16 @@ public class TimeScript : MonoBehaviour
     void Update()
     {
 
-        if (timerValue > 0) {
-            timerValue -= Time.deltaTime;
+        if (this.TimerValue > 0) {
+            this.TimerValue -= Time.deltaTime;
         }
         else {
-            timerValue = 0;
+            this.TimerValue = 0;
         }
 
-        minutes = (int)(timerValue / 60f);
-        seconds = (int)(timerValue % 60f);
-        timeText.text = string.Format("{0:00}:{1:00}", minutes, seconds);
+        this.Minutes = (int)(this.TimerValue / 60f);
+        this.Seconds = (int)(this.TimerValue % 60f);
+        this._timeText.text = string.Format("{0:00}:{1:00}", this.Minutes, this.Seconds);
 
     }
 

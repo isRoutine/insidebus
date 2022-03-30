@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class ScoreboardScript : MonoBehaviour
 {
-    [SerializeField] private MenuScript menu;
-    [SerializeField] private GameObject ScoreboardMenuUI;
+    [SerializeField] private MenuScript _menu;
+    [SerializeField] private GameObject _scoreboardMenuUI;
 
     // Start is called before the first frame update
     void Start()
@@ -19,12 +19,12 @@ public class ScoreboardScript : MonoBehaviour
         
     }
 
-    public void goBack()
+    public void GoBack()
     {
-        if (menu != null)
+        if (this._menu != null)
         {
-            ScoreboardMenuUI.SetActive(false);
-            menu.FillUI();
+            this._scoreboardMenuUI.SetActive(false);
+            this._menu.FillUI();
             Time.timeScale = 1f;
         }
     }

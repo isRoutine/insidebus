@@ -6,19 +6,19 @@ using UnityEngine.UI;
 
 public class MenuScript : MonoBehaviour
 {
-    private int currentSceneIndex;
-    [SerializeField] private GameObject OptionsMenuUI;
-    [SerializeField] private GameObject playButton;
-    [SerializeField] private GameObject optionsButton;
-    [SerializeField] private GameObject ScoreboardMenuUI;
-    [SerializeField] private GameObject scoreboardButton;
-    [SerializeField] private GameObject title;
-    [SerializeField] private GameObject titleShadow;
+    private int _currentSceneIndex;
+    [SerializeField] private GameObject _optionsMenuUI;
+    [SerializeField] private GameObject _playButton;
+    [SerializeField] private GameObject _optionsButton;
+    [SerializeField] private GameObject _scoreboardMenuUI;
+    [SerializeField] private GameObject _scoreboardButton;
+    [SerializeField] private GameObject _title;
+    [SerializeField] private GameObject _titleShadow;
 
     // Start is called before the first frame update
     void Start()
     {
-        currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
+        this._currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
         
     }
 
@@ -28,54 +28,54 @@ public class MenuScript : MonoBehaviour
 
     }
 
-    public void goToMainMenu()
+    public void GoToMainMenu()
     {
         SceneManager.LoadScene("MainMenu Scene");
         Time.timeScale = 1f;
     }
 
-    public void goToOptionsMenu()
+    public void GoToOptionsMenu()
     {
         ClearUI();
-        OptionsMenuUI.SetActive(true);
+        this._optionsMenuUI.SetActive(true);
         Time.timeScale = 0f;
     }
 
-    public void goToGameScene()
+    public void GoToGameScene()
     {
         SceneManager.LoadScene("Game Scene");
         Time.timeScale = 1f;
     }
 
-    public void goToLoginScene()
+    public void GoToLoginScene()
     {
         SceneManager.LoadScene("Login Scene");
         Time.timeScale = 1f;
     }
 
-    public void goToRankingsPanel()
+    public void GoToRankingsPanel()
     {
         ClearUI();
-        ScoreboardMenuUI.SetActive(true);
+        this._scoreboardMenuUI.SetActive(true);
         Time.timeScale = 0f;
     }
 
     public void ClearUI()
     {
-        title.SetActive(false);
-        titleShadow.SetActive(false);
-        playButton.SetActive(false);
-        optionsButton.SetActive(false);
-        scoreboardButton.SetActive(false);
+        this._title.SetActive(false);
+        this._titleShadow.SetActive(false);
+        this._playButton.SetActive(false);
+        this._optionsButton.SetActive(false);
+        this._scoreboardButton.SetActive(false);
     }
 
     public void FillUI()
     {
-        optionsButton.SetActive(true);
-        playButton.SetActive(true);
-        scoreboardButton.SetActive(true);
-        title.SetActive(true);
-        titleShadow.SetActive(true);
+        this._optionsButton.SetActive(true);
+        this._playButton.SetActive(true);
+        this._scoreboardButton.SetActive(true);
+        this._title.SetActive(true);
+        this._titleShadow.SetActive(true);
     }
 
 }

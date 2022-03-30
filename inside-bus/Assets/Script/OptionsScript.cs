@@ -2,9 +2,9 @@ using UnityEngine;
 
 public class OptionsScript : MonoBehaviour
 {
-    [SerializeField] private GameObject OptionsMenuUI;
-    [SerializeField] private PauseScript pause;
-    [SerializeField] private MenuScript menu;
+    [SerializeField] private GameObject _optionsMenuUI;
+    [SerializeField] private PauseScript _pause;
+    [SerializeField] private MenuScript _menu;
 
     // Start is called before the first frame update
     void Start()
@@ -18,23 +18,23 @@ public class OptionsScript : MonoBehaviour
 
     }
 
-    public void goBack()
+    public void GoBack()
     {
-        if (pause != null)
+        if (this._pause != null)
         {
-            if (pause.flag == true)
+            if (this._pause.Flag == true)
             {
-                OptionsMenuUI.SetActive(false);
-                pause.getPauseMenuUI().SetActive(true);
-                pause.flag = false;
+                this._optionsMenuUI.SetActive(false);
+                this._pause.GetPauseMenuUI().SetActive(true);
+                this._pause.Flag = false;
                 Time.timeScale = 0f;
             }
         }
 
-        else if(menu != null)
+        else if(this._menu != null)
         {
-            OptionsMenuUI.SetActive(false);
-            menu.FillUI();
+            this._optionsMenuUI.SetActive(false);
+            this._menu.FillUI();
             Time.timeScale = 1f;
         }
     }

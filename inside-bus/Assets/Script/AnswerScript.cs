@@ -6,67 +6,67 @@ using System;
 
 public class AnswerScript : MonoBehaviour
 {
-    [SerializeField] private Text answerText;
-    private int answerValue;
+    [SerializeField] private Text _answerText;
+    private int _answerValue;
 
-    [SerializeField] private Button moreButton;
-    [SerializeField] private Button lessButton;
-    [SerializeField] private Button answerButton;
+    [SerializeField] private Button _moreButton;
+    [SerializeField] private Button _lessButton;
+    [SerializeField] private Button _answerButton;
 
-    [SerializeField] private GameObject moreButtonGO;
-    [SerializeField] private GameObject lessButtonGO;
-    [SerializeField] private GameObject answerButtonGO;
+    [SerializeField] private GameObject _moreButtonGO;
+    [SerializeField] private GameObject _lessButtonGO;
+    [SerializeField] private GameObject _answerButtonGO;
 
-    [SerializeField] private MainScript main;
-    [SerializeField] private PauseScript pause;
-    [SerializeField] private GameObject AnswerPanel;
+    [SerializeField] private MainScript _main;
+    [SerializeField] private PauseScript _pause;
+    [SerializeField] private GameObject _answerPanel;
 
-    public bool flag;
-    public bool click;
-    public bool rispostaInviata;
+    public bool Flag;
+    public bool Click;
+    public bool RispostaInviata;
 
-    public float timerValue;
-    [SerializeField] private Text timeText;
-    public float seconds, minutes;
+    public float TimerValue;
+    [SerializeField] private Text _timeText;
+    public float Seconds, Minutes;
 
     public void IsClicked()
     {
-        click = true;
+        this.Click = true;
     }
 
     public int AnswerValue
     {
-        get { return Convert.ToInt32(answerText.text); }
-        set { answerValue = value; }
+        get { return Convert.ToInt32(this._answerText.text); }
+        set { this._answerValue = value; }
     }
 
     public GameObject getMoreButton()
     {
-        return this.moreButtonGO;
+        return this._moreButtonGO;
     }
 
     public GameObject getLessButton()
     {
-        return this.lessButtonGO;
+        return this._lessButtonGO;
     }
 
     public GameObject getAnswerButton()
     {
-        return this.answerButtonGO;
+        return this._answerButtonGO;
     }
 
     public Text getAnswerText()
     {
-        return this.answerText;
+        return this._answerText;
     }
 
 
     // Start is called before the first frame update
     void Start()
     {
-        flag = false;
-        click = false;
-        rispostaInviata = false;
+        this.Flag = false;
+        this.Click = false;
+        this.RispostaInviata = false;
         //answerText = GetComponent<Text>() as Text;
 
     }
@@ -74,21 +74,21 @@ public class AnswerScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        moreButton.interactable = !flag;
-        lessButton.interactable = !flag;
+        this._moreButton.interactable = !this.Flag;
+        this._lessButton.interactable = !this.Flag;
 
-        if (main.getTimer().timerValue == 0.0f && rispostaInviata == false)
+        if (this._main.getTimer().TimerValue == 0.0f && this.RispostaInviata == false)
         {
-            timerValue += Time.deltaTime;
-            minutes = (int)(timerValue / 60f);
-            seconds = (int)(timerValue % 60f);
-            timeText.text = string.Format("{0:00}:{1:00}", minutes, seconds);
+            this.TimerValue += Time.deltaTime;
+            this.Minutes = (int)(this.TimerValue / 60f);
+            this.Seconds = (int)(this.TimerValue % 60f);
+            this._timeText.text = string.Format("{0:00}:{1:00}", this.Minutes, this.Seconds);
             DarkTimer();
         }
         else
         {
-            AnswerPanel.SetActive(false);
-            pause.FillUI();
+            this._answerPanel.SetActive(false);
+            this._pause.FillUI();
         }
     }
 
@@ -98,56 +98,56 @@ public class AnswerScript : MonoBehaviour
 
     public void MoreTask()
     {
-        int numero = Convert.ToInt32(answerText.text);
-        answerText.text = (numero + 1).ToString();
+        int numero = Convert.ToInt32(this._answerText.text);
+        this._answerText.text = (numero + 1).ToString();
 
     }
 
     public void LessTask()
     {
-        int numero = Convert.ToInt32(answerText.text);
+        int numero = Convert.ToInt32(this._answerText.text);
         if (numero > 0)
-            answerText.text = (numero - 1).ToString();
+            this._answerText.text = (numero - 1).ToString();
 
     }
 
     public void AnswerTask()
     {
-        flag = !flag;
-        if (rispostaInviata)
+        Flag = !Flag;
+        if (this.RispostaInviata)
             return;
-        float numero = main.getTimer().timerValue;
-        int vite = Convert.ToInt32(main.getLives().text);
+        float numero = this._main.getTimer().TimerValue;
+        int vite = Convert.ToInt32(this._main.getLives().text);
         if (numero == 0.0f)
         {
-            rispostaInviata = true;
-            if (this.AnswerValue == main.getRispostaEsatta())
+            this.RispostaInviata = true;
+            if (this.AnswerValue == this._main.getRispostaEsatta())
             {
-                main.getLives().text = vite.ToString();
-                main.getLivesBis().text = vite.ToString();
+                this._main.getLives().text = vite.ToString();
+                this._main.getLivesBis().text = vite.ToString();
             }
 
             else
             {
-                int diff = Math.Abs(main.getRispostaEsatta() - this.AnswerValue);
+                int diff = Math.Abs(this._main.getRispostaEsatta() - this.AnswerValue);
                 if (vite - diff >= 0)
                 {
                     vite = vite - diff;
-                    main.getLives().text = vite.ToString();
-                    main.getLivesBis().text = vite.ToString();
+                    this._main.getLives().text = vite.ToString();
+                    this._main.getLivesBis().text = vite.ToString();
                 }
                 else
                 {
                     Debug.Log("Game Over");
-                    main.getLives().text = "0";
-                    main.getLivesBis().text = "0";
-                    main.getGameOverUI().SetActive(true);
+                    this._main.getLives().text = "0";
+                    this._main.getLivesBis().text = "0";
+                    this._main.getGameOverUI().SetActive(true);
                     Time.timeScale = 0f;
-                    AnswerPanel.SetActive(false);
-                    answerButtonGO.SetActive(false);
-                    lessButtonGO.SetActive(false);
-                    moreButtonGO.SetActive(false);
-                    pause.getPauseButton().SetActive(false);
+                    this._answerPanel.SetActive(false);
+                    this._answerButtonGO.SetActive(false);
+                    this._lessButtonGO.SetActive(false);
+                    this._moreButtonGO.SetActive(false);
+                    this._pause.GetPauseButton().SetActive(false);
 
                 }
             }
@@ -157,16 +157,16 @@ public class AnswerScript : MonoBehaviour
 
     public void DarkTimer()
     {
-        AnswerPanel.SetActive(true);
+        this._answerPanel.SetActive(true);
 
         
-        Color c = AnswerPanel.GetComponent<Image>().color;
+        Color c = this._answerPanel.GetComponent<Image>().color;
         c.a = 0.0005f;
         
-        if(AnswerPanel.GetComponent<Image>().color.a < 0.60f)
-            AnswerPanel.GetComponent<Image>().color += c;
+        if(this._answerPanel.GetComponent<Image>().color.a < 0.60f)
+            this._answerPanel.GetComponent<Image>().color += c;
 
-        pause.ClearUI();
+        this._pause.ClearUI();
     }
 
 }

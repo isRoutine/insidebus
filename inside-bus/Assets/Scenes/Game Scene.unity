@@ -373,11 +373,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb0f14963b5b40040b9d1038572d5fd6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  main: {fileID: 2142995967}
-  timerValue: 0
-  timeText: {fileID: 0}
-  seconds: 0
-  minutes: 0
+  _main: {fileID: 2142995967}
+  TimerValue: 0
+  Seconds: 0
+  Minutes: 0
 --- !u!1 &112084642
 GameObject:
   m_ObjectHideFlags: 0
@@ -701,23 +700,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49d62c55071d7e743a47e3c402bee5db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  answerText: {fileID: 180281157}
-  moreButton: {fileID: 831094173}
-  lessButton: {fileID: 1360851790}
-  answerButton: {fileID: 198643176}
-  moreButtonGO: {fileID: 831094171}
-  lessButtonGO: {fileID: 1360851788}
-  answerButtonGO: {fileID: 198643174}
-  main: {fileID: 2142995967}
-  pause: {fileID: 617528903}
-  AnswerPanel: {fileID: 1187749714}
-  flag: 0
-  click: 0
-  rispostaInviata: 0
-  timerValue: 0
-  timeText: {fileID: 162831005}
-  seconds: 0
-  minutes: 0
+  _answerText: {fileID: 180281157}
+  _moreButton: {fileID: 831094173}
+  _lessButton: {fileID: 1360851790}
+  _answerButton: {fileID: 198643176}
+  _moreButtonGO: {fileID: 831094171}
+  _lessButtonGO: {fileID: 1360851788}
+  _answerButtonGO: {fileID: 198643174}
+  _main: {fileID: 2142995967}
+  _pause: {fileID: 617528903}
+  _answerPanel: {fileID: 1187749714}
+  Flag: 0
+  Click: 0
+  RispostaInviata: 0
+  TimerValue: 0
+  _timeText: {fileID: 162831005}
+  Seconds: 0
+  Minutes: 0
 --- !u!114 &162831005
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -845,7 +844,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 617528903}
         m_TargetAssemblyTypeName: PauseScript, Assembly-CSharp
-        m_MethodName: goBack
+        m_MethodName: GoBack
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -985,23 +984,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49d62c55071d7e743a47e3c402bee5db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  answerText: {fileID: 180281157}
-  moreButton: {fileID: 831094173}
-  lessButton: {fileID: 1360851790}
-  answerButton: {fileID: 198643176}
-  moreButtonGO: {fileID: 831094171}
-  lessButtonGO: {fileID: 1360851788}
-  answerButtonGO: {fileID: 198643174}
-  main: {fileID: 2142995967}
-  pause: {fileID: 617528903}
-  AnswerPanel: {fileID: 1187749714}
-  flag: 0
-  click: 0
-  rispostaInviata: 0
-  timerValue: 0
-  timeText: {fileID: 162831005}
-  seconds: 0
-  minutes: 0
+  _answerText: {fileID: 180281157}
+  _moreButton: {fileID: 831094173}
+  _lessButton: {fileID: 1360851790}
+  _answerButton: {fileID: 198643176}
+  _moreButtonGO: {fileID: 831094171}
+  _lessButtonGO: {fileID: 1360851788}
+  _answerButtonGO: {fileID: 198643174}
+  _main: {fileID: 2142995967}
+  _pause: {fileID: 617528903}
+  _answerPanel: {fileID: 1187749714}
+  Flag: 0
+  Click: 0
+  RispostaInviata: 0
+  TimerValue: 0
+  _timeText: {fileID: 55175484}
+  Seconds: 0
+  Minutes: 0
 --- !u!1 &183598260
 GameObject:
   m_ObjectHideFlags: 0
@@ -1639,7 +1638,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 2142995961}
         m_TargetAssemblyTypeName: MenuScript, Assembly-CSharp
-        m_MethodName: goToMainMenu
+        m_MethodName: GoToMainMenu
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1817,23 +1816,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49d62c55071d7e743a47e3c402bee5db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  answerText: {fileID: 180281157}
-  moreButton: {fileID: 831094173}
-  lessButton: {fileID: 1360851790}
-  answerButton: {fileID: 198643176}
-  moreButtonGO: {fileID: 831094171}
-  lessButtonGO: {fileID: 1360851788}
-  answerButtonGO: {fileID: 198643174}
-  main: {fileID: 2142995967}
-  pause: {fileID: 617528903}
-  AnswerPanel: {fileID: 1187749714}
-  flag: 0
-  click: 0
-  rispostaInviata: 0
-  timerValue: 0
-  timeText: {fileID: 407864497}
-  seconds: 0
-  minutes: 0
+  _answerText: {fileID: 180281157}
+  _moreButton: {fileID: 831094173}
+  _lessButton: {fileID: 1360851790}
+  _answerButton: {fileID: 198643176}
+  _moreButtonGO: {fileID: 831094171}
+  _lessButtonGO: {fileID: 1360851788}
+  _answerButtonGO: {fileID: 198643174}
+  _main: {fileID: 2142995967}
+  _pause: {fileID: 617528903}
+  _answerPanel: {fileID: 1187749714}
+  Flag: 0
+  Click: 0
+  RispostaInviata: 0
+  TimerValue: 0
+  _timeText: {fileID: 407864497}
+  Seconds: 0
+  Minutes: 0
 --- !u!114 &407864497
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2198,7 +2197,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 2142995961}
         m_TargetAssemblyTypeName: MenuScript, Assembly-CSharp
-        m_MethodName: goToGameScene
+        m_MethodName: GoToGameScene
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2516,21 +2515,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af953e448d3fc544d932364361a7283c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PauseMenuUI: {fileID: 401402656}
-  OptionsMenuUI: {fileID: 1581842769}
-  pauseButton: {fileID: 1889790847}
-  time: {fileID: 55175482}
-  timeShadow: {fileID: 1572178378}
-  x: {fileID: 861688566}
-  xShadow: {fileID: 625961846}
-  lives: {fileID: 841067057}
-  livesShadow: {fileID: 112084642}
-  timetext: {fileID: 415620505}
-  timetextShadow: {fileID: 1119967747}
-  AreYouSureUI: {fileID: 842725798}
-  answer: {fileID: 180281159}
+  _pauseMenuUI: {fileID: 401402656}
+  _optionsMenuUI: {fileID: 1581842769}
+  _pauseButton: {fileID: 1889790847}
+  _time: {fileID: 55175482}
+  _timeShadow: {fileID: 1572178378}
+  _x: {fileID: 861688566}
+  _xShadow: {fileID: 625961846}
+  _lives: {fileID: 841067057}
+  _livesShadow: {fileID: 112084642}
+  _timeText: {fileID: 415620505}
+  _timeTextShadow: {fileID: 1119967747}
+  _areYouSureUI: {fileID: 842725798}
+  _answer: {fileID: 180281159}
   GameIsPaused: 0
-  flag: 0
+  Flag: 0
 --- !u!114 &617528904
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2543,9 +2542,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 662b3e42c33c2c143b59b9847030ec29, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  OptionsMenuUI: {fileID: 1581842769}
-  pause: {fileID: 617528903}
-  menu: {fileID: 0}
+  _optionsMenuUI: {fileID: 1581842769}
+  _pause: {fileID: 617528903}
+  _menu: {fileID: 2142995961}
 --- !u!1 &625961846
 GameObject:
   m_ObjectHideFlags: 0
@@ -2976,9 +2975,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 11ca4e699f2637445b0929cf9bf5233c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mixer: {fileID: 24100000, guid: 5c7cf52973f63f94baeea905b15b2fc9, type: 2}
-  musicSlider: {fileID: 748642870}
-  effectsSlider: {fileID: 1643453043}
+  _mixer: {fileID: 24100000, guid: 5c7cf52973f63f94baeea905b15b2fc9, type: 2}
+  _musicSlider: {fileID: 748642870}
+  _effectsSlider: {fileID: 1643453043}
 --- !u!114 &748642870
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4596,7 +4595,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 617528903}
         m_TargetAssemblyTypeName: PauseScript, Assembly-CSharp
-        m_MethodName: goToOptionsMenu
+        m_MethodName: GoToOptionsMenu
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -5357,11 +5356,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb0f14963b5b40040b9d1038572d5fd6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  main: {fileID: 2142995967}
-  timerValue: 0
-  timeText: {fileID: 0}
-  seconds: 0
-  minutes: 0
+  _main: {fileID: 2142995967}
+  TimerValue: 0
+  Seconds: 0
+  Minutes: 0
 --- !u!1 &1581842769
 GameObject:
   m_ObjectHideFlags: 0
@@ -5676,9 +5674,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 11ca4e699f2637445b0929cf9bf5233c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mixer: {fileID: 24100000, guid: 028036a48a0e012449501beddb9b3b7c, type: 2}
-  musicSlider: {fileID: 748642870}
-  effectsSlider: {fileID: 1643453043}
+  _mixer: {fileID: 24100000, guid: 028036a48a0e012449501beddb9b3b7c, type: 2}
+  _musicSlider: {fileID: 748642870}
+  _effectsSlider: {fileID: 1643453043}
 --- !u!114 &1643453043
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5906,7 +5904,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 617528904}
         m_TargetAssemblyTypeName: OptionsScript, Assembly-CSharp
-        m_MethodName: goBack
+        m_MethodName: GoBack
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -6039,7 +6037,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 617528903}
         m_TargetAssemblyTypeName: PauseScript, Assembly-CSharp
-        m_MethodName: goToPause
+        m_MethodName: GoToPause
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -6317,14 +6315,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21eace3c25523094091d2aca43737893, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  OptionsMenuUI: {fileID: 0}
-  playButton: {fileID: 0}
-  optionsButton: {fileID: 0}
-  logoutButton: {fileID: 0}
-  ScoreboardMenuUI: {fileID: 0}
-  scoreboardButton: {fileID: 0}
-  title: {fileID: 0}
-  titleShadow: {fileID: 0}
+  _optionsMenuUI: {fileID: 0}
+  _playButton: {fileID: 0}
+  _optionsButton: {fileID: 0}
+  _scoreboardMenuUI: {fileID: 0}
+  _scoreboardButton: {fileID: 0}
+  _title: {fileID: 0}
+  _titleShadow: {fileID: 0}
 --- !u!114 &2142995962
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6547,7 +6544,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   male: {fileID: 3610393287836599252, guid: 96f61503a025a4939a61fbf70000964d, type: 3}
   bus: {fileID: 8484686172551651042, guid: b8af72d8d6a57ee419fa2985e0715546, type: 3}
-  visible: 0
 --- !u!82 &2142995969
 AudioSource:
   m_ObjectHideFlags: 0

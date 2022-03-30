@@ -319,7 +319,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 415710055}
         m_TargetAssemblyTypeName: MenuScript, Assembly-CSharp
-        m_MethodName: goToRankingsPanel
+        m_MethodName: GoToRankingsPanel
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -559,9 +559,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 662b3e42c33c2c143b59b9847030ec29, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  OptionsMenuUI: {fileID: 349417858}
-  pause: {fileID: 0}
-  menu: {fileID: 415710055}
+  _optionsMenuUI: {fileID: 349417858}
+  _pause: {fileID: 0}
+  _menu: {fileID: 415710055}
 --- !u!1 &231728081
 GameObject:
   m_ObjectHideFlags: 0
@@ -614,9 +614,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 11ca4e699f2637445b0929cf9bf5233c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mixer: {fileID: 24100000, guid: 5c7cf52973f63f94baeea905b15b2fc9, type: 2}
-  musicSlider: {fileID: 231728084}
-  effectsSlider: {fileID: 1562247102}
+  _mixer: {fileID: 24100000, guid: 5c7cf52973f63f94baeea905b15b2fc9, type: 2}
+  _musicSlider: {fileID: 231728084}
+  _effectsSlider: {fileID: 1562247102}
 --- !u!114 &231728084
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -929,7 +929,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1525219271}
         m_TargetAssemblyTypeName: ScoreboardScript, Assembly-CSharp
-        m_MethodName: goBack
+        m_MethodName: GoBack
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1172,13 +1172,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21eace3c25523094091d2aca43737893, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  OptionsMenuUI: {fileID: 349417858}
-  playButton: {fileID: 1765997898}
-  optionsButton: {fileID: 2110856338}
-  ScoreboardMenuUI: {fileID: 622244149}
-  scoreboardButton: {fileID: 64477213}
-  title: {fileID: 1684154996}
-  titleShadow: {fileID: 1731153010}
+  _optionsMenuUI: {fileID: 349417858}
+  _playButton: {fileID: 1765997898}
+  _optionsButton: {fileID: 2110856338}
+  _scoreboardMenuUI: {fileID: 622244149}
+  _scoreboardButton: {fileID: 64477213}
+  _title: {fileID: 1684154996}
+  _titleShadow: {fileID: 1731153010}
 --- !u!82 &415710056
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1489,7 +1489,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d7bd9684379d4d4ead1bf65296a564e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  orthoCam: {fileID: 519420031}
+  OrthoCam: {fileID: 519420031}
 --- !u!20 &519420031
 Camera:
   m_ObjectHideFlags: 0
@@ -2099,7 +2099,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 143955614}
         m_TargetAssemblyTypeName: OptionsScript, Assembly-CSharp
-        m_MethodName: goBack
+        m_MethodName: GoBack
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2268,7 +2268,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 143955614}
         m_TargetAssemblyTypeName: OptionsScript, Assembly-CSharp
-        m_MethodName: goBack
+        m_MethodName: 
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2891,8 +2891,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9003436dead04be42a2d9796f339fe4f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  menu: {fileID: 415710055}
-  ScoreboardMenuUI: {fileID: 622244149}
+  _menu: {fileID: 415710055}
+  _scoreboardMenuUI: {fileID: 622244149}
 --- !u!1 &1559317820
 GameObject:
   m_ObjectHideFlags: 0
@@ -2981,9 +2981,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 11ca4e699f2637445b0929cf9bf5233c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mixer: {fileID: 24100000, guid: 028036a48a0e012449501beddb9b3b7c, type: 2}
-  musicSlider: {fileID: 231728084}
-  effectsSlider: {fileID: 1562247102}
+  _mixer: {fileID: 24100000, guid: 028036a48a0e012449501beddb9b3b7c, type: 2}
+  _musicSlider: {fileID: 231728084}
+  _effectsSlider: {fileID: 1562247102}
 --- !u!114 &1562247102
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3523,7 +3523,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 415710055}
         m_TargetAssemblyTypeName: MenuScript, Assembly-CSharp
-        m_MethodName: goToGameScene
+        m_MethodName: GoToGameScene
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3758,7 +3758,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 415710055}
         m_TargetAssemblyTypeName: MenuScript, Assembly-CSharp
-        m_MethodName: goToOptionsMenu
+        m_MethodName: GoToOptionsMenu
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
