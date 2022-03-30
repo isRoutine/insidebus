@@ -45,9 +45,21 @@ public class PauseScript : MonoBehaviour
     public void ResumeGame()
     {
         this._pauseMenuUI.SetActive(false);
+<<<<<<< HEAD
+        this._answer.GetLessButton().SetActive(true);
+        this._answer.GetMoreButton().SetActive(true);
+        this._answer.GetAnswerButton().SetActive(true);
+=======
+<<<<<<< HEAD
+        this._answer.GetLessButton().SetActive(true);
+        this._answer.GetMoreButton().SetActive(true);
+        this._answer.GetAnswerButton().SetActive(true);
+=======
         this._answer.getLessButton().SetActive(true);
         this._answer.getMoreButton().SetActive(true);
         this._answer.getAnswerButton().SetActive(true);
+>>>>>>> development
+>>>>>>> development
         FillUI();
         GameIsPaused = false;
         Time.timeScale = 1f;
@@ -66,9 +78,21 @@ public class PauseScript : MonoBehaviour
     public void GoToPause()
     {
         GameIsPaused = true;
+<<<<<<< HEAD
+        this._answer.GetLessButton().SetActive(false);
+        this._answer.GetMoreButton().SetActive(false);
+        this._answer.GetAnswerButton().SetActive(false);
+=======
+<<<<<<< HEAD
+        this._answer.GetLessButton().SetActive(false);
+        this._answer.GetMoreButton().SetActive(false);
+        this._answer.GetAnswerButton().SetActive(false);
+=======
         this._answer.getLessButton().SetActive(false);
         this._answer.getMoreButton().SetActive(false);
         this._answer.getAnswerButton().SetActive(false);
+>>>>>>> development
+>>>>>>> development
         ClearUI();
         this._pauseMenuUI.SetActive(true);
         Time.timeScale = 0f;
