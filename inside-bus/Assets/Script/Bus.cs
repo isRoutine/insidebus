@@ -6,7 +6,6 @@ using UnityEngine;
 public class Bus : Character
 {
 
-
     public void BusInit(){
         _rigidBody.position = CharacterScript.BUS_ENTRY;
     }

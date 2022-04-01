@@ -19,11 +19,11 @@ public class CharacterScript : MonoBehaviour
     private Vector2 MALE_MOVEMENT      = new Vector2(0 , 0.5f);
     
     [SerializeField] private GameObject _male;
-    private Queue<Male> _toSpawnToIn;
-    private LinkedList<Male> _spawnedToIn;
+    private int _toSpawnToIn;
+    private LinkedList<GameObject> _spawnedToIn;
 
-    private Queue<Male> _toSpawnToOut;
-    private LinkedList<Male> _spawnedToOut;
+    private int _toSpawnToOut;
+    private LinkedList<GameObject> _spawnedToOut;
 
     [SerializeField] private GameObject _bus;
 
@@ -36,22 +36,12 @@ public class CharacterScript : MonoBehaviour
 
 
     public void Spawn(int qty, int type){
-        float horizontalValue = 0, verticalValue;
-        Queue<Male> queue;
 
-        if(type == MALE_TO_IN){
-            verticalValue = 1.0f;
-            queue = _toSpawnToIn;
-        }
-        else {
-            verticalValue = -1.0f;  
-            queue = _toSpawnToOut;  
-        }
+        if(type == MALE_TO_IN)
+            _toSpawnToIn+=qty;
+        else 
+            _toSpawnToOut+=qty;
 
-        for(int i=0; i<qty; i++){
-            Male temp = new Male(horizontalValue, verticalValue);
-            queue.Enqueue(temp);
-        }
     }
 
 
@@ -61,11 +51,11 @@ public class CharacterScript : MonoBehaviour
 
         // // MALE SETUP __________________
 
-        _toSpawnToIn = new Queue<Male>(); // queue of character waiting for spawn
-        _spawnedToIn = new LinkedList<Male>(); //list of character already spawned
+        //_toSpawnToIn = new Queue<Male>(); // queue of character waiting for spawn
+        _spawnedToIn = new LinkedList<GameObject>(); //list of character already spawned
 
-        _toSpawnToOut = new Queue<Male>(); // queue of character waiting for spawn
-        _spawnedToOut = new LinkedList<Male>(); //list of character already spawned
+        //_toSpawnToOut = new Queue<Male>(); // queue of character waiting for spawn
+        _spawnedToOut = new LinkedList<GameObject>(); //list of character already spawned
         
         visible = 0; // number of character now in action, visible on the screen
 
@@ -85,48 +75,46 @@ public class CharacterScript : MonoBehaviour
 
 
         // instantiate operations
-        if(_toSpawnToIn.Count > 0 ||_toSpawnToOut.Count > 0 ){
-            
-            // spawn gameobject of toIn queue
-            Male temp = _toSpawnToIn.Peek();
-            if(temp != null){
-                temp = Instantiate(temp, MALE_ENTRY_TO_IN, Quaternion.identity);
+
+            if(_toSpawnToIn > 0){
+                GameObject temp = Instantiate(_male, MALE_ENTRY_TO_IN, Quaternion.identity);
+                Male script = temp.GetComponent<Male>() as Male;
+                script._verticalValue = +1.0f;
                 temp.name = "Male_IN" + (_spawnedToIn.Count + 1);
                 _spawnedToIn.AddFirst(temp);
-                _toSpawnToIn.Dequeue();
+                _toSpawnToIn--;
             }
 
-            // spawn gameobject of toOut queue
-            temp = _toSpawnToOut.Peek();
-            if(temp != null){
-                temp = Instantiate(temp, MALE_ENTRY_TO_OUT, Quaternion.identity);
-                temp.name = "Male_IN" + (_spawnedToIn.Count + 1);
-                _spawnedToIn.AddFirst(temp);
-                _toSpawnToIn.Dequeue();
+            if(_toSpawnToOut > 0){
+                GameObject temp = Instantiate(_male, MALE_ENTRY_TO_OUT, Quaternion.identity);
+                Male script = temp.GetComponent<Male>() as Male;
+                script._verticalValue = -1.0f;
+                temp.name = "Male_OUT" + (_spawnedToOut.Count + 1);
+                _spawnedToOut.AddFirst(temp);
+                _toSpawnToOut--;
             }
-
-        }
 
         // update position of spawned object
         if(_spawnedToIn.Count > 0 || _spawnedToOut.Count >0){
             
-            LinkedListNode<Male> _in = null;
-            LinkedListNode<Male> _out = null;
-            do {
-                
+            LinkedListNode<GameObject> _in = null;
+            LinkedListNode<GameObject> _out = null;
+
+            do{
                 _in = _spawnedToIn.First;
                 if(_in != null){
-                    _in.Value.Move( MALE_MOVEMENT * Time.fixedDeltaTime);
+                    Male script = _in.Value.GetComponent<Male>() as Male;
+                    script.Move( MALE_MOVEMENT * Time.fixedDeltaTime);
                     _in = _in.Next;
-
                 }
 
                 _out = _spawnedToOut.First;
                 if(_out != null){
-                    _out.Value.Move( - MALE_MOVEMENT * Time.fixedDeltaTime);
+                    Male script = _out.Value.GetComponent<Male>() as Male;
+                    script.Move( - MALE_MOVEMENT * Time.fixedDeltaTime);
                     _out = _out.Next;
                 }
-            }while(_in != null || _out != null);
+            }while(_out != null || _in != null);
 
         }
 
