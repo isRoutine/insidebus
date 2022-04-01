@@ -14,12 +14,16 @@ public class CharacterScript : MonoBehaviour
     public static int MALE_TO_IN    = 1;
     public static int MALE_TO_OUT   = 0;
     private Vector2 MALE_STOP   = new Vector2(-1f,0);
-    private Vector2 MALE_ENTRY  = new Vector2(-1f,-1f);
-
+    private Vector2 MALE_ENTRY_TO_IN  = new Vector2(-1f,-1f);
+    private Vector2 MALE_ENTRY_TO_OUT  = new Vector2(+1f,0);
+    private Vector2 MALE_MOVEMENT      = new Vector2(0 , 0.5f);
     
     [SerializeField] private GameObject _male;
-    private Queue<Male> _toSpawn;
-    private LinkedList<Male> _spawned;
+    private Queue<Male> _toSpawnToIn;
+    private LinkedList<Male> _spawnedToIn;
+
+    private Queue<Male> _toSpawnToOut;
+    private LinkedList<Male> _spawnedToOut;
 
     [SerializeField] private GameObject _bus;
 
@@ -33,15 +37,20 @@ public class CharacterScript : MonoBehaviour
 
     public void Spawn(int qty, int type){
         float horizontalValue = 0, verticalValue;
+        Queue<Male> queue;
 
-        if(type == MALE_TO_IN)
+        if(type == MALE_TO_IN){
             verticalValue = 1.0f;
-        else 
-            verticalValue = -1.0f;    
+            queue = _toSpawnToIn;
+        }
+        else {
+            verticalValue = -1.0f;  
+            queue = _toSpawnToOut;  
+        }
 
         for(int i=0; i<qty; i++){
             Male temp = new Male(horizontalValue, verticalValue);
-            _toSpawn.Enqueue(temp);
+            queue.Enqueue(temp);
         }
     }
 
@@ -50,11 +59,15 @@ public class CharacterScript : MonoBehaviour
     void Start()
     {
 
-        // // MALE SETUP __________________________________
+        // // MALE SETUP __________________
 
-        // toSpawn = new Queue<Character>(); // queue of character waiting for spawn
-        // spawned = new LinkedList<GameObject>();//list of character already spawned
-        // visible = 0; // number of character now in action, visible on the screen
+        _toSpawnToIn = new Queue<Male>(); // queue of character waiting for spawn
+        _spawnedToIn = new LinkedList<Male>(); //list of character already spawned
+
+        _toSpawnToOut = new Queue<Male>(); // queue of character waiting for spawn
+        _spawnedToOut = new LinkedList<Male>(); //list of character already spawned
+        
+        visible = 0; // number of character now in action, visible on the screen
 
     }
 
@@ -69,6 +82,54 @@ public class CharacterScript : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
+
+
+        // instantiate operations
+        if(_toSpawnToIn.Count > 0 ||_toSpawnToOut.Count > 0 ){
+            
+            // spawn gameobject of toIn queue
+            Male temp = _toSpawnToIn.Peek();
+            if(temp != null){
+                temp = Instantiate(temp, MALE_ENTRY_TO_IN, Quaternion.identity);
+                temp.name = "Male_IN" + (_spawnedToIn.Count + 1);
+                _spawnedToIn.AddFirst(temp);
+                _toSpawnToIn.Dequeue();
+            }
+
+            // spawn gameobject of toOut queue
+            temp = _toSpawnToOut.Peek();
+            if(temp != null){
+                temp = Instantiate(temp, MALE_ENTRY_TO_OUT, Quaternion.identity);
+                temp.name = "Male_IN" + (_spawnedToIn.Count + 1);
+                _spawnedToIn.AddFirst(temp);
+                _toSpawnToIn.Dequeue();
+            }
+
+        }
+
+        // update position of spawned object
+        if(_spawnedToIn.Count > 0 || _spawnedToOut.Count >0){
+            
+            LinkedListNode<Male> _in = null;
+            LinkedListNode<Male> _out = null;
+            do {
+                
+                _in = _spawnedToIn.First;
+                if(_in != null){
+                    _in.Value.Move( MALE_MOVEMENT * Time.fixedDeltaTime);
+                    _in = _in.Next;
+
+                }
+
+                _out = _spawnedToOut.First;
+                if(_out != null){
+                    _out.Value.Move( - MALE_MOVEMENT * Time.fixedDeltaTime);
+                    _out = _out.Next;
+                }
+            }while(_in != null || _out != null);
+
+        }
+
 
         // if (toSpawn.Count > 0 || flag)
         // {

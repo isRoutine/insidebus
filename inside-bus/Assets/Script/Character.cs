@@ -11,6 +11,8 @@ public class Character : MonoBehaviour
     [SerializeField] protected Animator    _animator  { get; set; }
 
 
+
+
     //  shifting the rigidbody of movement vector2
     public void Move(Vector2 movement){
          _rigidBody.MovePosition(_rigidBody.position + movement);
