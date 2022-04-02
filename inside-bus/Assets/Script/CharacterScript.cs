@@ -35,13 +35,58 @@ public class CharacterScript : MonoBehaviour
     private bool flag = false;
 
 
+    private void CreateMale(){
+
+        while(_toSpawnToIn > 0){
+            GameObject obj = Instantiate(_male, MALE_ENTRY_TO_IN, Quaternion.identity);
+            Male maleController = obj.GetComponent<Male>() as Male;
+            maleController._verticalValue = +1.0f;
+            maleController._animationSpeed = +1.0f;
+            obj.name = "Male_IN" + (_spawnedToIn.Count + 1);
+            _spawnedToIn.AddFirst(obj);
+            _toSpawnToIn--;
+        }
+
+        while(_toSpawnToOut > 0){
+            GameObject obj = Instantiate(_male, MALE_ENTRY_TO_OUT, Quaternion.identity);
+            Male maleController = obj.GetComponent<Male>() as Male;
+            maleController._verticalValue = -1.0f;
+            maleController._animationSpeed = +1.0f;
+            obj.name = "Male_OUT" + (_spawnedToOut.Count + 1);
+            _spawnedToOut.AddFirst(obj);
+            _toSpawnToOut--;
+        }
+    }
+
+
     public void Spawn(int qty, int type){
 
         if(type == MALE_TO_IN)
             _toSpawnToIn+=qty;
         else 
             _toSpawnToOut+=qty;
+        CreateMale();
+    }
 
+
+    public void UpdateSpawnedObject(){
+  
+        LinkedListNode<GameObject> _in = _spawnedToIn.First;
+        LinkedListNode<GameObject> _out = _spawnedToOut.First;
+        
+        do{
+            if(_in != null){
+                Male script = _in.Value.GetComponent<Male>() as Male;
+                script.Move( MALE_MOVEMENT * Time.fixedDeltaTime);
+                _in = _in.Next;
+            }
+
+            if(_out != null){
+                Male script = _out.Value.GetComponent<Male>() as Male;
+                script.Move( - MALE_MOVEMENT * Time.fixedDeltaTime);
+                _out = _out.Next;
+            }
+        }while(_out != null || _in != null);
     }
 
 
@@ -73,131 +118,17 @@ public class CharacterScript : MonoBehaviour
     void FixedUpdate()
     {
 
+        UpdateSpawnedObject();
 
         // instantiate operations
 
-            if(_toSpawnToIn > 0){
-                GameObject temp = Instantiate(_male, MALE_ENTRY_TO_IN, Quaternion.identity);
-                Male script = temp.GetComponent<Male>() as Male;
-                script._verticalValue = +1.0f;
-                temp.name = "Male_IN" + (_spawnedToIn.Count + 1);
-                _spawnedToIn.AddFirst(temp);
-                _toSpawnToIn--;
-            }
 
-            if(_toSpawnToOut > 0){
-                GameObject temp = Instantiate(_male, MALE_ENTRY_TO_OUT, Quaternion.identity);
-                Male script = temp.GetComponent<Male>() as Male;
-                script._verticalValue = -1.0f;
-                temp.name = "Male_OUT" + (_spawnedToOut.Count + 1);
-                _spawnedToOut.AddFirst(temp);
-                _toSpawnToOut--;
-            }
 
         // update position of spawned object
-        if(_spawnedToIn.Count > 0 || _spawnedToOut.Count >0){
-            
-            LinkedListNode<GameObject> _in = null;
-            LinkedListNode<GameObject> _out = null;
-
-            do{
-                _in = _spawnedToIn.First;
-                if(_in != null){
-                    Male script = _in.Value.GetComponent<Male>() as Male;
-                    script.Move( MALE_MOVEMENT * Time.fixedDeltaTime);
-                    _in = _in.Next;
-                }
-
-                _out = _spawnedToOut.First;
-                if(_out != null){
-                    Male script = _out.Value.GetComponent<Male>() as Male;
-                    script.Move( - MALE_MOVEMENT * Time.fixedDeltaTime);
-                    _out = _out.Next;
-                }
-            }while(_out != null || _in != null);
-
-        }
 
 
-        // if (toSpawn.Count > 0 || flag)
-        // {
 
-        //     if (toSpawn.Count > 0)
-        //     {
-        //         Character peek = toSpawn.Peek();
-        //         if (timing > peek.Time)
-        //         {
-        //             GameObject temp = Instantiate(peek.Figure, startPosition, Quaternion.identity);
-        //             temp.name = "Male" + amountSpawned;
-        //             spawned.AddFirst(temp);
-        //             timing = 0;
-        //             amountSpawned++;
-        //             visible++;
-        //             toSpawn.Dequeue();
-        //             flag = true;
-        //         }
-        //     }
 
-        //     LinkedListNode<GameObject> c = spawned.First;
-        //     while (c != null)
-        //     {
-
-        //         Rigidbody2D rigidBody = c.Value.GetComponent(typeof(Rigidbody2D)) as Rigidbody2D;
-        //         if (rigidBody.position.y <= +2)
-        //         { // punto in cui si devono fermare
-        //             Vector2 movement = new Vector2(0, 0.5f);
-        //             rigidBody.MovePosition(rigidBody.position + (movement * 1f * Time.fixedDeltaTime));
-        //         }
-        //         else
-        //         {
-        //             GameObject temp = c.Value;
-        //             spawned.RemoveLast();
-        //             Destroy(temp);
-        //             visible--;
-        //         }
-        //         c = c.Next;
-        //     }
-        //     timing += Time.fixedDeltaTime;
-        // }
-
-        // if (SpawnedBus == 0)
-        // {
-        //     SpawnedBus = 1;
-        //     busSpawned = Instantiate(bus, BUS_ENTRY , Quaternion.identity);
-        //     busSpawned.name = "Bus";
-        // }
-
-        // if (busSpawned != null)
-        // {
-        //     Rigidbody2D busBody = busSpawned.GetComponent(typeof(Rigidbody2D)) as Rigidbody2D;
-        //     BusScript b = busSpawned.GetComponent<BusScript>() as BusScript;
-
-        //     if (busBody.position.x > BUS_STOP.x)
-        //         busBody.MovePosition(busBody.position + (new Vector2(-0.5f, 0) * Time.fixedDeltaTime * 2f));
-        //     else
-        //     {
-        //         Debug.Log("EnginesOff : " + b.getAnimator().GetBool("engines_off"));
-        //         b.EnginesOff();
-        //         //Debug.Log("EnginesOff : " + b.getAnimator().GetBool("engines_off"));
-        //         b.Idle();
-        //         b.Open();
-        //         b.Close();
-        //     }
-
-        //     if (visible == 0 && busBody.position.x <= -0.038f)
-        //     {
-        //         b.EnginesOn();
-        //         b.Fly();
-        //         if (b.GetComponent<Animator>().GetBool("fly"))
-        //             busBody.MovePosition(busBody.position + (new Vector2(-0.5f, 0) * Time.fixedDeltaTime * 2f));
-        //     }
-
-        //     if (busBody.position.x < -6.5f)
-        //     {
-        //         Destroy(busSpawned);
-        //         //SpawnedBus = 0;
-        //     }
-        // }
     }
 }
 
