@@ -373,7 +373,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb0f14963b5b40040b9d1038572d5fd6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  main: {fileID: 2142995967}
+  main: {fileID: 0}
   timerValue: 0
   seconds: 0
   minutes: 0
@@ -707,7 +707,7 @@ MonoBehaviour:
   moreButtonGO: {fileID: 831094171}
   lessButtonGO: {fileID: 1360851788}
   answerButtonGO: {fileID: 198643174}
-  main: {fileID: 2142995967}
+  main: {fileID: 0}
   pause: {fileID: 617528903}
   AnswerPanel: {fileID: 1187749714}
   flag: 0
@@ -991,7 +991,7 @@ MonoBehaviour:
   moreButtonGO: {fileID: 831094171}
   lessButtonGO: {fileID: 1360851788}
   answerButtonGO: {fileID: 198643174}
-  main: {fileID: 2142995967}
+  main: {fileID: 0}
   pause: {fileID: 617528903}
   AnswerPanel: {fileID: 1187749714}
   flag: 0
@@ -1823,7 +1823,7 @@ MonoBehaviour:
   moreButtonGO: {fileID: 831094171}
   lessButtonGO: {fileID: 1360851788}
   answerButtonGO: {fileID: 198643174}
-  main: {fileID: 2142995967}
+  main: {fileID: 0}
   pause: {fileID: 617528903}
   AnswerPanel: {fileID: 1187749714}
   flag: 0
@@ -5356,7 +5356,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb0f14963b5b40040b9d1038572d5fd6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  main: {fileID: 2142995967}
+  main: {fileID: 0}
   timerValue: 0
   seconds: 0
   minutes: 0
@@ -6291,11 +6291,11 @@ GameObject:
   - component: {fileID: 2142995964}
   - component: {fileID: 2142995963}
   - component: {fileID: 2142995962}
-  - component: {fileID: 2142995967}
-  - component: {fileID: 2142995968}
   - component: {fileID: 2142995961}
   - component: {fileID: 2142995966}
   - component: {fileID: 2142995969}
+  - component: {fileID: 2142995967}
+  - component: {fileID: 2142995968}
   m_Layer: 5
   m_Name: game
   m_TagString: Untagged
@@ -6523,13 +6523,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a2c890a0c82542659f5ac68e0f155dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timer: {fileID: 55175486}
-  timerShadow: {fileID: 1572178382}
-  answer: {fileID: 180281159}
-  character: {fileID: 2142995968}
-  lives: {fileID: 841067059}
-  livesBis: {fileID: 112084644}
-  GameOverUI: {fileID: 1604846511}
+  timer: {fileID: 0}
+  timerShadow: {fileID: 0}
+  answer: {fileID: 0}
+  _spawner: {fileID: 2142995968}
+  lives: {fileID: 0}
+  livesBis: {fileID: 0}
+  GameOverUI: {fileID: 0}
 --- !u!114 &2142995968
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6539,11 +6539,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 2142995960}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f5f2c682003fe4318aa2b476c65fb2dd, type: 3}
+  m_Script: {fileID: 11500000, guid: 618cd6b3bc19b40bab15ee1ad5fc14d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _male: {fileID: 3610393287836599252, guid: 96f61503a025a4939a61fbf70000964d, type: 3}
-  _bus: {fileID: 8484686172551651042, guid: b8af72d8d6a57ee419fa2985e0715546, type: 3}
+  _bus: {fileID: 0}
 --- !u!82 &2142995969
 AudioSource:
   m_ObjectHideFlags: 0

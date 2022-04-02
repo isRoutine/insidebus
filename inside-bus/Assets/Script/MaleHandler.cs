@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Male : Character
+public class MaleHandler : CharacterHandler
 {
 
     // parameters for switch the animation of associated game object 
@@ -13,18 +13,22 @@ public class Male : Character
 
     private const float DEFAULT_ANIMATION_SPEED = 0.02f ;
 
-    public Male(float horizontalValue, float verticalValue){
-        _horizontalValue = horizontalValue;
-        _verticalValue = verticalValue;
-        _animationSpeed = DEFAULT_ANIMATION_SPEED;
-    }
 
     // Update is called once per frame
     void Update()
     {
 
-        _animator.SetFloat("Vertical", _verticalValue);
 
     }
+
+
+
+    void FixedUpdate()
+    {
+
+
+
+    }
+
 
 }

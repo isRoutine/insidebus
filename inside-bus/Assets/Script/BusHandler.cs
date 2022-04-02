@@ -3,11 +3,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Bus : Character
+public class BusHandler : CharacterHandler
 {
 
     public void BusInit(){
-        _rigidBody.position = CharacterScript.BUS_ENTRY;
+        //_rigidBody.position = CharacterScript.BUS_ENTRY;
     }
 
     // animator methods ...

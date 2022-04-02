@@ -6,10 +6,11 @@ using UnityEngine.UI;
 
 public class MainScript : MonoBehaviour
 {
+     
     [SerializeField] private TimeScript timer;
     [SerializeField] private TimeScript timerShadow;
     [SerializeField] private AnswerScript answer;
-    [SerializeField] private CharacterScript character;
+    [SerializeField] public Spawner _spawner;
     [SerializeField] private Text lives;
     [SerializeField] private Text livesBis;
     [SerializeField] private GameObject GameOverUI;
@@ -51,14 +52,29 @@ public class MainScript : MonoBehaviour
     }       
     
 
+    private IEnumerator coroutine;
+
+
     // Start is called before the first frame update
     void Start()
     {
-        float tempo = (float)GetRandomNumber(5, 30);
-        timer.timerValue = tempo;
-        timerShadow.timerValue = tempo;
-        rispostaEsatta = 120;
+        // float tempo = (float)GetRandomNumber(5, 30);
+        // timer.timerValue = tempo;
+        // timerShadow.timerValue = tempo;
+        // rispostaEsatta = 120;
+
+        print("starting " + Time.time + "seconds");
+        coroutine = myCoroutine(1.0f);
+        StartCoroutine(coroutine);
     }
+
+    private IEnumerator myCoroutine(float waitTime){
+          
+        for(int i = 0; i < 10; i++){  
+            yield return new WaitForSeconds(waitTime);
+            print("wait " + Time.time + "seconds");
+        }
+    } 
 
     // Update is called once per frame
     void Update()
@@ -72,29 +88,30 @@ public class MainScript : MonoBehaviour
     void FixedUpdate()
     {
 
-        if (delay > 3 && (flag == false)) {
-            flag = true;
-            character.Spawn(10,1);
-            character.Spawn(10,0);
-            Debug.Log("inviato " + delay);
-        }
+        _spawner.Spawn(5,1);
+
+        // if (delay > 3 && (flag == false)) {
+        //     flag = true;
+        //     _spawner.Spawn(5,1);   
+
+        // }
 
         //Debug.Log(delay);
-        delay += Time.fixedDeltaTime;
+        // delay += Time.fixedDeltaTime;
 
 
-        int vite = Convert.ToInt32(this.lives);
-        if (answer.rispostaInviata && (vite != 0))
-        {
-            int diff = Math.Abs(this.rispostaEsatta - Convert.ToInt32(answer.getAnswerText()));
-            if (diff > 0)
-                score = score + (200 * diff);
-            else
-                score = score + (200 * this.rispostaEsatta);
+        // int vite = Convert.ToInt32(this.lives);
+        // if (answer.rispostaInviata && (vite != 0))
+        // {
+        //     int diff = Math.Abs(this.rispostaEsatta - Convert.ToInt32(answer.getAnswerText()));
+        //     if (diff > 0)
+        //         score = score + (200 * diff);
+        //     else
+        //         score = score + (200 * this.rispostaEsatta);
             
-            Debug.Log("Score" + score.ToString());
-            answer.rispostaInviata = false;
-        }
+        //     Debug.Log("Score" + score.ToString());
+        //     answer.rispostaInviata = false;
+        // }
 
     }
 
