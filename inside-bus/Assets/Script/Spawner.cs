@@ -14,9 +14,9 @@ public class Spawner : MonoBehaviour
     public static int MALE_TO_IN    = 1;
     public static int MALE_TO_OUT   = 0;
     private Vector2 MALE_STOP   = new Vector2(-1f,0);
-    private Vector2 MALE_ENTRY_TO_IN  = new Vector2(-1f,-1f);
+    private Vector2 MALE_ENTRY_TO_IN  = new Vector2(-1f,-5f);
     private Vector2 MALE_ENTRY_TO_OUT  = new Vector2(+1f,0);
-    private Vector2 MALE_MOVEMENT      = new Vector2(0 , 0.5f);
+    private Vector2 MALE_MOVEMENT      = new Vector2(0 , 0.05f);
     
     [SerializeField] private GameObject _male;
     private int _toSpawnToIn;
@@ -27,15 +27,13 @@ public class Spawner : MonoBehaviour
 
     [SerializeField] private GameObject _bus;
 
-    private IEnumerator InstantiateMaleCoroutine;
-
     
     private IEnumerator InstantiateMale(int qty, Vector2 position, LinkedList<GameObject> list){
         for(int i=0; i < qty; i++){
-            yield return new WaitForSeconds(1.0f);  
-            GameObject newObject = Instantiate(_male, position, Quaternion.identity);
-            print("spawn male_" + i);
-            list.AddFirst(newObject);         
+            yield return new WaitForSeconds(0.3f);
+            //yield return null;           
+            GameObject newObject = Instantiate(_male, position, Quaternion.identity);  
+            list.AddFirst(newObject);          
         }
     }
 
@@ -48,32 +46,30 @@ public class Spawner : MonoBehaviour
             position = MALE_ENTRY_TO_OUT;
             list = _spawnedToOut;
         }
-
-        InstantiateMaleCoroutine = InstantiateMale(qty,position,list);
-        StartCoroutine(InstantiateMaleCoroutine);
+        StartCoroutine(InstantiateMale(qty,position,list));
     }
 
 
 
-    // public void UpdateSpawnedObject(){
+    public void UpdateSpawnedObject(){
   
-    //     LinkedListNode<GameObject> _in = _spawnedToIn.First;
-    //     LinkedListNode<GameObject> _out = _spawnedToOut.First;
+        LinkedListNode<GameObject> _in = _spawnedToIn.First;
+        LinkedListNode<GameObject> _out = _spawnedToOut.First;
         
-    //     do{
-    //         if(_in != null){
-    //             MaleHandler script = _in.Value.GetComponent<MaleHandler>() as MaleHandler;
-    //             script.Move( MALE_MOVEMENT * Time.fixedDeltaTime);
-    //             _in = _in.Next;
-    //         }
+        do{
+            if(_in != null){
+                MaleHandler script = _in.Value.GetComponent<MaleHandler>() as MaleHandler;
+                script.Move( MALE_MOVEMENT);
+                _in = _in.Next;
+            }
 
-    //         if(_out != null){
-    //             MaleHandler script = _out.Value.GetComponent<MaleHandler>() as MaleHandler;
-    //             script.Move( - MALE_MOVEMENT * Time.fixedDeltaTime);
-    //             _out = _out.Next;
-    //         }
-    //     }while(_out != null || _in != null);
-    // }
+            if(_out != null){
+                MaleHandler script = _out.Value.GetComponent<MaleHandler>() as MaleHandler;
+                script.Move( - MALE_MOVEMENT * Time.fixedDeltaTime);
+                _out = _out.Next;
+            }
+        }while(_out != null || _in != null);
+    }
 
 
     // Start is called before the first frame update
@@ -95,7 +91,7 @@ public class Spawner : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-
+        UpdateSpawnedObject();
     }
 }
 

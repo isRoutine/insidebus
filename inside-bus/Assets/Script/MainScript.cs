@@ -63,18 +63,9 @@ public class MainScript : MonoBehaviour
         // timerShadow.timerValue = tempo;
         // rispostaEsatta = 120;
 
-        print("starting " + Time.time + "seconds");
-        coroutine = myCoroutine(1.0f);
-        StartCoroutine(coroutine);
+        _spawner.Spawn(5,1);
     }
 
-    private IEnumerator myCoroutine(float waitTime){
-          
-        for(int i = 0; i < 10; i++){  
-            yield return new WaitForSeconds(waitTime);
-            print("wait " + Time.time + "seconds");
-        }
-    } 
 
     // Update is called once per frame
     void Update()
@@ -88,7 +79,6 @@ public class MainScript : MonoBehaviour
     void FixedUpdate()
     {
 
-        _spawner.Spawn(5,1);
 
         // if (delay > 3 && (flag == false)) {
         //     flag = true;

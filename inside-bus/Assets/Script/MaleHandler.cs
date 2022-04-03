@@ -11,7 +11,13 @@ public class MaleHandler : CharacterHandler
     public float _animationSpeed    { get; set; } // value for animation speed  ; range [0; ...] ; 
                                                     //if this <= 0.01 --> animation in IDLE position 
 
-    private const float DEFAULT_ANIMATION_SPEED = 0.02f ;
+    private const float DEFAULT_VERTICAL_VALUE = 1.0f;
+    private const float DEFAULT_ANIMATION_SPEED = 1.0f ;
+
+    void Start(){
+        _animator.SetFloat("Vertical",DEFAULT_VERTICAL_VALUE);
+        _animator.SetFloat("Speed",DEFAULT_ANIMATION_SPEED);        
+    }
 
 
     // Update is called once per frame

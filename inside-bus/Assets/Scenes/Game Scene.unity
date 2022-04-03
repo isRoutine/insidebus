@@ -1169,7 +1169,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &198643175
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3217,7 +3217,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &831094172
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4952,7 +4952,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1360851789
 RectTransform:
   m_ObjectHideFlags: 0
@@ -6295,6 +6295,7 @@ GameObject:
   - component: {fileID: 2142995966}
   - component: {fileID: 2142995969}
   - component: {fileID: 2142995967}
+  - component: {fileID: 2142995970}
   - component: {fileID: 2142995968}
   m_Layer: 5
   m_Name: game
@@ -6640,3 +6641,32 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &2142995970
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2142995960}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 49d62c55071d7e743a47e3c402bee5db, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  answerText: {fileID: 0}
+  moreButton: {fileID: 0}
+  lessButton: {fileID: 0}
+  answerButton: {fileID: 0}
+  moreButtonGO: {fileID: 0}
+  lessButtonGO: {fileID: 0}
+  answerButtonGO: {fileID: 0}
+  main: {fileID: 0}
+  pause: {fileID: 0}
+  AnswerPanel: {fileID: 0}
+  flag: 0
+  click: 0
+  rispostaInviata: 0
+  timerValue: 0
+  timeText: {fileID: 0}
+  seconds: 0
+  minutes: 0
