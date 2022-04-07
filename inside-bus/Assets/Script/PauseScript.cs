@@ -6,13 +6,9 @@ public class PauseScript : MonoBehaviour
     [SerializeField] private GameObject _optionsMenuUI;
     [SerializeField] private GameObject _pauseButton;
     [SerializeField] private GameObject _time;
-    [SerializeField] private GameObject _timeShadow;
     [SerializeField] private GameObject _x;
-    [SerializeField] private GameObject _xShadow;
     [SerializeField] private GameObject _lives;
-    [SerializeField] private GameObject _livesShadow;
     [SerializeField] private GameObject _timeText;
-    [SerializeField] private GameObject _timeTextShadow;
     [SerializeField] private GameObject _areYouSureUI;
 
     [SerializeField] private AnswerScript _answer;
@@ -90,26 +86,18 @@ public class PauseScript : MonoBehaviour
     {
         this._pauseButton.SetActive(true);
         this._time.SetActive(true);
-        this._timeShadow.SetActive(true);
         this._timeText.SetActive(true);
-        this._timeTextShadow.SetActive(true);
         this._lives.SetActive(true);
-        this._livesShadow.SetActive(true);
         this._x.SetActive(true);
-        this._xShadow.SetActive(true);
     }
 
     public void ClearUI()
     {
         this._pauseButton.SetActive(false);
         this._time.SetActive(false);
-        this._timeShadow.SetActive(false);
         this._timeText.SetActive(false);
-        this._timeTextShadow.SetActive(false);
         this._lives.SetActive(false);
-        this._livesShadow.SetActive(false);
         this._x.SetActive(false);
-        this._xShadow.SetActive(false);
     }
 
 }

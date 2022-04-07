@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using System;
+using TMPro;
 
 public class AnswerScript : MonoBehaviour
 {
@@ -26,7 +27,7 @@ public class AnswerScript : MonoBehaviour
     public bool RispostaInviata;
 
     public float TimerValue;
-    [SerializeField] private Text _timeText;
+    [SerializeField] private TextMeshProUGUI _timeText;
     public float Seconds, Minutes;
 
     public void IsClicked()
@@ -124,7 +125,6 @@ public class AnswerScript : MonoBehaviour
             if (this.AnswerValue == this._main.GetRispostaEsatta())
             {
                 this._main.GetLives().text = vite.ToString();
-                this._main.GetLivesBis().text = vite.ToString();
             }
 
             else
@@ -134,13 +134,11 @@ public class AnswerScript : MonoBehaviour
                 {
                     vite = vite - diff;
                     this._main.GetLives().text = vite.ToString();
-                    this._main.GetLivesBis().text = vite.ToString();
                 }
                 else
                 {
                     Debug.Log("Game Over");
                     this._main.GetLives().text = "0";
-                    this._main.GetLivesBis().text = "0";
                     this._main.GetGameOverUI().SetActive(true);
                     Time.timeScale = 0f;
                     this._answerPanel.SetActive(false);

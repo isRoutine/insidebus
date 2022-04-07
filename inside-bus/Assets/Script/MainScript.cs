@@ -1,17 +1,16 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class MainScript : MonoBehaviour
 {
     [SerializeField] private TimeScript timer;
-    [SerializeField] private TimeScript timerShadow;
     [SerializeField] private AnswerScript answer;
     [SerializeField] private CharacterScript character;
-    [SerializeField] private Text lives;
-    [SerializeField] private Text livesBis;
+    [SerializeField] private TextMeshProUGUI lives;
     [SerializeField] private GameObject GameOverUI;
     
     private float delay = 0;
@@ -30,14 +29,9 @@ public class MainScript : MonoBehaviour
         return rispostaEsatta;
     }
 
-    public Text GetLives()
+    public TextMeshProUGUI GetLives()
     {
         return lives;
-    }
-
-    public Text GetLivesBis()
-    {
-        return livesBis;
     }
 
     public TimeScript GetTimer()
@@ -56,7 +50,6 @@ public class MainScript : MonoBehaviour
     {
         float tempo = (float)GetRandomNumber(5, 30);
         timer.TimerValue = tempo;
-        timerShadow.TimerValue = tempo;
         rispostaEsatta = 120;
     }
 

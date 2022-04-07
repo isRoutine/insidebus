@@ -13,7 +13,6 @@ public class MenuScript : MonoBehaviour
     [SerializeField] private GameObject _scoreboardMenuUI;
     [SerializeField] private GameObject _scoreboardButton;
     [SerializeField] private GameObject _title;
-    [SerializeField] private GameObject _titleShadow;
 
     // Start is called before the first frame update
     void Start()
@@ -63,7 +62,6 @@ public class MenuScript : MonoBehaviour
     public void ClearUI()
     {
         this._title.SetActive(false);
-        this._titleShadow.SetActive(false);
         this._playButton.SetActive(false);
         this._optionsButton.SetActive(false);
         this._scoreboardButton.SetActive(false);
@@ -75,7 +73,6 @@ public class MenuScript : MonoBehaviour
         this._playButton.SetActive(true);
         this._scoreboardButton.SetActive(true);
         this._title.SetActive(true);
-        this._titleShadow.SetActive(true);
     }
 
 }

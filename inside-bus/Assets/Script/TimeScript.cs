@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Globalization;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -9,7 +10,7 @@ public class TimeScript : MonoBehaviour
 {
     [SerializeField] private MainScript _main;
     public float TimerValue;
-    private Text _timeText;
+    [SerializeField] private TextMeshProUGUI _timeText;
     public float Seconds, Minutes;
 
     public float GetTimerValue()
@@ -26,7 +27,6 @@ public class TimeScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        this._timeText = GetComponent<Text>() as Text;
 
     }
 
