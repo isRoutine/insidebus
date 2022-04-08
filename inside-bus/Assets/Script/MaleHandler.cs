@@ -11,12 +11,30 @@ public class MaleHandler : CharacterHandler
     public float _animationSpeed    { get; set; } // value for animation speed  ; range [0; ...] ; 
                                                     //if this <= 0.01 --> animation in IDLE position 
 
+    public bool _arrived {get; set;}
+
     private const float DEFAULT_VERTICAL_VALUE = 1.0f;
-    private const float DEFAULT_ANIMATION_SPEED = 1.0f ;
+    private const float DEFAULT_ANIMATION_SPEED = 1.0f;
+
+    //  shifting the rigidbody of movement vector2
+    public IEnumerator Move(Vector2 start, Vector2 end, int type, Vector2 movement){
+        
+        _animator.SetFloat("Speed",DEFAULT_ANIMATION_SPEED);  
+        
+        if(type == Spawner.MALE_TO_IN)
+            _animator.SetFloat("Vertical",1.0f);     
+        else 
+            _animator.SetFloat("Vertical",-1.0f);  
+
+        while(_rigidBody.position.y < end.y){
+            _rigidBody.MovePosition(_rigidBody.position + movement);
+            yield return null;
+        }
+        _arrived = true;
+    }
 
     void Start(){
-        _animator.SetFloat("Vertical",DEFAULT_VERTICAL_VALUE);
-        _animator.SetFloat("Speed",DEFAULT_ANIMATION_SPEED);        
+       _arrived = false;
     }
 
 

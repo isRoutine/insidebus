@@ -9,11 +9,7 @@ public class CharacterHandler : MonoBehaviour
     // from Unity UI, but not from other class
     [SerializeField] protected Rigidbody2D _rigidBody;
     [SerializeField] protected Animator    _animator;
+    [SerializeField] protected Transform   _transform;
 
-
-    //  shifting the rigidbody of movement vector2
-    public void Move(Vector2 movement){
-         _rigidBody.MovePosition(_rigidBody.position + movement);
-    }
 
 }

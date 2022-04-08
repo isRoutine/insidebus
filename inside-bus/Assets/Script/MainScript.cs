@@ -14,11 +14,12 @@ public class MainScript : MonoBehaviour
     [SerializeField] private Text lives;
     [SerializeField] private Text livesBis;
     [SerializeField] private GameObject GameOverUI;
-    
-    private float delay = 0;
-    private bool flag = false;
+
+    [SerializeField] private GameObject _bus;
+    private GameObject _bus2;
     private int rispostaEsatta;
     private int score;
+    private bool _gameStarted;
 
     private static System.Random random = new System.Random();
     public double GetRandomNumber(double minimum, double maximum)
@@ -52,7 +53,21 @@ public class MainScript : MonoBehaviour
     }       
     
 
-    private IEnumerator coroutine;
+    // delay for every start of new game
+    private WaitForSeconds _delay = new WaitForSeconds(3.0f);
+
+    private IEnumerator StepUpdate(){
+        yield return _delay;
+        BusHandler script = _bus2.GetComponent<BusHandler>() as BusHandler;
+        script.BusInit();
+        yield return StartCoroutine(script.BusStart());
+        _spawner.Spawn(5, Spawner.MALE_TO_IN);
+        //_spawner.Spawn(3, Spawner.MALE_TO_OUT);
+        yield return StartCoroutine(_spawner.MoveAll());
+        //yield return visible = 0
+        yield return StartCoroutine(script.BusEnd());
+        _gameStarted = false;
+    }
 
 
     // Start is called before the first frame update
@@ -62,8 +77,8 @@ public class MainScript : MonoBehaviour
         // timer.timerValue = tempo;
         // timerShadow.timerValue = tempo;
         // rispostaEsatta = 120;
-
-        _spawner.Spawn(5,1);
+        _bus2 = Instantiate(_bus, BusHandler.BUS_ENTRY, Quaternion.identity);
+        _gameStarted = false;
     }
 
 
@@ -79,15 +94,15 @@ public class MainScript : MonoBehaviour
     void FixedUpdate()
     {
 
+        if(!_gameStarted){
+            _gameStarted = true;
+            // generate 3 random number 
+            StartCoroutine(StepUpdate());
+        } else{
 
-        // if (delay > 3 && (flag == false)) {
-        //     flag = true;
-        //     _spawner.Spawn(5,1);   
+            // update component
 
-        // }
-
-        //Debug.Log(delay);
-        // delay += Time.fixedDeltaTime;
+        }
 
 
         // int vite = Convert.ToInt32(this.lives);
