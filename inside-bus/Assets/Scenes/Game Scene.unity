@@ -6000,7 +6000,6 @@ MonoBehaviour:
   _scoreboardMenuUI: {fileID: 0}
   _scoreboardButton: {fileID: 0}
   _title: {fileID: 0}
-  _titleShadow: {fileID: 0}
 --- !u!114 &2142995962
 MonoBehaviour:
   m_ObjectHideFlags: 0
