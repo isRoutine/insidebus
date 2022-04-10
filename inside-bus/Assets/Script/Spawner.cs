@@ -21,7 +21,7 @@ public class Spawner : MonoBehaviour
     private int _toSpawnToOut;
     private LinkedList<GameObject> _spawnedToOut;
 
-    public bool _visibleMale;
+    public int _visibleMale{get; set;}
 
     
     public void Spawn(int qty, int type){
@@ -40,8 +40,8 @@ public class Spawner : MonoBehaviour
         for(int i=0; i<qty; i++){
             GameObject newObject = Instantiate(_male, position, Quaternion.identity);  
             list.AddFirst(newObject); 
-        }   
-        _visibleMale = true;
+        } 
+        _visibleMale += qty;  
     }
 
     public IEnumerator MoveAll(){
@@ -56,18 +56,21 @@ public class Spawner : MonoBehaviour
                 StartCoroutine(script.Move(MALE_ENTRY_TO_IN, BusHandler.BUS_STOP, MALE_TO_IN, MALE_MOVEMENT));
                 _in = _in.Next;
             }
-
-            // if(_out != null){
-            //     MaleHandler script = _out.Value.GetComponent<MaleHandler>() as MaleHandler;
-            //     script.Move(MALE_ENTRY_TO_OUT, BUS_STOP, MALE_TO_IN, -MALE_MOVEMENT);
-            //     _out = _out.Next;
-            // }
-
             yield return new WaitForSeconds(0.5f);
-
         }
     }
 
+
+    public int VisibleObject(){
+        return _spawnedToIn.Count + _spawnedToOut.Count;
+    }
+
+    private void ClearLists(){
+        foreach(GameObject gobject in _spawnedToIn){
+            if (gobject == null)
+                _spawnedToIn.Remove(gobject);
+        }
+    }
 
 
     // Start is called before the first frame update
@@ -75,7 +78,6 @@ public class Spawner : MonoBehaviour
     {
         _spawnedToIn = new LinkedList<GameObject>(); //list of character already spawned
         _spawnedToOut = new LinkedList<GameObject>(); //list of character already spawned
-        _visibleMale = false;
         
     }
 
@@ -90,8 +92,7 @@ public class Spawner : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-
-
+        ClearLists();
 
     }
 }

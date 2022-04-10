@@ -64,7 +64,11 @@ public class MainScript : MonoBehaviour
         _spawner.Spawn(5, Spawner.MALE_TO_IN);
         //_spawner.Spawn(3, Spawner.MALE_TO_OUT);
         yield return StartCoroutine(_spawner.MoveAll());
-        //yield return visible = 0
+        while(_spawner.VisibleObject() > 0){
+            print(_spawner.VisibleObject());
+            yield return null;
+        }
+        print("tutti morti...");
         yield return StartCoroutine(script.BusEnd());
         _gameStarted = false;
     }

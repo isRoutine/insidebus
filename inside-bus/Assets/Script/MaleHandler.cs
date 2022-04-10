@@ -31,6 +31,7 @@ public class MaleHandler : CharacterHandler
             yield return null;
         }
         _arrived = true;
+        Destroy(gameObject);
     }
 
     void Start(){
