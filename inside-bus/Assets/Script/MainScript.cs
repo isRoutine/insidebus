@@ -15,8 +15,8 @@ public class MainScript : MonoBehaviour
     [SerializeField] private Text livesBis;
     [SerializeField] private GameObject GameOverUI;
 
-    [SerializeField] private GameObject _bus;
-    private GameObject _bus2;
+    [SerializeField] private GameObject _busPrefab;
+    private GameObject _bus;
     private int rispostaEsatta;
     private int score;
     private bool _gameStarted;
@@ -54,20 +54,17 @@ public class MainScript : MonoBehaviour
     
 
     // delay for every start of new game
-    private WaitForSeconds _delay = new WaitForSeconds(3.0f);
+    private WaitForSeconds _delay = new WaitForSeconds(1.0f);
 
     private IEnumerator StepUpdate(){
         yield return _delay;
-        BusHandler script = _bus2.GetComponent<BusHandler>() as BusHandler;
+        BusHandler script = _bus.GetComponent<BusHandler>() as BusHandler;
         script.BusInit();
         yield return StartCoroutine(script.BusStart());
-        _spawner.Spawn(5, Spawner.MALE_TO_IN);
-        //_spawner.Spawn(3, Spawner.MALE_TO_OUT);
+        _spawner.Spawn(5, Spawner.MALE_ENTRANTE);
+        _spawner.Spawn(3, Spawner.MALE_USCENTE);
         yield return StartCoroutine(_spawner.MoveAll());
-        while(_spawner.VisibleObject() > 0){
-            print(_spawner.VisibleObject());
-            yield return null;
-        }
+        yield return new WaitUntil(_spawner.IsEmptyScene);
         print("tutti morti...");
         yield return StartCoroutine(script.BusEnd());
         _gameStarted = false;
@@ -77,11 +74,7 @@ public class MainScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        // float tempo = (float)GetRandomNumber(5, 30);
-        // timer.timerValue = tempo;
-        // timerShadow.timerValue = tempo;
-        // rispostaEsatta = 120;
-        _bus2 = Instantiate(_bus, BusHandler.BUS_ENTRY, Quaternion.identity);
+        _bus = Instantiate(_busPrefab, BusHandler.BUS_ENTRY, Quaternion.identity);
         _gameStarted = false;
     }
 

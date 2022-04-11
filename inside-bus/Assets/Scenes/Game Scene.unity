@@ -6531,7 +6531,7 @@ MonoBehaviour:
   lives: {fileID: 0}
   livesBis: {fileID: 0}
   GameOverUI: {fileID: 0}
-  _bus: {fileID: 8484686172551651042, guid: b8af72d8d6a57ee419fa2985e0715546, type: 3}
+  _busPrefab: {fileID: 8484686172551651042, guid: b8af72d8d6a57ee419fa2985e0715546, type: 3}
 --- !u!114 &2142995968
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6545,7 +6545,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _male: {fileID: 3610393287836599252, guid: 96f61503a025a4939a61fbf70000964d, type: 3}
-  _visibleMale: 0
 --- !u!82 &2142995969
 AudioSource:
   m_ObjectHideFlags: 0

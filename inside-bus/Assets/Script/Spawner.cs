@@ -7,68 +7,76 @@ public class Spawner : MonoBehaviour
 {
 
     // some reference coordinates...
-    public static int MALE_TO_IN    = 1;
-    public static int MALE_TO_OUT   = 0;
-    private Vector2 MALE_STOP   = new Vector2(-1f,0);
-    private Vector2 MALE_ENTRY_TO_IN  = new Vector2(-1.3f,-5f);
-    private Vector2 MALE_ENTRY_TO_OUT  = new Vector2(+1f,0);
+    public static int MALE_ENTRANTE    = 1;
+    public static int MALE_USCENTE   = 0;
     private Vector2 MALE_MOVEMENT      = new Vector2(0 , 0.05f);
     
-    [SerializeField] private GameObject _male;
-    private int _toSpawnToIn;
-    private LinkedList<GameObject> _spawnedToIn;
+    public static Vector2 MALE_ENTRANTE_START  = new Vector2(-1.3f,-7.0f);
+    public static Vector2 MALE_ENTRANTE_STOP   = new Vector2(-1.3f,0);
 
-    private int _toSpawnToOut;
-    private LinkedList<GameObject> _spawnedToOut;
+    public static Vector2 MALE_USCENTE_START  = new Vector2(+1.3f,0);    
+    public static Vector2 MALE_USCENTE_STOP  = new Vector2(+1.3f,-7.0f);    
 
-    public int _visibleMale{get; set;}
 
     
+    [SerializeField] private GameObject _male;
+    private LinkedList<GameObject> _spawnedEntranti;
+    private LinkedList<GameObject> _spawnedUscenti;
+
+    // VisibleMale: num of _male already visible in scene
+    public int VisibleMale{get; set;}
+
+    // IsEmptyScene(): true if VisibleMale == 0
+    public bool IsEmptyScene(){
+        return VisibleMale == 0;
+    }
+
+    // Spawn _male prefab and add to linkedlist
     public void Spawn(int qty, int type){
         
-        Vector2 position;
+        Vector2 initPosition;
         LinkedList<GameObject> list;
-
-        if(type == MALE_TO_OUT){
-            position = MALE_ENTRY_TO_OUT;
-            list = _spawnedToOut;
+        if(type == MALE_USCENTE){
+            initPosition = MALE_USCENTE_START;
+            list = _spawnedUscenti;
         } else {
-            position = MALE_ENTRY_TO_IN;
-            list = _spawnedToIn;            
+            initPosition = MALE_ENTRANTE_START;
+            list = _spawnedEntranti;            
         }
 
         for(int i=0; i<qty; i++){
-            GameObject newObject = Instantiate(_male, position, Quaternion.identity);  
-            list.AddFirst(newObject); 
+            GameObject obj = Instantiate(_male, initPosition, Quaternion.identity);  
+            list.AddFirst(obj); 
         } 
-        _visibleMale += qty;  
+        VisibleMale += qty;  
     }
 
+
+    // Coroutine : Call Move() function for every object spawned
     public IEnumerator MoveAll(){
 
-        LinkedListNode<GameObject> _in = _spawnedToIn.First;
-        LinkedListNode<GameObject> _out = _spawnedToOut.First;
+        WaitForSeconds delay = new WaitForSeconds(0.5f); // default delay
+        LinkedListNode<GameObject> entrante = _spawnedEntranti.First;
+        LinkedListNode<GameObject> uscente = _spawnedUscenti.First;       
 
-        while((_in != null) || (_out != null)){
-            
-            if(_in != null){
-                MaleHandler script = _in.Value.GetComponent<MaleHandler>() as MaleHandler;
-                StartCoroutine(script.Move(MALE_ENTRY_TO_IN, BusHandler.BUS_STOP, MALE_TO_IN, MALE_MOVEMENT));
-                _in = _in.Next;
+        while(entrante!=null || uscente!=null){
+
+            if(entrante != null){
+                MaleHandler maleHandler = entrante.Value.GetComponent<MaleHandler>() as MaleHandler;
+                maleHandler._spawner = this;
+                maleHandler.SetAnimation("up");
+                entrante = entrante.Next;
+                StartCoroutine(maleHandler.Move(MALE_ENTRANTE_START, MALE_ENTRANTE_STOP, MALE_MOVEMENT));  
             }
-            yield return new WaitForSeconds(0.5f);
-        }
-    }
 
-
-    public int VisibleObject(){
-        return _spawnedToIn.Count + _spawnedToOut.Count;
-    }
-
-    private void ClearLists(){
-        foreach(GameObject gobject in _spawnedToIn){
-            if (gobject == null)
-                _spawnedToIn.Remove(gobject);
+            if(uscente!=null){
+                MaleHandler maleHandler = uscente.Value.GetComponent<MaleHandler>() as MaleHandler;
+                maleHandler._spawner = this;
+                maleHandler.SetAnimation("down");
+                uscente = uscente.Next;
+                StartCoroutine(maleHandler.Move(MALE_USCENTE_START, MALE_USCENTE_STOP, MALE_MOVEMENT));   
+            }
+            yield return delay;
         }
     }
 
@@ -76,8 +84,8 @@ public class Spawner : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        _spawnedToIn = new LinkedList<GameObject>(); //list of character already spawned
-        _spawnedToOut = new LinkedList<GameObject>(); //list of character already spawned
+        _spawnedEntranti = new LinkedList<GameObject>(); //list of character already spawned
+        _spawnedUscenti = new LinkedList<GameObject>(); //list of character already spawned
         
     }
 
@@ -92,7 +100,6 @@ public class Spawner : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        ClearLists();
 
     }
 }

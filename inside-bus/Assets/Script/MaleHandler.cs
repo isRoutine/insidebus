@@ -6,36 +6,51 @@ public class MaleHandler : CharacterHandler
 {
 
     // parameters for switch the animation of associated game object 
-    public float _horizontalValue   { get; set; } // value for horizontal axis direction of animation  ; range [-1;1] ; 
-    public float _verticalValue     { get; set; } // value for vertical axis direction of animation  ; range [-1;1] ; 
-    public float _animationSpeed    { get; set; } // value for animation speed  ; range [0; ...] ; 
-                                                    //if this <= 0.01 --> animation in IDLE position 
+    // private float _horizontalValue; // value for horizontal axis direction of animation  ; range [-1;1] ; 
+    // private float _verticalValue; // value for vertical axis direction of animation  ; range [-1;1] ; 
+    // private float _animationSpeed;// value for animation speed  ; range [0; ...] ; 
+    //                                                 //if this <= 0.01 --> animation in IDLE position 
 
-    public bool _arrived {get; set;}
+    [SerializeField] public Spawner _spawner {get; set;}
 
     private const float DEFAULT_VERTICAL_VALUE = 1.0f;
     private const float DEFAULT_ANIMATION_SPEED = 1.0f;
 
-    //  shifting the rigidbody of movement vector2
-    public IEnumerator Move(Vector2 start, Vector2 end, int type, Vector2 movement){
+    public void SetAnimation(string animation){      
+        _animator.SetFloat("Speed", DEFAULT_ANIMATION_SPEED);
         
-        _animator.SetFloat("Speed",DEFAULT_ANIMATION_SPEED);  
-        
-        if(type == Spawner.MALE_TO_IN)
-            _animator.SetFloat("Vertical",1.0f);     
-        else 
-            _animator.SetFloat("Vertical",-1.0f);  
+        if(animation == "up")
+            _animator.SetFloat("Vertical", 1.0f);
+        else if(animation == "down")
+            _animator.SetFloat("Vertical", -1.0f);     
+        else
+            _animator.SetFloat("Vertical", DEFAULT_VERTICAL_VALUE);        
+    }
 
-        while(_rigidBody.position.y < end.y){
-            _rigidBody.MovePosition(_rigidBody.position + movement);
-            yield return null;
+    public IEnumerator Move(Vector2 start, Vector2 end, Vector2 movement){
+
+        if(start == Spawner.MALE_ENTRANTE_START){
+            while(_rigidBody.position.y < end.y)
+            {
+                _rigidBody.MovePosition(_rigidBody.position + movement);
+                yield return null;
+            }
+            _spawner.VisibleMale -= 1;
+            Destroy(gameObject);
         }
-        _arrived = true;
-        Destroy(gameObject);
+        else {
+            while(_rigidBody.position.y > end.y)
+            {
+                _rigidBody.MovePosition(_rigidBody.position - movement);
+                yield return null;
+            }
+            _spawner.VisibleMale -= 1;
+            Destroy(gameObject);       
+        }
     }
 
     void Start(){
-       _arrived = false;
+
     }
 
 
@@ -43,15 +58,12 @@ public class MaleHandler : CharacterHandler
     void Update()
     {
 
-
     }
 
 
 
     void FixedUpdate()
     {
-
-
 
     }
 
