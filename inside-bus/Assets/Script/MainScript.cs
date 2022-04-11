@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -8,11 +9,9 @@ public class MainScript : MonoBehaviour
 {
      
     [SerializeField] private TimeScript timer;
-    [SerializeField] private TimeScript timerShadow;
     [SerializeField] private AnswerScript answer;
-    [SerializeField] public Spawner _spawner;
-    [SerializeField] private Text lives;
-    [SerializeField] private Text livesBis;
+    [SerializeField] private CharacterScript character;
+    [SerializeField] private TextMeshProUGUI lives;
     [SerializeField] private GameObject GameOverUI;
 
     [SerializeField] private GameObject _busPrefab;
@@ -27,27 +26,22 @@ public class MainScript : MonoBehaviour
         return random.NextDouble() * (maximum - minimum) + minimum;
     }
 
-    public int getRispostaEsatta()
+    public int GetRispostaEsatta()
     {
         return rispostaEsatta;
     }
 
-    public Text getLives()
+    public TextMeshProUGUI GetLives()
     {
         return lives;
     }
 
-    public Text getLivesBis()
-    {
-        return livesBis;
-    }
-
-    public TimeScript getTimer()
+    public TimeScript GetTimer()
     {
         return this.timer;
     }
 
-    public GameObject getGameOverUI()
+    public GameObject GetGameOverUI()
     {
         return this.GameOverUI;
     }       
