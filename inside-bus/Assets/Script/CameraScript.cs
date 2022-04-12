@@ -5,7 +5,7 @@ using UnityEngine;
 public class CameraScript : MonoBehaviour
 {
 
-	public Camera orthoCam;
+	public Camera OrthoCam;
     // Start is called before the first frame update
     void Start()
     {
@@ -35,7 +35,7 @@ public class CameraScript : MonoBehaviour
     		mySize = 5.0f;
     	else
     		mySize = 6.1f;
-        orthoCam.orthographicSize = mySize;
+        this.OrthoCam.orthographicSize = mySize;
     }
 
     // Update is called once per frame

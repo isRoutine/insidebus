@@ -2,23 +2,29 @@ using UnityEngine;
 
 public class PauseScript : MonoBehaviour
 {
-    public GameObject PauseMenuUI;
-    public GameObject OptionsMenuUI;
-    public GameObject pauseButton;
-    public GameObject time;
-    public GameObject timeShadow;
-    public GameObject x;
-    public GameObject xShadow;
-    public GameObject lives;
-    public GameObject livesShadow;
-    public GameObject timetext;
-    public GameObject timetextShadow;
-    public GameObject AreYouSureUI;
+    [SerializeField] private GameObject _pauseMenuUI;
+    [SerializeField] private GameObject _optionsMenuUI;
+    [SerializeField] private GameObject _pauseButton;
+    [SerializeField] private GameObject _time;
+    [SerializeField] private GameObject _x;
+    [SerializeField] private GameObject _lives;
+    [SerializeField] private GameObject _timeText;
+    [SerializeField] private GameObject _areYouSureUI;
 
-    public AnswerScript answer;
+    [SerializeField] private AnswerScript _answer;
 
     public bool GameIsPaused = false;
-    public bool flag = false;
+    public bool Flag = false;
+
+    public GameObject GetPauseButton()
+    {
+        return this._pauseButton;
+    }
+
+    public GameObject GetPauseMenuUI()
+    {
+        return this._pauseMenuUI;
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -34,72 +40,64 @@ public class PauseScript : MonoBehaviour
 
     public void ResumeGame()
     {
-        PauseMenuUI.SetActive(false);
-        answer.lessButtonGO.SetActive(true);
-        answer.moreButtonGO.SetActive(true);
-        answer.answerButtonGO.SetActive(true);
+        this._pauseMenuUI.SetActive(false);
+        this._answer.GetLessButton().SetActive(true);
+        this._answer.GetMoreButton().SetActive(true);
+        this._answer.GetAnswerButton().SetActive(true);
         FillUI();
         GameIsPaused = false;
         Time.timeScale = 1f;
 
     }
 
-    public void goToOptionsMenu()
+    public void GoToOptionsMenu()
     {
-        flag = true;
-        PauseMenuUI.SetActive(false);
-        OptionsMenuUI.SetActive(true);
+        this.Flag = true;
+        this._pauseMenuUI.SetActive(false);
+        this._optionsMenuUI.SetActive(true);
         Time.timeScale = 0f;
 
     }
 
-    public void goToPause()
+    public void GoToPause()
     {
         GameIsPaused = true;
-        answer.lessButtonGO.SetActive(false);
-        answer.moreButtonGO.SetActive(false);
-        answer.answerButtonGO.SetActive(false);
+        this._answer.GetLessButton().SetActive(false);
+        this._answer.GetMoreButton().SetActive(false);
+        this._answer.GetAnswerButton().SetActive(false);
         ClearUI();
-        PauseMenuUI.SetActive(true);
+        this._pauseMenuUI.SetActive(true);
         Time.timeScale = 0f;
     }
 
-    public void goBack()
+    public void GoBack()
     {
-        AreYouSureUI.SetActive(false);
-        PauseMenuUI.SetActive(true);
+        this._areYouSureUI.SetActive(false);
+        this._pauseMenuUI.SetActive(true);
     }
 
     public void AreYouSure()
     {
-        AreYouSureUI.SetActive(true);
-        PauseMenuUI.SetActive(false);
+        this._areYouSureUI.SetActive(true);
+        this._pauseMenuUI.SetActive(false);
     }
 
     public void FillUI()
     {
-        pauseButton.SetActive(true);
-        time.SetActive(true);
-        timeShadow.SetActive(true);
-        timetext.SetActive(true);
-        timetextShadow.SetActive(true);
-        lives.SetActive(true);
-        livesShadow.SetActive(true);
-        x.SetActive(true);
-        xShadow.SetActive(true);
+        this._pauseButton.SetActive(true);
+        this._time.SetActive(true);
+        this._timeText.SetActive(true);
+        this._lives.SetActive(true);
+        this._x.SetActive(true);
     }
 
     public void ClearUI()
     {
-        pauseButton.SetActive(false);
-        time.SetActive(false);
-        timeShadow.SetActive(false);
-        timetext.SetActive(false);
-        timetextShadow.SetActive(false);
-        lives.SetActive(false);
-        livesShadow.SetActive(false);
-        x.SetActive(false);
-        xShadow.SetActive(false);
+        this._pauseButton.SetActive(false);
+        this._time.SetActive(false);
+        this._timeText.SetActive(false);
+        this._lives.SetActive(false);
+        this._x.SetActive(false);
     }
 
 }
