@@ -8,10 +8,10 @@ using UnityEngine.UI;
 public class MainScript : MonoBehaviour
 {
      
-    [SerializeField] private TimeScript timer;
-    [SerializeField] private AnswerScript answer;
-    [SerializeField] private CharacterScript character;
-    [SerializeField] private TextMeshProUGUI lives;
+    [SerializeField] private TimeScript _timer;
+    [SerializeField] private AnswerScript _answer;
+    [SerializeField] private Spawner _spawner;
+    [SerializeField] private TextMeshProUGUI _lives;
     [SerializeField] private GameObject GameOverUI;
 
     [SerializeField] private GameObject _busPrefab;
@@ -33,12 +33,12 @@ public class MainScript : MonoBehaviour
 
     public TextMeshProUGUI GetLives()
     {
-        return lives;
+        return _lives;
     }
 
     public TimeScript GetTimer()
     {
-        return this.timer;
+        return this._timer;
     }
 
     public GameObject GetGameOverUI()
@@ -50,18 +50,18 @@ public class MainScript : MonoBehaviour
     // delay for every start of new game
     private WaitForSeconds _delay = new WaitForSeconds(1.0f);
 
-    private IEnumerator StepUpdate(){
+    private IEnumerator StepUpdate(int entranti , int uscenti){
         yield return _delay;
         BusHandler script = _bus.GetComponent<BusHandler>() as BusHandler;
         script.BusInit();
         yield return StartCoroutine(script.BusStart());
-        _spawner.Spawn(5, Spawner.MALE_ENTRANTE);
-        _spawner.Spawn(3, Spawner.MALE_USCENTE);
+        _spawner.Spawn(entranti, Spawner.MALE_ENTRANTE);
+        _spawner.Spawn(uscenti, Spawner.MALE_USCENTE);
         yield return StartCoroutine(_spawner.MoveAll());
         yield return new WaitUntil(_spawner.IsEmptyScene);
         print("tutti morti...");
         yield return StartCoroutine(script.BusEnd());
-        _gameStarted = false;
+        //_gameStarted = false;
     }
 
 
@@ -87,26 +87,27 @@ public class MainScript : MonoBehaviour
 
         if(!_gameStarted){
             _gameStarted = true;
-            // generate 3 random number 
-            StartCoroutine(StepUpdate());
-        } else{
+            // generate 3 random number
+            int att = (int)GetRandomNumber(0,20);
+            int ent = (int)GetRandomNumber(0,10);
+            int usc = (int)GetRandomNumber(0,10);
+            print("ent: " + ent);
+            print("usc: " + usc);
+            StartCoroutine(StepUpdate(ent, usc));
+        } 
 
-            // update component
 
-        }
-
-
-        // int vite = Convert.ToInt32(this.lives);
-        // if (answer.rispostaInviata && (vite != 0))
+        // int vite = Convert.ToInt32(this._lives);
+        // if (_answer.rispostaInviata && (vite != 0))
         // {
-        //     int diff = Math.Abs(this.rispostaEsatta - Convert.ToInt32(answer.getAnswerText()));
+        //     int diff = Math.Abs(this.rispostaEsatta - Convert.ToInt32(_answer.getAnswerText()));
         //     if (diff > 0)
         //         score = score + (200 * diff);
         //     else
         //         score = score + (200 * this.rispostaEsatta);
             
         //     Debug.Log("Score" + score.ToString());
-        //     answer.rispostaInviata = false;
+        //     _answer.rispostaInviata = false;
         // }
 
     }

@@ -14,16 +14,16 @@ public class Spawner : MonoBehaviour
     public static Vector2 MALE_ENTRANTE_START  = new Vector2(-1.3f,-7.0f);
     public static Vector2 MALE_ENTRANTE_STOP   = new Vector2(-1.3f,0);
 
-    public static Vector2 MALE_USCENTE_START  = new Vector2(+1.3f,0);    
-    public static Vector2 MALE_USCENTE_STOP  = new Vector2(+1.3f,-7.0f);    
+    public static Vector2 MALE_USCENTE_START  = new Vector2(+1.4f,0.1f);    
+    public static Vector2 MALE_USCENTE_STOP  = new Vector2(+1.4f,-7.0f);    
 
 
     
-    [SerializeField] private GameObject _male;
+    [SerializeField] private GameObject _malePrefab;
     private LinkedList<GameObject> _spawnedEntranti;
     private LinkedList<GameObject> _spawnedUscenti;
 
-    // VisibleMale: num of _male already visible in scene
+    // VisibleMale: num of _malePrefab already visible in scene
     public int VisibleMale{get; set;}
 
     // IsEmptyScene(): true if VisibleMale == 0
@@ -31,7 +31,7 @@ public class Spawner : MonoBehaviour
         return VisibleMale == 0;
     }
 
-    // Spawn _male prefab and add to linkedlist
+    // Spawn _malePrefab prefab and add to linkedlist
     public void Spawn(int qty, int type){
         
         Vector2 initPosition;
@@ -45,7 +45,7 @@ public class Spawner : MonoBehaviour
         }
 
         for(int i=0; i<qty; i++){
-            GameObject obj = Instantiate(_male, initPosition, Quaternion.identity);  
+            GameObject obj = Instantiate(_malePrefab, initPosition, Quaternion.identity);  
             list.AddFirst(obj); 
         } 
         VisibleMale += qty;  

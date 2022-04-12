@@ -47,7 +47,7 @@ public class BusHandler : CharacterHandler
         Close();
         yield return new WaitForSeconds(2.0f);
         EnginesOn();
-        yield return new WaitForSeconds(1.5f);
+        yield return new WaitForSeconds(2.0f);
         Fly();
         while(_rigidBody.position.x > BusHandler.BUS_EXIT.x){
             _rigidBody.MovePosition(_rigidBody.position + BusHandler.BUS_MOVEMENT);

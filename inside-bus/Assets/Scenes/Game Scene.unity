@@ -683,7 +683,7 @@ MonoBehaviour:
   _moreButtonGO: {fileID: 831094171}
   _lessButtonGO: {fileID: 1360851788}
   _answerButtonGO: {fileID: 198643174}
-  _main: {fileID: 2142995967}
+  _main: {fileID: 0}
   _pause: {fileID: 617528903}
   _answerPanel: {fileID: 1187749714}
   Flag: 0
@@ -995,7 +995,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &198643175
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2644,7 +2644,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &831094172
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4147,7 +4147,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1360851789
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4908,7 +4908,7 @@ MonoBehaviour:
   _moreButtonGO: {fileID: 831094171}
   _lessButtonGO: {fileID: 1360851788}
   _answerButtonGO: {fileID: 198643174}
-  _main: {fileID: 2142995967}
+  _main: {fileID: 0}
   _pause: {fileID: 617528903}
   _answerPanel: {fileID: 1187749714}
   Flag: 0
@@ -5395,7 +5395,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb0f14963b5b40040b9d1038572d5fd6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _main: {fileID: 2142995967}
+  _main: {fileID: 0}
   TimerValue: 0
   _timeText: {fileID: 1810093881}
   Seconds: 0
@@ -5973,9 +5973,8 @@ GameObject:
   - component: {fileID: 2142995961}
   - component: {fileID: 2142995966}
   - component: {fileID: 2142995969}
-  - component: {fileID: 2142995967}
-  - component: {fileID: 2142995970}
   - component: {fileID: 2142995968}
+  - component: {fileID: 2142995967}
   m_Layer: 5
   m_Name: game
   m_TagString: Untagged
@@ -6195,14 +6194,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 2142995960}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1a2c890a0c82542659f5ac68e0f155dd, type: 3}
+  m_Script: {fileID: 11500000, guid: 618cd6b3bc19b40bab15ee1ad5fc14d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timer: {fileID: 1810093880}
-  answer: {fileID: 180281159}
-  character: {fileID: 2142995968}
-  lives: {fileID: 1116512698}
-  GameOverUI: {fileID: 1604846511}
+  _male: {fileID: 3610393287836599252, guid: 96f61503a025a4939a61fbf70000964d, type: 3}
 --- !u!114 &2142995968
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6212,11 +6207,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 2142995960}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 618cd6b3bc19b40bab15ee1ad5fc14d0, type: 3}
+  m_Script: {fileID: 11500000, guid: 1a2c890a0c82542659f5ac68e0f155dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  male: {fileID: 3610393287836599252, guid: 96f61503a025a4939a61fbf70000964d, type: 3}
-  bus: {fileID: 8484686172551651042, guid: b8af72d8d6a57ee419fa2985e0715546, type: 3}
+  _timer: {fileID: 0}
+  _answer: {fileID: 0}
+  _spawner: {fileID: 2142995967}
+  _lives: {fileID: 1116512698}
+  GameOverUI: {fileID: 0}
+  _busPrefab: {fileID: 8484686172551651042, guid: b8af72d8d6a57ee419fa2985e0715546, type: 3}
 --- !u!82 &2142995969
 AudioSource:
   m_ObjectHideFlags: 0
@@ -6313,32 +6312,3 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &2142995970
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2142995960}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 49d62c55071d7e743a47e3c402bee5db, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  answerText: {fileID: 0}
-  moreButton: {fileID: 0}
-  lessButton: {fileID: 0}
-  answerButton: {fileID: 0}
-  moreButtonGO: {fileID: 0}
-  lessButtonGO: {fileID: 0}
-  answerButtonGO: {fileID: 0}
-  main: {fileID: 0}
-  pause: {fileID: 0}
-  AnswerPanel: {fileID: 0}
-  flag: 0
-  click: 0
-  rispostaInviata: 0
-  timerValue: 0
-  timeText: {fileID: 0}
-  seconds: 0
-  minutes: 0
