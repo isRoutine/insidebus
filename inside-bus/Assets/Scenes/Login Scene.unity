@@ -3579,7 +3579,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d7bd9684379d4d4ead1bf65296a564e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  OrthoCam: {fileID: 0}
+  OrthoCam: {fileID: 1118881947}
 --- !u!81 &1118881946
 AudioListener:
   m_ObjectHideFlags: 0

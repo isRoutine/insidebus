@@ -24,7 +24,7 @@ public class AnswerScript : MonoBehaviour
 
     public bool Flag;
     public bool Click;
-    public bool RispostaInviata;
+    private bool _rispostaInviata = false;
 
     public float TimerValue;
     [SerializeField] private TextMeshProUGUI _timeText;
@@ -61,13 +61,17 @@ public class AnswerScript : MonoBehaviour
         return this._answerText;
     }
 
+    public bool GetRispostaInviata()
+    {
+        return this._rispostaInviata;
+    }
+
 
     // Start is called before the first frame update
     void Start()
     {
         this.Flag = false;
         this.Click = false;
-        this.RispostaInviata = false;
         //answerText = GetComponent<Text>() as Text;
 
     }
@@ -78,7 +82,7 @@ public class AnswerScript : MonoBehaviour
         this._moreButton.interactable = !this.Flag;
         this._lessButton.interactable = !this.Flag;
 
-        if (this._main.GetTimer().TimerValue == 0.0f && this.RispostaInviata == false)
+        if ((this._main.GetTimer().TimerValue == 0.0f) && (this._rispostaInviata == false))
         {
             this.TimerValue += Time.deltaTime;
             this.Minutes = (int)(this.TimerValue / 60f);
@@ -91,6 +95,7 @@ public class AnswerScript : MonoBehaviour
             this._answerPanel.SetActive(false);
             this._pause.FillUI();
         }
+
     }
 
     // se utente preme il tasto al centro, cambia lo 
@@ -115,16 +120,17 @@ public class AnswerScript : MonoBehaviour
     public void AnswerTask()
     {
         Flag = !Flag;
-        if (this.RispostaInviata)
+        if (this._rispostaInviata)
             return;
         float numero = this._main.GetTimer().TimerValue;
         int vite = Convert.ToInt32(this._main.GetLives().text);
         if (numero == 0.0f)
         {
-            this.RispostaInviata = true;
+            this._rispostaInviata = true;
             if (this.AnswerValue == this._main.GetRispostaEsatta())
             {
                 this._main.GetLives().text = vite.ToString();
+                this._main.PrintScore();
             }
 
             else
@@ -134,9 +140,11 @@ public class AnswerScript : MonoBehaviour
                 {
                     vite = vite - diff;
                     this._main.GetLives().text = vite.ToString();
+                    this._main.PrintScore();
                 }
                 else
                 {
+                    this._main.SetGameOver(true);
                     Debug.Log("Game Over");
                     this._main.GetLives().text = "0";
                     this._main.GetGameOverUI().SetActive(true);
@@ -156,7 +164,6 @@ public class AnswerScript : MonoBehaviour
     public void DarkTimer()
     {
         this._answerPanel.SetActive(true);
-
         
         Color c = this._answerPanel.GetComponent<Image>().color;
         c.a = 0.0005f;

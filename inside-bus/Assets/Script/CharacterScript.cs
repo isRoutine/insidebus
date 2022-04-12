@@ -164,7 +164,7 @@ public class CharacterScript : MonoBehaviour
                 busBody.MovePosition(busBody.position + (new Vector2(-0.5f, 0) * Time.fixedDeltaTime * 2f));
             else
             {
-                Debug.Log("EnginesOff : " + b.getAnimator().GetBool("engines_off"));
+                //Debug.Log("EnginesOff : " + b.getAnimator().GetBool("engines_off"));
                 b.EnginesOff();
                 //Debug.Log("EnginesOff : " + b.getAnimator().GetBool("engines_off"));
                 b.Idle();

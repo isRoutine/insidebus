@@ -10,6 +10,7 @@ public class VolumeScript : MonoBehaviour
     [SerializeField] private AudioMixer _mixer;
     [SerializeField] private Slider _musicSlider;
     [SerializeField] private Slider _effectsSlider;
+    [SerializeField] private GameObject instance;
 
     // Start is called before the first frame update
     void Start()
@@ -18,10 +19,17 @@ public class VolumeScript : MonoBehaviour
         this._effectsSlider.value = PlayerPrefs.GetFloat("effects", 0.75f);
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Awake()
     {
-       
+        DontDestroyOnLoad(instance);
+        if (instance == null)
+        {
+            instance = this.instance;
+        }
+        else if (instance != this)
+        {
+            Destroy(instance.gameObject);
+        }
     }
 
     public void SetLevelMusic(float sliderValue)
