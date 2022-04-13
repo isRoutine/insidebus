@@ -18,7 +18,6 @@ public class MainScript : MonoBehaviour
     private GameObject _bus;
     private int rispostaEsatta;
     private int score = 4000;
-    private int score;
     private bool _gameStarted;
 
     [SerializeField] private TextMeshProUGUI scoreValue;
@@ -27,6 +26,7 @@ public class MainScript : MonoBehaviour
     private int growthRate = 5;
 
     private static System.Random random = new System.Random();
+    
     public double GetRandomNumber(double minimum, double maximum)
     {
         return random.NextDouble() * (maximum - minimum) + minimum;
@@ -76,6 +76,7 @@ public class MainScript : MonoBehaviour
     {
         _bus = Instantiate(_busPrefab, BusHandler.BUS_ENTRY, Quaternion.identity);
         _gameStarted = false;
+        this._timer.SetTimerValue((float)this.GetRandomNumber(0f, 30f));
     }
 
 
@@ -94,33 +95,37 @@ public class MainScript : MonoBehaviour
     void FixedUpdate()
     {
 
-        if(!_gameStarted){
+        if (!_gameStarted)
+        {
             _gameStarted = true;
             // generate 3 random number
-            int att = (int)GetRandomNumber(0,20);
-            int ent = (int)GetRandomNumber(0,10);
-            int usc = (int)GetRandomNumber(0,10);
+            int att = (int)GetRandomNumber(0, 20);
+            int ent = (int)GetRandomNumber(0, 10);
+            int usc = (int)GetRandomNumber(0, 10);
             print("ent: " + ent);
             print("usc: " + usc);
             StartCoroutine(StepUpdate(ent, usc));
-        } 
+        }
+
+    }
 
 
     public void PrintScore()
     {
-        int vite = Convert.ToInt32(this.lives.text);
-        if (vite != 0)
-        {
-            printed = true;
-            int diff = Math.Abs(this.rispostaEsatta - Convert.ToInt32(answer.GetAnswerText()));
-            if (diff > 0)
-                score = score + (200 * diff);
-            else
-                score = score + (200 * this.rispostaEsatta);
+            int vite = Convert.ToInt32(this._lives.text);
+            if (vite != 0)
+            {
+                //printed = true;
+                int diff = Math.Abs(this.rispostaEsatta - Convert.ToInt32(this._answer.GetAnswerText()));
+                if (diff > 0)
+                    score = score + (200 * diff);
+                else
+                    score = score + (200 * this.rispostaEsatta);
 
-            Debug.Log("Score" + score.ToString());
+                Debug.Log("Score" + score.ToString());
+            }
+
         }
-    }
         // int vite = Convert.ToInt32(this._lives);
         // if (_answer.rispostaInviata && (vite != 0))
         // {

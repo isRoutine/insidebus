@@ -29,7 +29,7 @@ public class PauseScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        
     }
 
     // Update is called once per frame
@@ -47,6 +47,7 @@ public class PauseScript : MonoBehaviour
         FillUI();
         GameIsPaused = false;
         Time.timeScale = 1f;
+        AudioListener.pause = false;
 
     }
 
@@ -62,6 +63,7 @@ public class PauseScript : MonoBehaviour
     public void GoToPause()
     {
         GameIsPaused = true;
+        AudioListener.pause = true;
         this._answer.GetLessButton().SetActive(false);
         this._answer.GetMoreButton().SetActive(false);
         this._answer.GetAnswerButton().SetActive(false);
