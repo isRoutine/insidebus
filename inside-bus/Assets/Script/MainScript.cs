@@ -54,6 +54,7 @@ public class MainScript : MonoBehaviour
         yield return _delay;
         BusHandler script = _bus.GetComponent<BusHandler>() as BusHandler;
         script.BusInit();
+        //AnswerInit();
         yield return StartCoroutine(script.BusStart());
         _spawner.Spawn(entranti, Spawner.MALE_ENTRANTE);
         _spawner.Spawn(uscenti, Spawner.MALE_USCENTE);
@@ -61,7 +62,8 @@ public class MainScript : MonoBehaviour
         yield return new WaitUntil(_spawner.IsEmptyScene);
         print("tutti morti...");
         yield return StartCoroutine(script.BusEnd());
-        //_gameStarted = false;
+        yield return new WaitForSeconds(2.0f);
+        _gameStarted = false;
     }
 
 

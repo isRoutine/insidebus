@@ -595,9 +595,8 @@ GameObject:
   - component: {fileID: 180281156}
   - component: {fileID: 180281158}
   - component: {fileID: 180281157}
-  - component: {fileID: 180281159}
   m_Layer: 5
-  m_Name: Answer
+  m_Name: quantity
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -664,35 +663,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 180281155}
   m_CullTransparentMesh: 1
---- !u!114 &180281159
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 180281155}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 49d62c55071d7e743a47e3c402bee5db, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _answerText: {fileID: 180281157}
-  _moreButton: {fileID: 831094173}
-  _lessButton: {fileID: 1360851790}
-  _answerButton: {fileID: 198643176}
-  _moreButtonGO: {fileID: 831094171}
-  _lessButtonGO: {fileID: 1360851788}
-  _answerButtonGO: {fileID: 198643174}
-  _main: {fileID: 0}
-  _pause: {fileID: 617528903}
-  _answerPanel: {fileID: 1187749714}
-  Flag: 0
-  Click: 0
-  RispostaInviata: 0
-  TimerValue: 0
-  _timeText: {fileID: 1635718355}
-  Seconds: 0
-  Minutes: 0
 --- !u!1 &183598260
 GameObject:
   m_ObjectHideFlags: 0
@@ -990,7 +960,7 @@ GameObject:
   - component: {fileID: 198643177}
   - component: {fileID: 198643176}
   m_Layer: 5
-  m_Name: qty_button
+  m_Name: answer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1060,7 +1030,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 180281159}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: AnswerScript, Assembly-CSharp
         m_MethodName: AnswerTask
         m_Mode: 1
@@ -2057,7 +2027,7 @@ MonoBehaviour:
   _lives: {fileID: 1116512696}
   _timeText: {fileID: 1528685090}
   _areYouSureUI: {fileID: 842725798}
-  _answer: {fileID: 180281159}
+  _answer: {fileID: 0}
   GameIsPaused: 0
   Flag: 0
 --- !u!114 &617528904
@@ -2639,7 +2609,7 @@ GameObject:
   - component: {fileID: 831094174}
   - component: {fileID: 831094173}
   m_Layer: 5
-  m_Name: more_button
+  m_Name: more
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2709,7 +2679,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 180281159}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: AnswerScript, Assembly-CSharp
         m_MethodName: MoreTask
         m_Mode: 1
@@ -4142,7 +4112,7 @@ GameObject:
   - component: {fileID: 1360851791}
   - component: {fileID: 1360851790}
   m_Layer: 5
-  m_Name: less_button
+  m_Name: less
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4212,7 +4182,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 180281159}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: AnswerScript, Assembly-CSharp
         m_MethodName: LessTask
         m_Mode: 1
@@ -6411,9 +6381,9 @@ MonoBehaviour:
   _moreButton: {fileID: 0}
   _lessButton: {fileID: 0}
   _answerButton: {fileID: 0}
-  _moreButtonGO: {fileID: 831094171}
-  _lessButtonGO: {fileID: 1360851788}
-  _answerButtonGO: {fileID: 198643174}
+  _moreButtonGO: {fileID: 0}
+  _lessButtonGO: {fileID: 0}
+  _answerButtonGO: {fileID: 0}
   _main: {fileID: 0}
   _pause: {fileID: 0}
   _answerPanel: {fileID: 0}
