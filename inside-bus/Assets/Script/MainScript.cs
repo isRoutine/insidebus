@@ -50,18 +50,29 @@ public class MainScript : MonoBehaviour
     // delay for every start of new game
     private WaitForSeconds _delay = new WaitForSeconds(1.0f);
 
-    private IEnumerator StepUpdate(int entranti , int uscenti){
+    private IEnumerator StepUpdate(int attuali ,int entranti , int uscenti){
         yield return _delay;
+        _answer.SetQuantity(attuali);
+        _answer.DisableAnswer();
+        
         BusHandler script = _bus.GetComponent<BusHandler>() as BusHandler;
         script.BusInit();
-        //AnswerInit();
         yield return StartCoroutine(script.BusStart());
+        
         _spawner.Spawn(entranti, Spawner.MALE_ENTRANTE);
         _spawner.Spawn(uscenti, Spawner.MALE_USCENTE);
         yield return StartCoroutine(_spawner.MoveAll());
         yield return new WaitUntil(_spawner.IsEmptyScene);
         print("tutti morti...");
+        
         yield return StartCoroutine(script.BusEnd());
+        
+        _answer.EnableAnswer();
+        while(_answer._answerConfirmed == false)
+            yield return null;
+        print("risposta confermata");
+        print(_answer.GetQuantity());
+
         yield return new WaitForSeconds(2.0f);
         _gameStarted = false;
     }
@@ -95,7 +106,8 @@ public class MainScript : MonoBehaviour
             int usc = (int)GetRandomNumber(0,10);
             print("ent: " + ent);
             print("usc: " + usc);
-            StartCoroutine(StepUpdate(ent, usc));
+            print("att :" + att);
+            StartCoroutine(StepUpdate(att, ent, usc));
         } 
 
 

@@ -15,29 +15,12 @@ public class AnswerScript : MonoBehaviour
     [SerializeField] private GameObject _answer; 
         [SerializeField] private GameObject _quantity;
 
-
     private Button _moreButton;
     private Button _lessButton;
     private Button _answerButton;
     private Text _quantityText;
 
-    [SerializeField] private MainScript _main;
-    [SerializeField] private PauseScript _pause;
-    [SerializeField] private GameObject _answerPanel;
-
-    public bool Flag;
-    public bool Click;
-    public bool RispostaInviata;
-
-    public float TimerValue;
-    [SerializeField] private TextMeshProUGUI _timeText;
-    public float Seconds, Minutes;
-
-    public void IsClicked()
-    {
-        this.Click = true;
-    }
-
+    public bool _answerConfirmed{get; set;}
 
     // Start is called before the first frame update
     void Start()
@@ -48,10 +31,7 @@ public class AnswerScript : MonoBehaviour
         _answerButton = _answer.GetComponent<Button>();
         _quantityText = _quantity.GetComponent<Text>();
 
-        this.Flag = false;
-        this.Click = false;
-        this.RispostaInviata = false;
-        //answerText = GetComponent<Text>() as Text;
+        _answerConfirmed = false;
 
     }
 
@@ -79,7 +59,6 @@ public class AnswerScript : MonoBehaviour
     // se utente preme il tasto al centro, cambia lo 
     // stato di un flag boolenao, inizialmente false
 
-
     public void SetQuantity(int quantity){
         _quantityText.text = quantity.ToString();
     }
@@ -88,24 +67,29 @@ public class AnswerScript : MonoBehaviour
         return Convert.ToInt32(_quantityText.text);
     }
 
-    public void MoreTask()
-    {
-        
-        // int numero = Convert.ToInt32(this._answerText.text);
-        // this._answerText.text = (numero + 1).ToString();
+    public void MoreTask(){ 
         SetQuantity(GetQuantity() + 1);
-
     }
 
-    public void LessTask()
-    {
-        // int numero = Convert.ToInt32(this._answerText.text);
-        // if (numero > 0)
-        //     this._answerText.text = (numero - 1).ToString();
+    public void LessTask(){
         if(GetQuantity() > 0)
             SetQuantity(GetQuantity() -1); 
-
     }
+
+
+    public void EnableAnswer(){
+        _answerButton.interactable = true;
+    }
+
+    public void DisableAnswer(){
+        _answerButton.interactable = false;
+        _answerConfirmed = false;
+    }
+
+    public void AnswerTask(){
+        _answerConfirmed = true;
+    }
+
 
     // public void AnswerTask()
     // {

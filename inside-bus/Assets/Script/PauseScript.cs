@@ -40,10 +40,10 @@ public class PauseScript : MonoBehaviour
 
     public void ResumeGame()
     {
-        this._pauseMenuUI.SetActive(false);
-        this._answer.GetLessButton().SetActive(true);
-        this._answer.GetMoreButton().SetActive(true);
-        this._answer.GetAnswerButton().SetActive(true);
+        // this._pauseMenuUI.SetActive(false);
+        // this._answer.GetLessButton().SetActive(true);
+        // this._answer.GetMoreButton().SetActive(true);
+        // this._answer.GetAnswerButton().SetActive(true);
         FillUI();
         GameIsPaused = false;
         Time.timeScale = 1f;
@@ -62,9 +62,9 @@ public class PauseScript : MonoBehaviour
     public void GoToPause()
     {
         GameIsPaused = true;
-        this._answer.GetLessButton().SetActive(false);
-        this._answer.GetMoreButton().SetActive(false);
-        this._answer.GetAnswerButton().SetActive(false);
+        // this._answer.GetLessButton().SetActive(false);
+        // this._answer.GetMoreButton().SetActive(false);
+        // this._answer.GetAnswerButton().SetActive(false);
         ClearUI();
         this._pauseMenuUI.SetActive(true);
         Time.timeScale = 0f;

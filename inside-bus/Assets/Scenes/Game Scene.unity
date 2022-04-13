@@ -1025,12 +1025,12 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 198643177}
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 2142995961}
         m_TargetAssemblyTypeName: AnswerScript, Assembly-CSharp
         m_MethodName: AnswerTask
         m_Mode: 1
@@ -1487,7 +1487,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2142995961}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: MenuScript, Assembly-CSharp
         m_MethodName: GoToMainMenu
         m_Mode: 1
@@ -1778,7 +1778,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2142995961}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: MenuScript, Assembly-CSharp
         m_MethodName: GoToGameScene
         m_Mode: 1
@@ -2044,7 +2044,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _optionsMenuUI: {fileID: 1581842769}
   _pause: {fileID: 617528903}
-  _menu: {fileID: 2142995961}
+  _menu: {fileID: 0}
 --- !u!1 &638758477
 GameObject:
   m_ObjectHideFlags: 0
@@ -2679,7 +2679,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 2142995961}
         m_TargetAssemblyTypeName: AnswerScript, Assembly-CSharp
         m_MethodName: MoreTask
         m_Mode: 1
@@ -2688,9 +2688,9 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: AnswerScript.MoreTask()
           m_BoolArgument: 0
-        m_CallState: 2
+        m_CallState: 1
 --- !u!114 &831094174
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4182,7 +4182,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 2142995961}
         m_TargetAssemblyTypeName: AnswerScript, Assembly-CSharp
         m_MethodName: LessTask
         m_Mode: 1
@@ -4871,23 +4871,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49d62c55071d7e743a47e3c402bee5db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _answerText: {fileID: 180281157}
-  _moreButton: {fileID: 831094173}
-  _lessButton: {fileID: 1360851790}
-  _answerButton: {fileID: 198643176}
-  _moreButtonGO: {fileID: 831094171}
-  _lessButtonGO: {fileID: 1360851788}
-  _answerButtonGO: {fileID: 198643174}
-  _main: {fileID: 0}
-  _pause: {fileID: 617528903}
-  _answerPanel: {fileID: 1187749714}
-  Flag: 0
-  Click: 0
-  RispostaInviata: 0
-  TimerValue: 0
-  _timeText: {fileID: 1635718355}
-  Seconds: 0
-  Minutes: 0
+  _more: {fileID: 0}
+  _less: {fileID: 0}
+  _answer: {fileID: 0}
+  _quantity: {fileID: 0}
 --- !u!114 &1635718355
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6022,12 +6009,11 @@ GameObject:
   - component: {fileID: 2142995964}
   - component: {fileID: 2142995963}
   - component: {fileID: 2142995962}
-  - component: {fileID: 2142995961}
   - component: {fileID: 2142995966}
   - component: {fileID: 2142995969}
+  - component: {fileID: 2142995961}
   - component: {fileID: 2142995968}
   - component: {fileID: 2142995967}
-  - component: {fileID: 2142995970}
   m_Layer: 5
   m_Name: game
   m_TagString: Untagged
@@ -6042,17 +6028,15 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2142995960}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 21eace3c25523094091d2aca43737893, type: 3}
+  m_Script: {fileID: 11500000, guid: 49d62c55071d7e743a47e3c402bee5db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _optionsMenuUI: {fileID: 0}
-  _playButton: {fileID: 0}
-  _optionsButton: {fileID: 0}
-  _scoreboardMenuUI: {fileID: 0}
-  _scoreboardButton: {fileID: 0}
-  _title: {fileID: 0}
+  _more: {fileID: 831094171}
+  _less: {fileID: 1360851788}
+  _answer: {fileID: 198643174}
+  _quantity: {fileID: 180281155}
 --- !u!114 &2142995962
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6247,10 +6231,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 2142995960}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 618cd6b3bc19b40bab15ee1ad5fc14d0, type: 3}
+  m_Script: {fileID: 11500000, guid: 1a2c890a0c82542659f5ac68e0f155dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _malePrefab: {fileID: 3610393287836599252, guid: 96f61503a025a4939a61fbf70000964d, type: 3}
+  _timer: {fileID: 0}
+  _answer: {fileID: 2142995961}
+  _spawner: {fileID: 2142995968}
+  _lives: {fileID: 0}
+  GameOverUI: {fileID: 0}
+  _busPrefab: {fileID: 8484686172551651042, guid: b8af72d8d6a57ee419fa2985e0715546, type: 3}
 --- !u!114 &2142995968
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6260,15 +6249,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 2142995960}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1a2c890a0c82542659f5ac68e0f155dd, type: 3}
+  m_Script: {fileID: 11500000, guid: 618cd6b3bc19b40bab15ee1ad5fc14d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _timer: {fileID: 0}
-  _answer: {fileID: 0}
-  _spawner: {fileID: 2142995967}
-  _lives: {fileID: 1116512698}
-  GameOverUI: {fileID: 0}
-  _busPrefab: {fileID: 8484686172551651042, guid: b8af72d8d6a57ee419fa2985e0715546, type: 3}
+  _malePrefab: {fileID: 3610393287836599252, guid: 96f61503a025a4939a61fbf70000964d, type: 3}
 --- !u!82 &2142995969
 AudioSource:
   m_ObjectHideFlags: 0
@@ -6365,32 +6349,3 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &2142995970
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2142995960}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 49d62c55071d7e743a47e3c402bee5db, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _answerText: {fileID: 0}
-  _moreButton: {fileID: 0}
-  _lessButton: {fileID: 0}
-  _answerButton: {fileID: 0}
-  _moreButtonGO: {fileID: 0}
-  _lessButtonGO: {fileID: 0}
-  _answerButtonGO: {fileID: 0}
-  _main: {fileID: 0}
-  _pause: {fileID: 0}
-  _answerPanel: {fileID: 0}
-  Flag: 0
-  Click: 0
-  RispostaInviata: 0
-  TimerValue: 0
-  _timeText: {fileID: 0}
-  Seconds: 0
-  Minutes: 0
