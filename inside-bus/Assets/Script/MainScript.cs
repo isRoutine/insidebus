@@ -68,24 +68,35 @@ public class MainScript : MonoBehaviour
         _answer.SetQuantity(attuali);
         _answer.DisableAnswer();
         
-        BusHandler script = _bus.GetComponent<BusHandler>() as BusHandler;
-        script.BusInit();
-        yield return StartCoroutine(script.BusStart());
+        // init bus and start bus 
+        BusHandler busHandler = _bus.GetComponent<BusHandler>() as BusHandler;
+        busHandler.BusInit();
+        yield return StartCoroutine(busHandler.BusStart());
         
+        // spawn male based on random numbers generated
         _spawner.Spawn(entranti, Spawner.MALE_ENTRANTE);
         _spawner.Spawn(uscenti, Spawner.MALE_USCENTE);
+        
+        // move all male from start to end position 
+        // and wait until scene is empty
         yield return StartCoroutine(_spawner.MoveAll());
         yield return new WaitUntil(_spawner.IsEmptyScene);
-        print("tutti morti...");
         
+        // bus end 
         yield return StartCoroutine(script.BusEnd());
         
+        // enable answer button and wait until 
+        // user confirmed the answer
         _answer.EnableAnswer();
+        Coroutine timerCoroutine;
+        // timerCoroutine = StartCoroutine(_timer.Timer());
         while(_answer._answerConfirmed == false)
             yield return null;
+        // StopCoroutine(timerCoroutine);
         print("risposta confermata");
         print(_answer.GetQuantity());
 
+        // update lives based on user's answer
         print(UpdateLives(attuali, entranti, uscenti, _answer.GetQuantity()));
 
         yield return new WaitForSeconds(2.0f);
