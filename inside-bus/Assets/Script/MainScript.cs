@@ -20,10 +20,7 @@ public class MainScript : MonoBehaviour
     private int score = 4000;
     private bool _gameStarted;
 
-    [SerializeField] private TextMeshProUGUI scoreValue;
-    private bool gameOverBool = false;
-    private int endScore;
-    private int growthRate = 5;
+    
 
     private static System.Random random = new System.Random();
     
@@ -32,42 +29,67 @@ public class MainScript : MonoBehaviour
         return random.NextDouble() * (maximum - minimum) + minimum;
     }
 
-    public int GetRispostaEsatta()
-    {
-        return rispostaEsatta;
+    public void SetLives(int lives){
+        _lives.text = lives.ToString();
     }
 
-    public TextMeshProUGUI GetLives()
-    {
-        return _lives;
+    public int GetLives(){
+        return Convert.ToInt32(_lives.text);
     }
+    
 
-    public TimeScript GetTimer()
-    {
-        return this._timer;
+    // da fare...
+    // calcolo att+ent-usc == ans --> ok e guadagna vite (ancora da definire quante)
+    // altrimenti togli di quante vite è sbagliato  ---> return true 
+    // se hai sbagliato più di quante ne hai ---> return false
+
+    // usare i metodi set e get lives per aggiornarle
+    private bool UpdateLives(int att, int ent, int usc, int ans){
+        int correctAnswer = att + ent - usc;
+
+        if(ans == correctAnswer){
+            SetLives(GetLives() + 10 );
+            return true;
+        }
+        else if(Math.Abs(correctAnswer - ans) < GetLives()){
+                SetLives(GetLives()- Math.Abs(correctAnswer - ans));
+                return true;
+            }
+        else 
+            return false;
     }
-
-    public GameObject GetGameOverUI()
-    {
-        return this.GameOverUI;
-    }       
     
 
     // delay for every start of new game
     private WaitForSeconds _delay = new WaitForSeconds(1.0f);
 
-    private IEnumerator StepUpdate(int entranti , int uscenti){
+    private IEnumerator StepUpdate(int attuali ,int entranti , int uscenti){
         yield return _delay;
+        _answer.SetQuantity(attuali);
+        _answer.DisableAnswer();
+        
         BusHandler script = _bus.GetComponent<BusHandler>() as BusHandler;
         script.BusInit();
         yield return StartCoroutine(script.BusStart());
+        
         _spawner.Spawn(entranti, Spawner.MALE_ENTRANTE);
         _spawner.Spawn(uscenti, Spawner.MALE_USCENTE);
         yield return StartCoroutine(_spawner.MoveAll());
         yield return new WaitUntil(_spawner.IsEmptyScene);
         print("tutti morti...");
+        
         yield return StartCoroutine(script.BusEnd());
-        //_gameStarted = false;
+        
+        _answer.EnableAnswer();
+        while(_answer._answerConfirmed == false)
+            yield return null;
+        print("risposta confermata");
+        print(_answer.GetQuantity());
+
+        print(UpdateLives(attuali, entranti, uscenti, _answer.GetQuantity()));
+
+        yield return new WaitForSeconds(2.0f);
+        _gameStarted = false;
     }
 
 
@@ -99,50 +121,15 @@ public class MainScript : MonoBehaviour
         {
             _gameStarted = true;
             // generate 3 random number
-            int att = (int)GetRandomNumber(0, 20);
-            int ent = (int)GetRandomNumber(0, 10);
-            int usc = (int)GetRandomNumber(0, 10);
+            int att = (int)GetRandomNumber(0,20);
+            int usc = (int)GetRandomNumber(0,att);
+            int ent = (int)GetRandomNumber(0,20);
             print("ent: " + ent);
             print("usc: " + usc);
-            StartCoroutine(StepUpdate(ent, usc));
-        }
+            print("att :" + att);
+            StartCoroutine(StepUpdate(att, ent, usc));
+        } 
 
-    }
-
-
-    public void PrintScore()
-    {
-            int vite = Convert.ToInt32(this._lives.text);
-            if (vite != 0)
-            {
-                //printed = true;
-                int diff = Math.Abs(this.rispostaEsatta - Convert.ToInt32(this._answer.GetAnswerText()));
-                if (diff > 0)
-                    score = score + (200 * diff);
-                else
-                    score = score + (200 * this.rispostaEsatta);
-
-                Debug.Log("Score" + score.ToString());
-            }
-
-        }
-        // int vite = Convert.ToInt32(this._lives);
-        // if (_answer.rispostaInviata && (vite != 0))
-        // {
-        //     int diff = Math.Abs(this.rispostaEsatta - Convert.ToInt32(_answer.getAnswerText()));
-        //     if (diff > 0)
-        //         score = score + (200 * diff);
-        //     else
-        //         score = score + (200 * this.rispostaEsatta);
-            
-        //     Debug.Log("Score" + score.ToString());
-        //     _answer.rispostaInviata = false;
-        // }
-
-    public void GameOver()
-    {
-        if (endScore != score && score > endScore)
-            endScore += growthRate;
     }
 
     public void SetGameOver(bool b)

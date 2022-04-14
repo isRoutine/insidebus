@@ -28,7 +28,13 @@ public class Spawner : MonoBehaviour
 
     // IsEmptyScene(): true if VisibleMale == 0
     public bool IsEmptyScene(){
-        return VisibleMale == 0;
+        if(VisibleMale == 0){
+            _spawnedEntranti.Clear();
+            _spawnedUscenti.Clear();
+            return true;
+        }
+        else 
+            return false;;
     }
 
     // Spawn _malePrefab prefab and add to linkedlist
