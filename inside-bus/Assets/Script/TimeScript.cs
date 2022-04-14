@@ -8,20 +8,40 @@ using UnityEngine.UI;
 
 public class TimeScript : MonoBehaviour
 {
-    [SerializeField] private MainScript _main;
-    public float TimerValue;
-    [SerializeField] private TextMeshProUGUI _timeText;
+
+
+    [SerializeField] private TextMeshProUGUI _time;
     public float Seconds, Minutes;
 
-    public float GetTimerValue()
-    {
-        return this.TimerValue;
-    }
+    // public int GetTimerValue()
+    // {
 
-    public void SetTimerValue(float value)
-    {
-        this.TimerValue = value;
-    }
+    //     //return _time.text;
+
+    //     // int seconds
+    // }
+
+    // public void SetTimerValue(int minutes, int seconds)
+    // {
+
+    //     //_time.text = ;
+    // }
+
+
+    // attiva e disattiva timer scritte 
+    // ()
+
+
+    
+
+    // public IEnumerator Timer(){
+        
+    //     while(true){
+
+    //         yield return new WaitForSeconds(1.0f);  
+    //     }
+
+    // }
 
 
     // Start is called before the first frame update

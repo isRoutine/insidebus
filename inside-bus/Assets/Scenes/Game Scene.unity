@@ -3338,7 +3338,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2142995965}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -5484,7 +5484,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2142995965}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -6112,8 +6112,8 @@ RectTransform:
   - {fileID: 1077038229}
   - {fileID: 1528685091}
   - {fileID: 1810093879}
-  - {fileID: 1814894147}
   - {fileID: 1116512697}
+  - {fileID: 1814894147}
   - {fileID: 198643175}
   - {fileID: 831094172}
   - {fileID: 1360851789}
@@ -6237,7 +6237,7 @@ MonoBehaviour:
   _timer: {fileID: 0}
   _answer: {fileID: 2142995961}
   _spawner: {fileID: 2142995968}
-  _lives: {fileID: 0}
+  _lives: {fileID: 1116512698}
   GameOverUI: {fileID: 0}
   _busPrefab: {fileID: 8484686172551651042, guid: b8af72d8d6a57ee419fa2985e0715546, type: 3}
 --- !u!114 &2142995968
