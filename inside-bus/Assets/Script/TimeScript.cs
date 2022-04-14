@@ -9,52 +9,68 @@ using UnityEngine.UI;
 public class TimeScript : MonoBehaviour
 {
 
+    [SerializeField] private GameObject _time;
+    [SerializeField] private GameObject _timeText;
+    private int _seconds, _minutes;
 
-    [SerializeField] private TextMeshProUGUI _time;
-    public float Seconds, Minutes;
+    public int GetTimerValue()
+    {
+        return _seconds + (_minutes * 60);
+    }
 
-    // public int GetTimerValue()
-    // {
+    public void SetTimerValue(int minutes, int seconds)
+    {
+        _seconds = seconds;
+        _minutes = minutes;
 
-    //     //return _time.text;
-
-    //     // int seconds
-    // }
-
-    // public void SetTimerValue(int minutes, int seconds)
-    // {
-
-    //     //_time.text = ;
-    // }
+    }
 
 
     // attiva e disattiva timer scritte 
-    // ()
+    public void EnableTimer()
+    {
+        _timeText.SetActive(true);
+        _time.SetActive(true);
+    }
+
+    public void DisableTimer()
+    {
+        _timeText.SetActive(false);
+        _time.SetActive(false);
+    }
 
 
-    
+    public IEnumerator TimerTask()
+    {
 
-    // public IEnumerator Timer(){
-        
-    //     while(true){
+        EnableTimer();
+        while (true)
+        {
+            _time.GetComponent<TextMeshProUGUI>().text = string.Format("{0:00}:{1:00}", _minutes, _seconds++);
+            if (_seconds == 60)
+            {
+                _minutes++;
+                _seconds = 0;
+            }
 
-    //         yield return new WaitForSeconds(1.0f);  
-    //     }
+            yield return new WaitForSeconds(1.0f);
+        }
 
-    // }
+    }
 
 
     // Start is called before the first frame update
     void Start()
     {
-
+        _timeText.SetActive(false);
+        _time.SetActive(false);
     }
 
     // Update is called once per frame
     void Update()
     {
 
-        if (this.TimerValue > 0) {
+        /* if (this.TimerValue > 0) {
             this.TimerValue -= Time.deltaTime;
         }
         else {
@@ -63,7 +79,7 @@ public class TimeScript : MonoBehaviour
 
         this.Minutes = (int)(this.TimerValue / 60f);
         this.Seconds = (int)(this.TimerValue % 60f);
-        this._timeText.text = string.Format("{0:00}:{1:00}", this.Minutes, this.Seconds);
+        this._timeText.text = string.Format("{0:00}:{1:00}", this.Minutes, this.Seconds); */
 
     }
 

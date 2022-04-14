@@ -28,8 +28,8 @@ public class AudioManager : MonoBehaviour
 {
     public Sound[] sounds;
     public static AudioManager instance;
-    public AudioMixer musicMixer;
-    public AudioMixer effectsMixer;
+    [SerializeField] private AudioMixer musicMixer;
+    [SerializeField] private AudioMixer effectsMixer;
 
     // Start is called before the first frame update
     private void Start()
