@@ -1,21 +1,31 @@
 using UnityEngine;
+using UnityEngine.Audio;
+using UnityEngine.UI;
 
 public class OptionsScript : MonoBehaviour
 {
     [SerializeField] private GameObject _optionsMenuUI;
     [SerializeField] private PauseScript _pause;
     [SerializeField] private MenuScript _menu;
+    [SerializeField] private Slider _musicSlider;
+    [SerializeField] private Slider _effectsSlider;
+    [SerializeField] private AudioManager audioManager;
 
     // Start is called before the first frame update
     void Start()
     {
-
+        this._musicSlider.value = PlayerPrefs.GetFloat("music", 0.75f);
+        this._effectsSlider.value = PlayerPrefs.GetFloat("effects", 0.75f);
     }
 
-    // Update is called once per frame
-    void Update()
+    public void SetMusicVolume(float volume)
     {
+        audioManager.SetLevelMusic(volume);
+    }
 
+    public void SetEffectsVolume(float volume)
+    {
+        audioManager.SetLevelEffects(volume);
     }
 
     public void GoBack()

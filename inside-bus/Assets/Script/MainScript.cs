@@ -17,12 +17,13 @@ public class MainScript : MonoBehaviour
     [SerializeField] private GameObject _busPrefab;
     private GameObject _bus;
     private int rispostaEsatta;
-    private int score;
+    private int score = 4000;
     private bool _gameStarted;
 
     
 
     private static System.Random random = new System.Random();
+    
     public double GetRandomNumber(double minimum, double maximum)
     {
         return random.NextDouble() * (maximum - minimum) + minimum;
@@ -97,22 +98,27 @@ public class MainScript : MonoBehaviour
     {
         _bus = Instantiate(_busPrefab, BusHandler.BUS_ENTRY, Quaternion.identity);
         _gameStarted = false;
+        this._timer.SetTimerValue((float)this.GetRandomNumber(0f, 30f));
     }
 
 
     // Update is called once per frame
     void Update()
     {
+        scoreValue.text = endScore.ToString("0");
+        if (gameOverBool)
+            GameOver();
 
-
-
+        if (gameOverBool && this.score > PlayerPrefs.GetInt("HighScore"))
+            PlayerPrefs.SetInt("HighScore", score);
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
 
-        if(!_gameStarted){
+        if (!_gameStarted)
+        {
             _gameStarted = true;
             // generate 3 random number
             int att = (int)GetRandomNumber(0,20);
@@ -124,6 +130,11 @@ public class MainScript : MonoBehaviour
             StartCoroutine(StepUpdate(att, ent, usc));
         } 
 
+    }
+
+    public void SetGameOver(bool b)
+    {
+        this.gameOverBool = b;
     }
 
 }
