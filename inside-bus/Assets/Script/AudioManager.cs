@@ -1,8 +1,6 @@
 using UnityEngine;
 using UnityEngine.Audio;
-using UnityEngine.UI;
 using System;
-using System.Threading.Tasks;
 
 [System.Serializable]
 public class Sound

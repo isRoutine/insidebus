@@ -1,6 +1,4 @@
-using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class BusHandler : CharacterHandler
@@ -13,7 +11,8 @@ public class BusHandler : CharacterHandler
 
     // animator methods ...
     public void EnginesOff(){ 
-        _animator.SetTrigger("engines_off");
+        //_animator.SetTrigger("engines_off");
+        _animator.Play("bus_engines_off");
         //FindObjectOfType<AudioManager>().Play("engines_off");
     }
 
@@ -58,6 +57,7 @@ public class BusHandler : CharacterHandler
         EnginesOn();
         yield return new WaitForSeconds(2.0f);
         Fly();
+        yield return new WaitForSeconds(0.038f);
         while(_rigidBody.position.x > BusHandler.BUS_EXIT.x){
             _rigidBody.MovePosition(_rigidBody.position + BusHandler.BUS_MOVEMENT);
             yield return null;
