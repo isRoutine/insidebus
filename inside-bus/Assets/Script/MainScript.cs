@@ -118,6 +118,7 @@ public class MainScript : MonoBehaviour
     {
         int growthRate = 10;
         _score.text = _endScoreValue.ToString("0");
+        FindObjectOfType<AudioManager>().Play("score");
         while ((_endScoreValue != _scoreValue) && (_scoreValue > _endScoreValue))
         {
             _endScoreValue += growthRate;

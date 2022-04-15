@@ -62,8 +62,7 @@ public class TimeScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        _timeText.SetActive(false);
-        _time.SetActive(false);
+        
     }
 
     // Update is called once per frame

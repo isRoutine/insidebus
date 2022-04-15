@@ -986,7 +986,7 @@ GameObject:
   - component: {fileID: 198643176}
   m_Layer: 5
   m_Name: answer
-  m_TagString: Untagged
+  m_TagString: gameUI
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2046,15 +2046,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _pauseMenuUI: {fileID: 401402656}
   _optionsMenuUI: {fileID: 1581842769}
-  _pauseButton: {fileID: 1889790847}
-  _time: {fileID: 1810093878}
-  _x: {fileID: 1814894146}
-  _lives: {fileID: 1116512696}
-  _timeText: {fileID: 1528685090}
+  _gameUIObjects: []
   _areYouSureUI: {fileID: 842725798}
-  _answer: {fileID: 0}
-  GameIsPaused: 0
-  Flag: 0
 --- !u!114 &617528904
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2776,7 +2769,7 @@ GameObject:
   - component: {fileID: 831094173}
   m_Layer: 5
   m_Name: more
-  m_TagString: Untagged
+  m_TagString: gameUI
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3410,7 +3403,6 @@ GameObject:
   - component: {fileID: 1056336891}
   - component: {fileID: 1056336893}
   - component: {fileID: 1056336892}
-  - component: {fileID: 1056336894}
   m_Layer: 5
   m_Name: score
   m_TagString: Untagged
@@ -3534,102 +3526,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1056336890}
   m_CullTransparentMesh: 1
---- !u!82 &1056336894
-AudioSource:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1056336890}
-  m_Enabled: 1
-  serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 24300002, guid: 028036a48a0e012449501beddb9b3b7c, type: 2}
-  m_audioClip: {fileID: 8300000, guid: 8f759b7c59166a740883a38d744beae5, type: 3}
-  m_PlayOnAwake: 1
-  m_Volume: 1
-  m_Pitch: 1
-  Loop: 0
-  Mute: 0
-  Spatialize: 0
-  SpatializePostEffects: 0
-  Priority: 128
-  DopplerLevel: 1
-  MinDistance: 1
-  MaxDistance: 500
-  Pan2D: 0
-  rolloffMode: 0
-  BypassEffects: 0
-  BypassListenerEffects: 0
-  BypassReverbZones: 0
-  rolloffCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 1
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  panLevelCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  spreadCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  reverbZoneMixCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
 --- !u!1 &1077038228
 GameObject:
   m_ObjectHideFlags: 0
@@ -3718,7 +3614,7 @@ GameObject:
   - component: {fileID: 1116512698}
   m_Layer: 5
   m_Name: lives
-  m_TagString: Untagged
+  m_TagString: gameUI
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4644,7 +4540,7 @@ GameObject:
   - component: {fileID: 1360851790}
   m_Layer: 5
   m_Name: less
-  m_TagString: Untagged
+  m_TagString: gameUI
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4973,11 +4869,11 @@ GameObject:
   - component: {fileID: 1528685092}
   m_Layer: 5
   m_Name: time text
-  m_TagString: Untagged
+  m_TagString: gameUI
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1528685091
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5836,15 +5732,35 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 24100000, guid: 028036a48a0e012449501beddb9b3b7c, type: 2}
     - target: {fileID: 6682802360790258661, guid: 2e514c1f7b893b04b9070c2216115207, type: 3}
+      propertyPath: sounds.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6682802360790258661, guid: 2e514c1f7b893b04b9070c2216115207, type: 3}
       propertyPath: sounds.Array.data[0].clip
       value: 
-      objectReference: {fileID: 8300000, guid: a1520b8345c5acf458b71d27ab296342, type: 3}
+      objectReference: {fileID: 8300000, guid: 1a2a5c3d9d6c60048b30fd54a8e736d9, type: 3}
     - target: {fileID: 6682802360790258661, guid: 2e514c1f7b893b04b9070c2216115207, type: 3}
       propertyPath: sounds.Array.data[0].loop
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6682802360790258661, guid: 2e514c1f7b893b04b9070c2216115207, type: 3}
+      propertyPath: sounds.Array.data[1].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 8f759b7c59166a740883a38d744beae5, type: 3}
+    - target: {fileID: 6682802360790258661, guid: 2e514c1f7b893b04b9070c2216115207, type: 3}
+      propertyPath: sounds.Array.data[1].loop
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6682802360790258661, guid: 2e514c1f7b893b04b9070c2216115207, type: 3}
+      propertyPath: sounds.Array.data[1].name
+      value: score
+      objectReference: {fileID: 0}
+    - target: {fileID: 6682802360790258661, guid: 2e514c1f7b893b04b9070c2216115207, type: 3}
       propertyPath: sounds.Array.data[0].pitch
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6682802360790258661, guid: 2e514c1f7b893b04b9070c2216115207, type: 3}
+      propertyPath: sounds.Array.data[1].pitch
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6682802360790258661, guid: 2e514c1f7b893b04b9070c2216115207, type: 3}
@@ -5853,6 +5769,14 @@ PrefabInstance:
       objectReference: {fileID: 24300002, guid: 5c7cf52973f63f94baeea905b15b2fc9, type: 2}
     - target: {fileID: 6682802360790258661, guid: 2e514c1f7b893b04b9070c2216115207, type: 3}
       propertyPath: sounds.Array.data[0].volume
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6682802360790258661, guid: 2e514c1f7b893b04b9070c2216115207, type: 3}
+      propertyPath: sounds.Array.data[1].output
+      value: 
+      objectReference: {fileID: 24300002, guid: 028036a48a0e012449501beddb9b3b7c, type: 2}
+    - target: {fileID: 6682802360790258661, guid: 2e514c1f7b893b04b9070c2216115207, type: 3}
+      propertyPath: sounds.Array.data[1].volume
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -6004,11 +5928,11 @@ GameObject:
   - component: {fileID: 1810093880}
   m_Layer: 5
   m_Name: time
-  m_TagString: Untagged
+  m_TagString: gameUI
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1810093879
 RectTransform:
   m_ObjectHideFlags: 0
@@ -6152,7 +6076,7 @@ GameObject:
   - component: {fileID: 1814894148}
   m_Layer: 5
   m_Name: x
-  m_TagString: Untagged
+  m_TagString: gameUI
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6287,7 +6211,7 @@ GameObject:
   - component: {fileID: 1889790849}
   m_Layer: 5
   m_Name: Pause_button
-  m_TagString: Untagged
+  m_TagString: gameUI
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6956,11 +6880,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _optionsMenuUI: {fileID: 0}
-  _playButton: {fileID: 0}
-  _optionsButton: {fileID: 0}
+  _menuUIObjects: []
   _scoreboardMenuUI: {fileID: 0}
-  _scoreboardButton: {fileID: 0}
-  _title: {fileID: 0}
 --- !u!114 &2142995967
 MonoBehaviour:
   m_ObjectHideFlags: 0
