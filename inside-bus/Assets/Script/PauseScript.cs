@@ -4,8 +4,8 @@ public class PauseScript : MonoBehaviour
 {
     [SerializeField] private GameObject _pauseMenuUI;
     [SerializeField] private GameObject _optionsMenuUI;
-    [SerializeField] private GameObject[] _gameUIObjects;
     [SerializeField] private GameObject _areYouSureUI;
+    private GameObject[] _gameUIObjects;
 
     private bool _isPaused = false;
 

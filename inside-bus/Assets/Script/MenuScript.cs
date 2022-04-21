@@ -5,8 +5,8 @@ public class MenuScript : MonoBehaviour
 {
     private int _currentSceneIndex;
     [SerializeField] private GameObject _optionsMenuUI;
-    [SerializeField] private GameObject[] _menuUIObjects;
     [SerializeField] private GameObject _scoreboardMenuUI;
+    private GameObject[] _menuUIObjects;
 
     // Start is called before the first frame update
     void Start()
