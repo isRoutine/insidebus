@@ -1,18 +1,12 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.UI;
 
 public class MenuScript : MonoBehaviour
 {
     private int _currentSceneIndex;
     [SerializeField] private GameObject _optionsMenuUI;
-    [SerializeField] private GameObject _playButton;
-    [SerializeField] private GameObject _optionsButton;
     [SerializeField] private GameObject _scoreboardMenuUI;
-    [SerializeField] private GameObject _scoreboardButton;
-    [SerializeField] private GameObject _title;
+    private GameObject[] _menuUIObjects;
 
     // Start is called before the first frame update
     void Start()
@@ -29,6 +23,7 @@ public class MenuScript : MonoBehaviour
 
     public void GoToMainMenu()
     {
+        AudioListener.pause = false;
         SceneManager.LoadScene("MainMenu Scene");
         Time.timeScale = 1f;
     }
@@ -61,18 +56,15 @@ public class MenuScript : MonoBehaviour
 
     public void ClearUI()
     {
-        this._title.SetActive(false);
-        this._playButton.SetActive(false);
-        this._optionsButton.SetActive(false);
-        this._scoreboardButton.SetActive(false);
+        _menuUIObjects = GameObject.FindGameObjectsWithTag("menuUI");
+        foreach (GameObject g in _menuUIObjects)
+            g.SetActive(false);
     }
 
     public void FillUI()
     {
-        this._optionsButton.SetActive(true);
-        this._playButton.SetActive(true);
-        this._scoreboardButton.SetActive(true);
-        this._title.SetActive(true);
+        foreach (GameObject g in _menuUIObjects)
+            g.SetActive(true);
     }
 
 }

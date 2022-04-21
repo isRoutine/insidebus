@@ -1,8 +1,6 @@
 using UnityEngine;
 using UnityEngine.Audio;
-using UnityEngine.UI;
 using System;
-using System.Threading.Tasks;
 
 [System.Serializable]
 public class Sound
@@ -28,8 +26,8 @@ public class AudioManager : MonoBehaviour
 {
     public Sound[] sounds;
     public static AudioManager instance;
-    public AudioMixer musicMixer;
-    public AudioMixer effectsMixer;
+    [SerializeField] private AudioMixer musicMixer;
+    [SerializeField] private AudioMixer effectsMixer;
 
     // Start is called before the first frame update
     private void Start()

@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.Audio;
 using UnityEngine.UI;
 
 public class OptionsScript : MonoBehaviour
@@ -32,11 +31,10 @@ public class OptionsScript : MonoBehaviour
     {
         if (this._pause != null)
         {
-            if (this._pause.Flag == true)
+            if (this._pause.GetIsPaused() == true)
             {
                 this._optionsMenuUI.SetActive(false);
                 this._pause.GetPauseMenuUI().SetActive(true);
-                this._pause.Flag = false;
                 Time.timeScale = 0f;
             }
         }

@@ -4,32 +4,25 @@ public class PauseScript : MonoBehaviour
 {
     [SerializeField] private GameObject _pauseMenuUI;
     [SerializeField] private GameObject _optionsMenuUI;
-    [SerializeField] private GameObject _pauseButton;
-    [SerializeField] private GameObject _time;
-    [SerializeField] private GameObject _x;
-    [SerializeField] private GameObject _lives;
-    [SerializeField] private GameObject _timeText;
     [SerializeField] private GameObject _areYouSureUI;
+    private GameObject[] _gameUIObjects;
 
-    [SerializeField] private AnswerScript _answer;
-
-    public bool GameIsPaused = false;
-    public bool Flag = false;
-
-    public GameObject GetPauseButton()
-    {
-        return this._pauseButton;
-    }
+    private bool _isPaused = false;
 
     public GameObject GetPauseMenuUI()
     {
         return this._pauseMenuUI;
     }
 
+    public bool GetIsPaused()
+    {
+        return this._isPaused;
+    }
+
     // Start is called before the first frame update
     void Start()
     {
-        
+    
     }
 
     // Update is called once per frame
@@ -40,12 +33,9 @@ public class PauseScript : MonoBehaviour
 
     public void ResumeGame()
     {
-        // this._pauseMenuUI.SetActive(false);
-        // this._answer.GetLessButton().SetActive(true);
-        // this._answer.GetMoreButton().SetActive(true);
-        // this._answer.GetAnswerButton().SetActive(true);
+        this._pauseMenuUI.SetActive(false);
         FillUI();
-        GameIsPaused = false;
+        _isPaused = false;
         Time.timeScale = 1f;
         AudioListener.pause = false;
 
@@ -53,7 +43,6 @@ public class PauseScript : MonoBehaviour
 
     public void GoToOptionsMenu()
     {
-        this.Flag = true;
         this._pauseMenuUI.SetActive(false);
         this._optionsMenuUI.SetActive(true);
         Time.timeScale = 0f;
@@ -62,13 +51,11 @@ public class PauseScript : MonoBehaviour
 
     public void GoToPause()
     {
-        GameIsPaused = true;
-        // this._answer.GetLessButton().SetActive(false);
-        // this._answer.GetMoreButton().SetActive(false);
-        // this._answer.GetAnswerButton().SetActive(false);
+        _isPaused = true;
         ClearUI();
         this._pauseMenuUI.SetActive(true);
         Time.timeScale = 0f;
+        AudioListener.pause = true;
     }
 
     public void GoBack()
@@ -85,20 +72,16 @@ public class PauseScript : MonoBehaviour
 
     public void FillUI()
     {
-        this._pauseButton.SetActive(true);
-        this._time.SetActive(true);
-        this._timeText.SetActive(true);
-        this._lives.SetActive(true);
-        this._x.SetActive(true);
+        foreach (GameObject g in _gameUIObjects)
+            g.SetActive(true);
     }
 
     public void ClearUI()
     {
-        this._pauseButton.SetActive(false);
-        this._time.SetActive(false);
-        this._timeText.SetActive(false);
-        this._lives.SetActive(false);
-        this._x.SetActive(false);
+        _gameUIObjects = GameObject.FindGameObjectsWithTag("gameUI");
+        foreach (GameObject g in _gameUIObjects)
+            g.SetActive(false);
+
     }
 
 }
