@@ -8,7 +8,7 @@ public class OptionsScript : MonoBehaviour
     [SerializeField] private MenuScript _menu;
     [SerializeField] private Slider _musicSlider;
     [SerializeField] private Slider _effectsSlider;
-    [SerializeField] private AudioManager audioManager;
+    [SerializeField] private AudioManager _audioManager;
 
     // Start is called before the first frame update
     void Start()
@@ -19,12 +19,12 @@ public class OptionsScript : MonoBehaviour
 
     public void SetMusicVolume(float volume)
     {
-        audioManager.SetLevelMusic(volume);
+        _audioManager.SetLevelMusic(volume);
     }
 
     public void SetEffectsVolume(float volume)
     {
-        audioManager.SetLevelEffects(volume);
+        _audioManager.SetLevelEffects(volume);
     }
 
     public void GoBack()

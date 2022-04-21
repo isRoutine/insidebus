@@ -485,7 +485,7 @@ MonoBehaviour:
   _menu: {fileID: 415710055}
   _musicSlider: {fileID: 231728084}
   _effectsSlider: {fileID: 1562247102}
-  audioManager: {fileID: 507940868}
+  _audioManager: {fileID: 507940868}
 --- !u!1 &231728081
 GameObject:
   m_ObjectHideFlags: 0
@@ -569,7 +569,7 @@ MonoBehaviour:
   m_FillRect: {fileID: 361906832}
   m_HandleRect: {fileID: 1373618388}
   m_Direction: 0
-  m_MinValue: 0.001
+  m_MinValue: 0.0001
   m_MaxValue: 1
   m_WholeNumbers: 0
   m_Value: 0.0001
@@ -1264,7 +1264,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _optionsMenuUI: {fileID: 349417858}
-  _menuUIObjects: []
   _scoreboardMenuUI: {fileID: 622244149}
 --- !u!1 &478083854
 GameObject:
@@ -2736,7 +2735,7 @@ MonoBehaviour:
   m_FillRect: {fileID: 1765305051}
   m_HandleRect: {fileID: 1208942892}
   m_Direction: 0
-  m_MinValue: 0.001
+  m_MinValue: 0.0001
   m_MaxValue: 1
   m_WholeNumbers: 0
   m_Value: 0.0001
@@ -3221,7 +3220,15 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 24100000, guid: 5c7cf52973f63f94baeea905b15b2fc9, type: 2}
     - target: {fileID: 6682802360790258661, guid: 2e514c1f7b893b04b9070c2216115207, type: 3}
+      propertyPath: _musicMixer
+      value: 
+      objectReference: {fileID: 24100000, guid: 5c7cf52973f63f94baeea905b15b2fc9, type: 2}
+    - target: {fileID: 6682802360790258661, guid: 2e514c1f7b893b04b9070c2216115207, type: 3}
       propertyPath: effectsMixer
+      value: 
+      objectReference: {fileID: 24100000, guid: 028036a48a0e012449501beddb9b3b7c, type: 2}
+    - target: {fileID: 6682802360790258661, guid: 2e514c1f7b893b04b9070c2216115207, type: 3}
+      propertyPath: _effectsMixer
       value: 
       objectReference: {fileID: 24100000, guid: 028036a48a0e012449501beddb9b3b7c, type: 2}
     - target: {fileID: 6682802360790258661, guid: 2e514c1f7b893b04b9070c2216115207, type: 3}
