@@ -7,7 +7,7 @@ public class TimeScript : MonoBehaviour
 
     [SerializeField] private GameObject _time;
     [SerializeField] private GameObject _timeText;
-    private int _seconds, _minutes;
+    public int _seconds, _minutes;
 
     public int GetTimerValue()
     {

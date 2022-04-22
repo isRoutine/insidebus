@@ -26,8 +26,8 @@ public class AudioManager : MonoBehaviour
 {
     public Sound[] sounds;
     public static AudioManager instance;
-    [SerializeField] private AudioMixer musicMixer;
-    [SerializeField] private AudioMixer effectsMixer;
+    [SerializeField] private AudioMixer _musicMixer;
+    [SerializeField] private AudioMixer _effectsMixer;
 
     // Start is called before the first frame update
     private void Start()
@@ -77,25 +77,25 @@ public class AudioManager : MonoBehaviour
 
     public void SetLevelMusic(float sliderValue)
     {
-        this.musicMixer.SetFloat("MusicVol", Mathf.Log10(sliderValue) * 20);
+        _musicMixer.SetFloat("MusicVol", Mathf.Log10(sliderValue) * 20);
         PlayerPrefs.SetFloat("music", sliderValue);
     }
 
     public void SetLevelEffects(float sliderValue)
     {
-        this.effectsMixer.SetFloat("EffectsVol", Mathf.Log10(sliderValue) * 20);
+        _effectsMixer.SetFloat("EffectsVol", Mathf.Log10(sliderValue) * 20);
         PlayerPrefs.SetFloat("effects", sliderValue);
     }
 
     public void UpdateMixer()
     {
-        this.musicMixer.SetFloat("MusicVol", Mathf.Log10(PlayerPrefs.GetFloat("music") * 20));
-        this.effectsMixer.SetFloat("EffectsVol", Mathf.Log10(PlayerPrefs.GetFloat("effects") * 20));
+        _musicMixer.SetFloat("MusicVol", Mathf.Log10(PlayerPrefs.GetFloat("music") * 20));
+        _effectsMixer.SetFloat("EffectsVol", Mathf.Log10(PlayerPrefs.GetFloat("effects") * 20));
     }
 
     // Update is called once per frame
     void Update()
     {
-
+        
     }
 }

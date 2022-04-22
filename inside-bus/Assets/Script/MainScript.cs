@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class MainScript : MonoBehaviour
 {
@@ -10,11 +11,13 @@ public class MainScript : MonoBehaviour
     [SerializeField] private AnswerScript _answer;
     [SerializeField] private Spawner _spawner;
     [SerializeField] private TextMeshProUGUI _lives;
-    [SerializeField] private GameObject _gameOverUI;
-    [SerializeField] private TextMeshProUGUI _score;
-    [SerializeField] private GameObject _highScoreImage;
-    private GameObject[] _gameUIObjects;
 
+    [SerializeField] private GameObject _gameOverUI;
+    [SerializeField] private GameObject _highScoreImage;
+    [SerializeField] private GameObject _scoreUI;
+    private GameObject _score;
+    private GameObject[] _gameUIObjects;
+    
     [SerializeField] private GameObject _busPrefab;
     private GameObject _bus;
 
@@ -22,6 +25,7 @@ public class MainScript : MonoBehaviour
     private int _endScoreValue;
 
     private bool _gameStarted;
+    private int _difficulty;
 
     private static System.Random random = new System.Random();
 
@@ -38,6 +42,11 @@ public class MainScript : MonoBehaviour
     public int GetLives()
     {
         return Convert.ToInt32(_lives.text);
+    }
+
+    public int GetDifficulty()
+    {
+        return _difficulty;
     }
 
     private void SetScore(int scoreValue)
@@ -108,36 +117,60 @@ public class MainScript : MonoBehaviour
         {
             ClearUI();
             _gameOverUI.SetActive(true);
-            SetScore(4000);
+            _endScoreValue = 0;
             StartCoroutine(Scoring());
         }
         else
         {
+            ClearUI();
+            _scoreUI.SetActive(true);
+            StartCoroutine(Scoring());
+            yield return new WaitForSeconds(2.0f);
+            _scoreUI.SetActive(false);
+            FillUI();
             yield return new WaitForSeconds(2.0f);
             _gameStarted = false;
+            _difficulty++;
         }
     }
 
     private IEnumerator Scoring()
     {
+        if (_gameOverUI.activeSelf)
+            _score = GameObject.FindGameObjectWithTag("gameOverUI");
+        else
+            _score = GameObject.FindGameObjectWithTag("scoreUI");
+
         int growthRate = 10;
-        _score.text = _endScoreValue.ToString("0");
-        FindObjectOfType<AudioManager>().Play("score");
+        TextMeshProUGUI t = _score.GetComponent<TextMeshProUGUI>();
+        t.text = _endScoreValue.ToString("0");
+        SetScore((_scoreValue + CalculateScore()));
+
+        if (_gameOverUI.activeSelf && _scoreValue != 0)
+            FindObjectOfType<AudioManager>().Play("score");
+        
         while ((_endScoreValue != _scoreValue) && (_scoreValue > _endScoreValue))
         {
             _endScoreValue += growthRate;
-            _score.text = _endScoreValue.ToString();
-            yield return new WaitForSeconds(0.0015f);
+            t.text = _endScoreValue.ToString();
+            yield return new WaitForSeconds(0.0025f);
         }
 
-        int highScore = PlayerPrefs.GetInt("highscore");
-        if (_endScoreValue > highScore)
+        if (_gameOverUI.activeSelf)
         {
-            PlayerPrefs.SetInt("highscore", _endScoreValue);
-            _highScoreImage.SetActive(true);
+            int highScore = PlayerPrefs.GetInt("highscore");
+            if (_endScoreValue > highScore)
+            {
+                PlayerPrefs.SetInt("highscore", _endScoreValue);
+                _highScoreImage.SetActive(true);
+            }
         }
-            
 
+    }
+
+    private int CalculateScore()
+    {
+        return 100 * ((GetLives() ^ 2) + GetDifficulty());
     }
 
 
@@ -149,6 +182,7 @@ public class MainScript : MonoBehaviour
         _timer.SetTimerValue(0,0);
         _scoreValue = 0;
         _endScoreValue = 0;
+        _difficulty = 1;
     }
 
     // Update is called once per frame

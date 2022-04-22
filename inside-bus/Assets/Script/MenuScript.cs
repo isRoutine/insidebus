@@ -3,7 +3,6 @@ using UnityEngine.SceneManagement;
 
 public class MenuScript : MonoBehaviour
 {
-    private int _currentSceneIndex;
     [SerializeField] private GameObject _optionsMenuUI;
     [SerializeField] private GameObject _scoreboardMenuUI;
     private GameObject[] _menuUIObjects;
@@ -11,7 +10,6 @@ public class MenuScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        this._currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
         
     }
 
