@@ -94,6 +94,9 @@ public class MainScript : MonoBehaviour
 
         _spawner.Spawn(entranti, Spawner.MALE_ENTRANTE);
         _spawner.Spawn(uscenti, Spawner.MALE_USCENTE);
+        
+        // move all male from start to end position 
+        // and wait until scene is empty
         yield return StartCoroutine(_spawner.MoveAll());
         yield return new WaitUntil(_spawner.IsEmptyScene);
         print("tutti morti...");
@@ -104,6 +107,7 @@ public class MainScript : MonoBehaviour
         Coroutine timerCoroutine = StartCoroutine(_timer.TimerTask());
         while (_answer._answerConfirmed == false)
             yield return null;
+        // StopCoroutine(timerCoroutine);
         print("risposta confermata");
         print(_answer.GetQuantity());
         StopCoroutine(timerCoroutine);
