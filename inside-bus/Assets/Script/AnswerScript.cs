@@ -17,6 +17,9 @@ public class AnswerScript : MonoBehaviour
     private Button _answerButton;
     private Text _quantityText;
 
+    private bool _flagMore, _flagLess;
+    private bool _stopMore, _stopLess;
+
     public bool _answerConfirmed { get; set; }
 
     // Start is called before the first frame update
@@ -51,6 +54,19 @@ public class AnswerScript : MonoBehaviour
         //     this._answerPanel.SetActive(false);
         //     this._pause.FillUI();
         // }
+
+        if (_flagMore)
+        {
+            MakeFlagMoreFalse();
+            SetQuantity(GetQuantity() + 1);
+        }
+
+        if (_flagLess)
+        {
+            MakeFlagLessFalse();
+            if (GetQuantity() > 0)
+                SetQuantity(GetQuantity() - 1);
+        }
     }
 
     // se utente preme il tasto al centro, cambia lo 
@@ -66,16 +82,16 @@ public class AnswerScript : MonoBehaviour
         return Convert.ToInt32(_quantityText.text);
     }
 
-    public void MoreTask()
+    /* public void MoreTask()
     {
         SetQuantity(GetQuantity() + 1);
-    }
+    } */
 
-    public void LessTask()
+    /* public void LessTask()
     {
         if (GetQuantity() > 0)
             SetQuantity(GetQuantity() - 1);
-    }
+    } */
 
 
     public void EnableAnswer()
@@ -92,6 +108,56 @@ public class AnswerScript : MonoBehaviour
     public void AnswerTask()
     {
         _answerConfirmed = true;
+    }
+
+    //moreButton event trigger
+    public void PointerDownMore()
+    {
+        _stopMore = false;
+        Invoke("MakeFlagMoreTrue", 0.4f);
+    }
+
+    public void PointerUpMore()
+    {
+        _flagMore = false;
+        _stopMore = true;
+    }
+
+    private void MakeFlagMoreTrue()
+    {
+        _flagMore = true;
+    }
+
+    private void MakeFlagMoreFalse()
+    {
+        _flagMore = false;
+        if(!_stopMore)
+            Invoke("MakeFlagMoreTrue", 0.4f);
+    }
+
+    //lessButton event trigger
+    public void PointerDownLess()
+    {
+        _stopLess = false;
+        Invoke("MakeFlagLessTrue", 0.4f);
+    }
+
+    public void PointerUpLess()
+    {
+        _flagLess = false;
+        _stopLess = true;
+    }
+
+    private void MakeFlagLessTrue()
+    {
+        _flagLess = true;
+    }
+
+    private void MakeFlagLessFalse()
+    {
+        _flagLess = false;
+        if (!_stopLess)
+            Invoke("MakeFlagLessTrue", 0.4f);
     }
 
 
