@@ -11,11 +11,11 @@ public class Spawner : MonoBehaviour
     public static int MALE_USCENTE   = 0;
     private Vector2 MALE_MOVEMENT      = new Vector2(0 , 0.05f);
     
-    public static Vector2 MALE_ENTRANTE_START  = new Vector2(-1.3f,-7.0f);
-    public static Vector2 MALE_ENTRANTE_STOP   = new Vector2(-1.3f,0);
+    public static Vector2 MALE_ENTRANTE_START  = new Vector2(+1.3f,-7.0f);
+    public static Vector2 MALE_ENTRANTE_STOP   = new Vector2(+1.3f,0);
 
-    public static Vector2 MALE_USCENTE_START  = new Vector2(+1.4f,0.1f);    
-    public static Vector2 MALE_USCENTE_STOP  = new Vector2(+1.4f,-7.0f);    
+    public static Vector2 MALE_USCENTE_START  = new Vector2(-1.4f,0.1f);    
+    public static Vector2 MALE_USCENTE_STOP  = new Vector2(-1.4f,-7.0f);    
 
 
     

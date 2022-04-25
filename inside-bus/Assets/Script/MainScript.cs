@@ -103,15 +103,15 @@ public class MainScript : MonoBehaviour
 
         yield return StartCoroutine(script.BusEnd());
 
-        _answer.EnableAnswer();
-        Coroutine timerCoroutine = StartCoroutine(_timer.TimerTask());
-        while (_answer._answerConfirmed == false)
-            yield return null;
+        //_answer.EnableAnswer();
+        //Coroutine timerCoroutine = StartCoroutine(_timer.TimerTask());
+        //while (_answer._answerConfirmed == false)
+            //yield return null;
         // StopCoroutine(timerCoroutine);
         print("risposta confermata");
         print(_answer.GetQuantity());
-        StopCoroutine(timerCoroutine);
-        _timer.DisableTimer();
+        //StopCoroutine(timerCoroutine);
+        //_timer.DisableTimer();
 
         if (!UpdateLives(attuali, entranti, uscenti, _answer.GetQuantity()))
         {
