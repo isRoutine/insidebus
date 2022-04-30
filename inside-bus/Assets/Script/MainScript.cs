@@ -7,14 +7,13 @@ using UnityEngine.UI;
 public class MainScript : MonoBehaviour
 {
 
-    [SerializeField] private TimeScript _timer;
+    //[SerializeField] private TimeScript _timer;
     [SerializeField] private AnswerScript _answer;
     [SerializeField] private Spawner _spawner;
     [SerializeField] private TextMeshProUGUI _lives;
 
     [SerializeField] private GameObject _gameOverUI;
     [SerializeField] private GameObject _highScoreImage;
-    [SerializeField] private GameObject _scoreUI;
     private GameObject _score;
     private GameObject[] _gameUIObjects;
     
@@ -86,7 +85,7 @@ public class MainScript : MonoBehaviour
         yield return _delay;
         _answer.SetQuantity(attuali);
         _answer.DisableAnswer();
-        _timer.SetTimerValue(0, 0);
+        //_timer.SetTimerValue(0, 0);
 
         BusHandler script = _bus.GetComponent<BusHandler>() as BusHandler;
         script.BusInit();
@@ -104,14 +103,14 @@ public class MainScript : MonoBehaviour
         yield return StartCoroutine(script.BusEnd());
 
         _answer.EnableAnswer();
-        Coroutine timerCoroutine = StartCoroutine(_timer.TimerTask());
+       // Coroutine timerCoroutine = StartCoroutine(_timer.TimerTask());
         while (_answer._answerConfirmed == false)
             yield return null;
         // StopCoroutine(timerCoroutine);
         print("risposta confermata");
         print(_answer.GetQuantity());
-        StopCoroutine(timerCoroutine);
-        _timer.DisableTimer();
+        //StopCoroutine(timerCoroutine);
+        //_timer.DisableTimer();
 
         if (!UpdateLives(attuali, entranti, uscenti, _answer.GetQuantity()))
         {
@@ -122,12 +121,7 @@ public class MainScript : MonoBehaviour
         }
         else
         {
-            ClearUI();
-            _scoreUI.SetActive(true);
             StartCoroutine(Scoring());
-            yield return new WaitForSeconds(2.0f);
-            _scoreUI.SetActive(false);
-            FillUI();
             yield return new WaitForSeconds(2.0f);
             _gameStarted = false;
             _difficulty++;
@@ -179,7 +173,7 @@ public class MainScript : MonoBehaviour
     {
         _bus = Instantiate(_busPrefab, BusHandler.BUS_ENTRY, Quaternion.identity);
         _gameStarted = false;
-        _timer.SetTimerValue(0,0);
+        //_timer.SetTimerValue(0,0);
         _scoreValue = 0;
         _endScoreValue = 0;
         _difficulty = 1;
@@ -207,6 +201,8 @@ public class MainScript : MonoBehaviour
     private void ClearUI()
     {
         _gameUIObjects = GameObject.FindGameObjectsWithTag("gameUI");
+        Array.Resize<GameObject>(ref _gameUIObjects, 8);
+        _gameUIObjects.SetValue(GameObject.FindGameObjectWithTag("scoreUI"), 7);
         foreach (GameObject g in _gameUIObjects)
             g.SetActive(false);
     }

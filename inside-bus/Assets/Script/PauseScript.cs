@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class PauseScript : MonoBehaviour
@@ -79,6 +80,8 @@ public class PauseScript : MonoBehaviour
     public void ClearUI()
     {
         _gameUIObjects = GameObject.FindGameObjectsWithTag("gameUI");
+        Array.Resize<GameObject>(ref _gameUIObjects, 8);
+        _gameUIObjects.SetValue(GameObject.FindGameObjectWithTag("scoreUI"), 7);
         foreach (GameObject g in _gameUIObjects)
             g.SetActive(false);
 
