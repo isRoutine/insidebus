@@ -36,7 +36,7 @@ public class AnswerScript : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         // this._moreButton.interactable = !this.Flag;
         // this._lessButton.interactable = !this.Flag;
@@ -114,7 +114,7 @@ public class AnswerScript : MonoBehaviour
     public void PointerDownMore()
     {
         _stopMore = false;
-        Invoke("MakeFlagMoreTrue", 0.4f);
+        Invoke("MakeFlagMoreTrue", 0.3f);
     }
 
     public void PointerUpMore()
@@ -132,14 +132,14 @@ public class AnswerScript : MonoBehaviour
     {
         _flagMore = false;
         if(!_stopMore)
-            Invoke("MakeFlagMoreTrue", 0.4f);
+            Invoke("MakeFlagMoreTrue", 0.3f);
     }
 
     //lessButton event trigger
     public void PointerDownLess()
     {
         _stopLess = false;
-        Invoke("MakeFlagLessTrue", 0.4f);
+        Invoke("MakeFlagLessTrue", 0.3f);
     }
 
     public void PointerUpLess()
@@ -157,7 +157,7 @@ public class AnswerScript : MonoBehaviour
     {
         _flagLess = false;
         if (!_stopLess)
-            Invoke("MakeFlagLessTrue", 0.4f);
+            Invoke("MakeFlagLessTrue", 0.3f);
     }
 
 
