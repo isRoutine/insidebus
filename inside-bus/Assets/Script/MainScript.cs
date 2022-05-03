@@ -8,6 +8,7 @@ public class MainScript : MonoBehaviour
 {
 
     //[SerializeField] private TimeScript _timer;
+    [SerializeField] private UIManager _manager;
     [SerializeField] private AnswerScript _answer;
     [SerializeField] private Spawner _spawner;
     [SerializeField] private TextMeshProUGUI _lives;
@@ -15,7 +16,6 @@ public class MainScript : MonoBehaviour
     [SerializeField] private GameObject _gameOverUI;
     [SerializeField] private GameObject _highScoreImage;
     private GameObject _score;
-    private GameObject[] _gameUIObjects;
     
     [SerializeField] private GameObject _busPrefab;
     private GameObject _bus;
@@ -114,7 +114,7 @@ public class MainScript : MonoBehaviour
 
         if (!UpdateLives(attuali, entranti, uscenti, _answer.GetQuantity()))
         {
-            ClearUI();
+            _manager.ClearUI();
             _gameOverUI.SetActive(true);
             _endScoreValue = 0;
             StartCoroutine(Scoring());
@@ -196,21 +196,6 @@ public class MainScript : MonoBehaviour
             StartCoroutine(StepUpdate(att, ent, usc));
         }
 
-    }
-
-    private void ClearUI()
-    {
-        _gameUIObjects = GameObject.FindGameObjectsWithTag("gameUI");
-        Array.Resize<GameObject>(ref _gameUIObjects, 8);
-        _gameUIObjects.SetValue(GameObject.FindGameObjectWithTag("scoreUI"), 7);
-        foreach (GameObject g in _gameUIObjects)
-            g.SetActive(false);
-    }
-
-    public void FillUI()
-    {
-        foreach (GameObject g in _gameUIObjects)
-            g.SetActive(true);
     }
 
 }

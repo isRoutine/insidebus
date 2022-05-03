@@ -548,9 +548,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 617528903}
-        m_TargetAssemblyTypeName: PauseScript, Assembly-CSharp
-        m_MethodName: GoBack
+      - m_Target: {fileID: 2142995966}
+        m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
+        m_MethodName: KeepPlaying
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1671,7 +1671,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 2142995966}
-        m_TargetAssemblyTypeName: MenuScript, Assembly-CSharp
+        m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
         m_MethodName: GoToMainMenu
         m_Mode: 1
         m_Arguments:
@@ -2098,7 +2098,6 @@ GameObject:
   - component: {fileID: 617528901}
   - component: {fileID: 617528900}
   - component: {fileID: 617528899}
-  - component: {fileID: 617528903}
   - component: {fileID: 617528904}
   m_Layer: 5
   m_Name: Pause menu
@@ -2190,21 +2189,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
---- !u!114 &617528903
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 617528898}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: af953e448d3fc544d932364361a7283c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _pauseMenuUI: {fileID: 401402656}
-  _optionsMenuUI: {fileID: 1581842769}
-  _areYouSureUI: {fileID: 842725798}
 --- !u!114 &617528904
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2217,9 +2201,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 662b3e42c33c2c143b59b9847030ec29, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _optionsMenuUI: {fileID: 1581842769}
-  _pause: {fileID: 617528903}
-  _menu: {fileID: 2142995966}
   _musicSlider: {fileID: 748642870}
   _effectsSlider: {fileID: 1643453043}
   _audioManager: {fileID: 1137834910}
@@ -2440,8 +2421,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 617528903}
-        m_TargetAssemblyTypeName: PauseScript, Assembly-CSharp
+      - m_Target: {fileID: 2142995966}
+        m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
         m_MethodName: AreYouSure
         m_Mode: 1
         m_Arguments:
@@ -4563,9 +4544,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 617528903}
-        m_TargetAssemblyTypeName: PauseScript, Assembly-CSharp
-        m_MethodName: GoToOptionsMenu
+      - m_Target: {fileID: 2142995966}
+        m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
+        m_MethodName: GoToOptions
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -4696,8 +4677,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 617528903}
-        m_TargetAssemblyTypeName: PauseScript, Assembly-CSharp
+      - m_Target: {fileID: 2142995966}
+        m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
         m_MethodName: ResumeGame
         m_Mode: 1
         m_Arguments:
@@ -5983,8 +5964,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 617528904}
-        m_TargetAssemblyTypeName: OptionsScript, Assembly-CSharp
+      - m_Target: {fileID: 2142995966}
+        m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
         m_MethodName: GoBack
         m_Mode: 1
         m_Arguments:
@@ -6401,8 +6382,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 617528903}
-        m_TargetAssemblyTypeName: PauseScript, Assembly-CSharp
+      - m_Target: {fileID: 2142995966}
+        m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
         m_MethodName: GoToPause
         m_Mode: 1
         m_Arguments:
@@ -7000,11 +6981,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 2142995960}
   m_Enabled: 0
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 21eace3c25523094091d2aca43737893, type: 3}
+  m_Script: {fileID: 11500000, guid: df59de83433eb4f4baa689f25abbfa35, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _optionsMenuUI: {fileID: 0}
+  _optionsMenuUI: {fileID: 1581842769}
   _scoreboardMenuUI: {fileID: 0}
+  _pauseMenuUI: {fileID: 401402656}
+  _areYouSureUI: {fileID: 842725798}
 --- !u!114 &2142995967
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7017,6 +7000,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a2c890a0c82542659f5ac68e0f155dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _manager: {fileID: 2142995966}
   _answer: {fileID: 2142995961}
   _spawner: {fileID: 2142995968}
   _lives: {fileID: 1116512698}
