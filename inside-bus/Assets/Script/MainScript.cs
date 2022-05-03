@@ -12,14 +12,11 @@ public class MainScript : MonoBehaviour
     [SerializeField] private AnswerScript _answer;
     [SerializeField] private Spawner _spawner;
     [SerializeField] private TextMeshProUGUI _lives;
-
-    [SerializeField] private GameObject _gameOverUI;
-    [SerializeField] private GameObject _highScoreImage;
-    private GameObject _score;
     
     [SerializeField] private GameObject _busPrefab;
     private GameObject _bus;
 
+    private GameObject _score;
     private int _scoreValue;
     private int _endScoreValue;
 
@@ -114,8 +111,8 @@ public class MainScript : MonoBehaviour
 
         if (!UpdateLives(attuali, entranti, uscenti, _answer.GetQuantity()))
         {
+            _manager.SetGameOverUIActive();
             _manager.ClearUI();
-            _gameOverUI.SetActive(true);
             _endScoreValue = 0;
             StartCoroutine(Scoring());
         }
@@ -130,7 +127,7 @@ public class MainScript : MonoBehaviour
 
     private IEnumerator Scoring()
     {
-        if (_gameOverUI.activeSelf)
+        if (_manager.IsGameOver())
             _score = GameObject.FindGameObjectWithTag("gameOverUI");
         else
             _score = GameObject.FindGameObjectWithTag("scoreUI");
@@ -140,7 +137,7 @@ public class MainScript : MonoBehaviour
         t.text = _endScoreValue.ToString("0");
         SetScore((_scoreValue + CalculateScore()));
 
-        if (_gameOverUI.activeSelf && _scoreValue != 0)
+        if (_manager.IsGameOver() && _scoreValue != 0)
             FindObjectOfType<AudioManager>().Play("score");
         
         while ((_endScoreValue != _scoreValue) && (_scoreValue > _endScoreValue))
@@ -150,13 +147,13 @@ public class MainScript : MonoBehaviour
             yield return new WaitForSeconds(0.0025f);
         }
 
-        if (_gameOverUI.activeSelf)
+        if (_manager.IsGameOver())
         {
             int highScore = PlayerPrefs.GetInt("highscore");
             if (_endScoreValue > highScore)
             {
                 PlayerPrefs.SetInt("highscore", _endScoreValue);
-                _highScoreImage.SetActive(true);
+                _manager.SetHighScoreActive();
             }
         }
 

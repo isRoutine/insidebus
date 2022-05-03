@@ -11,8 +11,7 @@ public class BusHandler : CharacterHandler
 
     // animator methods ...
     public void EnginesOff(){ 
-        //_animator.SetTrigger("engines_off");
-        _animator.Play("bus_engines_off");
+        _animator.SetTrigger("engines_off");
         //FindObjectOfType<AudioManager>().Play("engines_off");
     }
 
@@ -28,9 +27,13 @@ public class BusHandler : CharacterHandler
         //FindObjectOfType<AudioManager>().Play("open");
     }
 
-    public void Close(){ _animator.SetTrigger("close"); }
+    public void Close(){ 
+        _animator.SetTrigger("close");
+    }
 
-    public void Idle(){ _animator.SetTrigger("idle"); }
+    public void Idle(){ 
+        _animator.SetTrigger("idle");
+    }
 
 
     public void BusInit(){

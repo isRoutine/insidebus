@@ -8,6 +8,9 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject _scoreboardMenuUI;
     [SerializeField] private GameObject _pauseMenuUI;
     [SerializeField] private GameObject _areYouSureUI;
+    [SerializeField] private GameObject _gameOverUI;
+    [SerializeField] private GameObject _highScoreImage;
+
     private GameObject[] _gameUIObjects;
     private GameObject[] _menuUIObjects;
 
@@ -58,7 +61,6 @@ public class UIManager : MonoBehaviour
     }
 
     //PauseMenuUI in game
-
     public void ResumeGame()
     {
         _pauseMenuUI.SetActive(false);
@@ -101,7 +103,7 @@ public class UIManager : MonoBehaviour
             Time.timeScale = 0f;
         }
 
-        if (_onScoreboardPanel) {
+        else if (_onScoreboardPanel) {
             _onScoreboardPanel = false;
             this._scoreboardMenuUI.SetActive(false);
             FillUI();
@@ -171,4 +173,20 @@ public class UIManager : MonoBehaviour
         }
     }
 
+    //GameOverUI
+    public void SetGameOverUIActive()
+    {
+        _inGame = true;
+        _gameOverUI.SetActive(true);
+    }
+
+    public bool IsGameOver()
+    {
+        return _gameOverUI.activeSelf;
+    }
+
+    public void SetHighScoreActive()
+    {
+        _highScoreImage.SetActive(true);
+    }
 }

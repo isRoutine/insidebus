@@ -6025,7 +6025,6 @@ GameObject:
   - component: {fileID: 1810093879}
   - component: {fileID: 1810093882}
   - component: {fileID: 1810093881}
-  - component: {fileID: 1810093880}
   m_Layer: 5
   m_Name: time
   m_TagString: Untagged
@@ -6052,22 +6051,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: -280}
   m_SizeDelta: {x: 1160.52, y: 154.73584}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1810093880
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1810093878}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fb0f14963b5b40040b9d1038572d5fd6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _time: {fileID: 1810093878}
-  _timeText: {fileID: 1528685090}
-  _seconds: 0
-  _minutes: 0
 --- !u!114 &1810093881
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6988,6 +6971,8 @@ MonoBehaviour:
   _scoreboardMenuUI: {fileID: 0}
   _pauseMenuUI: {fileID: 401402656}
   _areYouSureUI: {fileID: 842725798}
+  _gameOverUI: {fileID: 1604846511}
+  _highScoreImage: {fileID: 801790746}
 --- !u!114 &2142995967
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7004,8 +6989,6 @@ MonoBehaviour:
   _answer: {fileID: 2142995961}
   _spawner: {fileID: 2142995968}
   _lives: {fileID: 1116512698}
-  _gameOverUI: {fileID: 1604846511}
-  _highScoreImage: {fileID: 801790746}
   _busPrefab: {fileID: 8484686172551651042, guid: b8af72d8d6a57ee419fa2985e0715546, type: 3}
 --- !u!114 &2142995968
 MonoBehaviour:
