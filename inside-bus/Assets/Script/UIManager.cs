@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using System;
+using System.Collections;
 
 public class UIManager : MonoBehaviour
 {
@@ -10,6 +11,8 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject _areYouSureUI;
     [SerializeField] private GameObject _gameOverUI;
     [SerializeField] private GameObject _highScoreImage;
+
+    [SerializeField] private Animator _transition;
 
     private GameObject[] _gameUIObjects;
     private GameObject[] _menuUIObjects;
@@ -30,18 +33,29 @@ public class UIManager : MonoBehaviour
 
     }
 
+    //Coroutine for transition from one scene to another
+    IEnumerator LoadScene(String scene)
+    {
+        _transition.SetTrigger("Start");
+
+        yield return new WaitForSeconds(1.0f);
+
+        SceneManager.LoadScene(scene);
+    }
+
     //MainMenuUI
     public void GoToMainMenu()
     {
         _inGame = false;
         AudioListener.pause = false;
-        SceneManager.LoadScene("MainMenu Scene");
+
+        StartCoroutine(LoadScene("MainMenu Scene"));
         Time.timeScale = 1f;
     }
 
     public void GoToGameScene()
     {
-        SceneManager.LoadScene("Game Scene");
+        StartCoroutine(LoadScene("Game Scene"));
         _inGame = true;
         Time.timeScale = 1f;
     }
