@@ -7,20 +7,16 @@ using UnityEngine.UI;
 public class MainScript : MonoBehaviour
 {
 
-    [SerializeField] private TimeScript _timer;
+    //[SerializeField] private TimeScript _timer;
+    [SerializeField] private UIManager _manager;
     [SerializeField] private AnswerScript _answer;
     [SerializeField] private Spawner _spawner;
     [SerializeField] private TextMeshProUGUI _lives;
-
-    [SerializeField] private GameObject _gameOverUI;
-    [SerializeField] private GameObject _highScoreImage;
-    [SerializeField] private GameObject _scoreUI;
-    private GameObject _score;
-    private GameObject[] _gameUIObjects;
     
     [SerializeField] private GameObject _busPrefab;
     private GameObject _bus;
 
+    private GameObject _score;
     private int _scoreValue;
     private int _endScoreValue;
 
@@ -86,7 +82,7 @@ public class MainScript : MonoBehaviour
         yield return _delay;
         _answer.SetQuantity(attuali);
         _answer.DisableAnswer();
-        _timer.SetTimerValue(0, 0);
+        //_timer.SetTimerValue(0, 0);
 
         BusHandler script = _bus.GetComponent<BusHandler>() as BusHandler;
         script.BusInit();
@@ -103,10 +99,10 @@ public class MainScript : MonoBehaviour
 
         yield return StartCoroutine(script.BusEnd());
 
-        //_answer.EnableAnswer();
-        //Coroutine timerCoroutine = StartCoroutine(_timer.TimerTask());
-        //while (_answer._answerConfirmed == false)
-            //yield return null;
+        _answer.EnableAnswer();
+       // Coroutine timerCoroutine = StartCoroutine(_timer.TimerTask());
+        while (_answer._answerConfirmed == false)
+            yield return null;
         // StopCoroutine(timerCoroutine);
         print("risposta confermata");
         print(_answer.GetQuantity());
@@ -115,19 +111,14 @@ public class MainScript : MonoBehaviour
 
         if (!UpdateLives(attuali, entranti, uscenti, _answer.GetQuantity()))
         {
-            ClearUI();
-            _gameOverUI.SetActive(true);
+            _manager.SetGameOverUIActive();
+            _manager.ClearUI();
             _endScoreValue = 0;
             StartCoroutine(Scoring());
         }
         else
         {
-            ClearUI();
-            _scoreUI.SetActive(true);
             StartCoroutine(Scoring());
-            yield return new WaitForSeconds(2.0f);
-            _scoreUI.SetActive(false);
-            FillUI();
             yield return new WaitForSeconds(2.0f);
             _gameStarted = false;
             _difficulty++;
@@ -136,7 +127,7 @@ public class MainScript : MonoBehaviour
 
     private IEnumerator Scoring()
     {
-        if (_gameOverUI.activeSelf)
+        if (_manager.IsGameOver())
             _score = GameObject.FindGameObjectWithTag("gameOverUI");
         else
             _score = GameObject.FindGameObjectWithTag("scoreUI");
@@ -146,7 +137,7 @@ public class MainScript : MonoBehaviour
         t.text = _endScoreValue.ToString("0");
         SetScore((_scoreValue + CalculateScore()));
 
-        if (_gameOverUI.activeSelf && _scoreValue != 0)
+        if (_manager.IsGameOver() && _scoreValue != 0)
             FindObjectOfType<AudioManager>().Play("score");
         
         while ((_endScoreValue != _scoreValue) && (_scoreValue > _endScoreValue))
@@ -156,13 +147,13 @@ public class MainScript : MonoBehaviour
             yield return new WaitForSeconds(0.0025f);
         }
 
-        if (_gameOverUI.activeSelf)
+        if (_manager.IsGameOver())
         {
             int highScore = PlayerPrefs.GetInt("highscore");
             if (_endScoreValue > highScore)
             {
                 PlayerPrefs.SetInt("highscore", _endScoreValue);
-                _highScoreImage.SetActive(true);
+                _manager.SetHighScoreActive();
             }
         }
 
@@ -179,7 +170,7 @@ public class MainScript : MonoBehaviour
     {
         _bus = Instantiate(_busPrefab, BusHandler.BUS_ENTRY, Quaternion.identity);
         _gameStarted = false;
-        _timer.SetTimerValue(0,0);
+        //_timer.SetTimerValue(0,0);
         _scoreValue = 0;
         _endScoreValue = 0;
         _difficulty = 1;
@@ -202,19 +193,6 @@ public class MainScript : MonoBehaviour
             StartCoroutine(StepUpdate(att, ent, usc));
         }
 
-    }
-
-    private void ClearUI()
-    {
-        _gameUIObjects = GameObject.FindGameObjectsWithTag("gameUI");
-        foreach (GameObject g in _gameUIObjects)
-            g.SetActive(false);
-    }
-
-    public void FillUI()
-    {
-        foreach (GameObject g in _gameUIObjects)
-            g.SetActive(true);
     }
 
 }

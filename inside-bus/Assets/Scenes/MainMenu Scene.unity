@@ -480,9 +480,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 662b3e42c33c2c143b59b9847030ec29, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _optionsMenuUI: {fileID: 349417858}
-  _pause: {fileID: 0}
-  _menu: {fileID: 415710055}
   _musicSlider: {fileID: 231728084}
   _effectsSlider: {fileID: 1562247102}
   _audioManager: {fileID: 1660543515}
@@ -887,8 +884,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1525219271}
-        m_TargetAssemblyTypeName: ScoreboardScript, Assembly-CSharp
+      - m_Target: {fileID: 415710055}
+        m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
         m_MethodName: GoBack
         m_Mode: 1
         m_Arguments:
@@ -1159,6 +1156,7 @@ GameObject:
   - component: {fileID: 415710052}
   - component: {fileID: 415710051}
   - component: {fileID: 415710055}
+  - component: {fileID: 415710056}
   m_Layer: 5
   m_Name: menu
   m_TagString: Untagged
@@ -1243,6 +1241,7 @@ RectTransform:
   - {fileID: 1765997899}
   - {fileID: 2110856339}
   - {fileID: 64477214}
+  - {fileID: 2139068175}
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1260,11 +1259,35 @@ MonoBehaviour:
   m_GameObject: {fileID: 415710050}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 21eace3c25523094091d2aca43737893, type: 3}
+  m_Script: {fileID: 11500000, guid: df59de83433eb4f4baa689f25abbfa35, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _optionsMenuUI: {fileID: 349417858}
   _scoreboardMenuUI: {fileID: 622244149}
+  _pauseMenuUI: {fileID: 0}
+  _areYouSureUI: {fileID: 0}
+  _gameOverUI: {fileID: 0}
+  _highScoreImage: {fileID: 0}
+  _transition: {fileID: 415710056}
+--- !u!95 &415710056
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 415710050}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: f56aa0cad25b2c24b8342f90389fe393, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &478083854
 GameObject:
   m_ObjectHideFlags: 0
@@ -1833,8 +1856,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 143955614}
-        m_TargetAssemblyTypeName: OptionsScript, Assembly-CSharp
+      - m_Target: {fileID: 415710055}
+        m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
         m_MethodName: GoBack
         m_Mode: 1
         m_Arguments:
@@ -2002,7 +2025,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 143955614}
+      - m_Target: {fileID: 415710050}
         m_TargetAssemblyTypeName: OptionsScript, Assembly-CSharp
         m_MethodName: 
         m_Mode: 1
@@ -2603,8 +2626,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9003436dead04be42a2d9796f339fe4f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _menu: {fileID: 415710055}
-  _scoreboardMenuUI: {fileID: 622244149}
 --- !u!1 &1559317820
 GameObject:
   m_ObjectHideFlags: 0
@@ -3128,7 +3149,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 415710055}
-        m_TargetAssemblyTypeName: MenuScript, Assembly-CSharp
+        m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
         m_MethodName: GoToGameScene
         m_Mode: 1
         m_Arguments:
@@ -3497,8 +3518,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 415710055}
-        m_TargetAssemblyTypeName: MenuScript, Assembly-CSharp
-        m_MethodName: GoToOptionsMenu
+        m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
+        m_MethodName: GoToOptions
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3545,4 +3566,92 @@ CanvasRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2110856338}
+  m_CullTransparentMesh: 1
+--- !u!1 &2139068174
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2139068175}
+  - component: {fileID: 2139068178}
+  - component: {fileID: 2139068177}
+  - component: {fileID: 2139068176}
+  m_Layer: 5
+  m_Name: fade
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &2139068175
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2139068174}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 415710054}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!225 &2139068176
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2139068174}
+  m_Enabled: 1
+  m_Alpha: 0
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
+--- !u!114 &2139068177
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2139068174}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 0}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &2139068178
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2139068174}
   m_CullTransparentMesh: 1

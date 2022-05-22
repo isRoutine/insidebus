@@ -3,9 +3,6 @@ using UnityEngine.UI;
 
 public class OptionsScript : MonoBehaviour
 {
-    [SerializeField] private GameObject _optionsMenuUI;
-    [SerializeField] private PauseScript _pause;
-    [SerializeField] private MenuScript _menu;
     [SerializeField] private Slider _musicSlider;
     [SerializeField] private Slider _effectsSlider;
     [SerializeField] private AudioManager _audioManager;
@@ -25,26 +22,6 @@ public class OptionsScript : MonoBehaviour
     public void SetEffectsVolume(float volume)
     {
         _audioManager.SetLevelEffects(volume);
-    }
-
-    public void GoBack()
-    {
-        if (this._pause != null)
-        {
-            if (this._pause.GetIsPaused() == true)
-            {
-                this._optionsMenuUI.SetActive(false);
-                this._pause.GetPauseMenuUI().SetActive(true);
-                Time.timeScale = 0f;
-            }
-        }
-
-        else if(this._menu != null)
-        {
-            this._optionsMenuUI.SetActive(false);
-            this._menu.FillUI();
-            Time.timeScale = 1f;
-        }
     }
 
 }
