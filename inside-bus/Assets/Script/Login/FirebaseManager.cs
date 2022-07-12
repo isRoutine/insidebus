@@ -102,13 +102,18 @@ public class FirebaseManager : MonoBehaviour
     private void AutoLogin(){
         if (user != null){
             if (user.IsEmailVerified){
-                GameManager.instance.ChangeScene(0);
+                GameManager.instance.ChangeScene(1);
             }else{
                 StartCoroutine(SendVerificationEmail());
             }
         }else{
             AuthUIManager.instance.LoginScreen();
         }
+    }
+
+    public void GuestLogin()
+    {
+        GameManager.instance.ChangeScene(1);
     }
 
     private void AuthStateChanged(object sender, System.EventArgs eventArgs)
@@ -186,7 +191,7 @@ public class FirebaseManager : MonoBehaviour
             if (user.IsEmailVerified)
             {       //controllo se email è verificata
                 yield return new WaitForSeconds(1f);
-                GameManager.instance.ChangeScene(0);
+                GameManager.instance.ChangeScene(1);
             }
             else
             {

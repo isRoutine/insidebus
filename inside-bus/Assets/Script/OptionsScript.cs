@@ -1,46 +1,27 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class OptionsScript : MonoBehaviour
 {
-    public GameObject OptionsMenuUI;
-    public PauseScript pause;
-    public MenuScript menu;
+    [SerializeField] private Slider _musicSlider;
+    [SerializeField] private Slider _effectsSlider;
+    [SerializeField] private AudioManager _audioManager;
 
     // Start is called before the first frame update
     void Start()
     {
-
+        this._musicSlider.value = PlayerPrefs.GetFloat("music", 0.75f);
+        this._effectsSlider.value = PlayerPrefs.GetFloat("effects", 0.75f);
     }
 
-    // Update is called once per frame
-    void Update()
+    public void SetMusicVolume(float volume)
     {
-
+        _audioManager.SetLevelMusic(volume);
     }
 
-    public void goBack()
+    public void SetEffectsVolume(float volume)
     {
-        if (pause != null)
-        {
-            if (pause.flag == true)
-            {
-                OptionsMenuUI.SetActive(false);
-                pause.PauseMenuUI.SetActive(true);
-                pause.flag = false;
-                Time.timeScale = 0f;
-            }
-        }
-
-        else if(menu != null)
-        {
-            OptionsMenuUI.SetActive(false);
-            menu.optionsButton.SetActive(true);
-            menu.playButton.SetActive(true);
-            menu.scoreboardButton.SetActive(true);
-            menu.title.SetActive(true);
-            menu.titleShadow.SetActive(true);
-            Time.timeScale = 1f;
-        }
+        _audioManager.SetLevelEffects(volume);
     }
 
 }
