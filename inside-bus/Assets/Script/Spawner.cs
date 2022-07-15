@@ -9,10 +9,10 @@ public class Spawner : MonoBehaviour
     // some reference coordinates...
     public static int MALE_ENTRANTE    = 1;
     public static int MALE_USCENTE   = 0;
-    private Vector2 MALE_MOVEMENT      = new Vector2(0 , 0.05f);
+    private Vector2 MALE_MOVEMENT      = new Vector2(0 , 0.02f);
     
-    public static Vector2 MALE_ENTRANTE_START  = new Vector2(+1.3f,-7.0f);
-    public static Vector2 MALE_ENTRANTE_STOP   = new Vector2(+1.3f,0);
+    public static Vector2 MALE_ENTRANTE_START  = new Vector2(+1.4f,-7.0f);
+    public static Vector2 MALE_ENTRANTE_STOP   = new Vector2(+1.4f,0);
 
     public static Vector2 MALE_USCENTE_START  = new Vector2(-1.4f,0.1f);    
     public static Vector2 MALE_USCENTE_STOP  = new Vector2(-1.4f,-7.0f);    
@@ -59,7 +59,7 @@ public class Spawner : MonoBehaviour
 
 
     // Coroutine : Call Move() function for every object spawned
-    public IEnumerator MoveAll(){
+    public IEnumerator MoveAll(int level){
 
         WaitForSeconds delay = new WaitForSeconds(0.5f); // default delay
         LinkedListNode<GameObject> entrante = _spawnedEntranti.First;
@@ -72,6 +72,7 @@ public class Spawner : MonoBehaviour
                 maleHandler._spawner = this;
                 maleHandler.SetAnimation("up");
                 entrante = entrante.Next;
+                MALE_MOVEMENT.y = MALE_MOVEMENT.y + (level / 100);
                 StartCoroutine(maleHandler.Move(MALE_ENTRANTE_START, MALE_ENTRANTE_STOP, MALE_MOVEMENT));  
             }
 
