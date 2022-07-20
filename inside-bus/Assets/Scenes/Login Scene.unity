@@ -3560,6 +3560,7 @@ GameObject:
   - component: {fileID: 1118881947}
   - component: {fileID: 1118881946}
   - component: {fileID: 1118881945}
+  - component: {fileID: 1118881949}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -3645,6 +3646,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1118881949
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1118881944}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9496faaa86cb043e0b776849c092cf73, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1149613190
 GameObject:
   m_ObjectHideFlags: 0
@@ -4805,14 +4818,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6881438db41de4dbf8d23035779058fe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  loginEmail: {fileID: 382500528}
-  loginPassword: {fileID: 1318133305}
-  loginOutputText: {fileID: 227679819}
-  registerUsername: {fileID: 224285140}
-  registerEmail: {fileID: 266931044}
-  registerPassword: {fileID: 1071196848}
-  registerConfirmPassword: {fileID: 1882459686}
-  registerOutputText: {fileID: 559687581}
 --- !u!1 &1774041357
 GameObject:
   m_ObjectHideFlags: 0
@@ -6052,11 +6057,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f362763f375546f49699c5d085ef8be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  checkingForAccountUI: {fileID: 925075968}
-  loginUI: {fileID: 1165031907}
-  registerUI: {fileID: 674195179}
-  verifyEmailUI: {fileID: 705551889}
-  verifyEmailText: {fileID: 1847206001}
 --- !u!1 &2110874734
 GameObject:
   m_ObjectHideFlags: 0
