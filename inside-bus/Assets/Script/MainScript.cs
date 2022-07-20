@@ -22,6 +22,7 @@ public class MainScript : MonoBehaviour
 
     private bool _gameStarted;
     private int _difficulty;
+    private int _level;
 
     private static System.Random random = new System.Random();
 
@@ -93,7 +94,7 @@ public class MainScript : MonoBehaviour
         
         // move all male from start to end position 
         // and wait until scene is empty
-        yield return StartCoroutine(_spawner.MoveAll());
+        yield return StartCoroutine(_spawner.MoveAll(_level));
         yield return new WaitUntil(_spawner.IsEmptyScene);
         print("tutti morti...");
 
@@ -174,6 +175,7 @@ public class MainScript : MonoBehaviour
         _scoreValue = 0;
         _endScoreValue = 0;
         _difficulty = 1;
+        _level = 0;
     }
 
     // Update is called once per frame
@@ -181,12 +183,14 @@ public class MainScript : MonoBehaviour
     {
 
         if (!_gameStarted)
-        {
+        {   
             _gameStarted = true;
+            _level++;
+            print("_level: " + _level);
             // generate 3 random number
-            int att = (int)GetRandomNumber(0, 20);
+            int att = (int)GetRandomNumber(0, 5 * _level);
             int usc = (int)GetRandomNumber(0, att);
-            int ent = (int)GetRandomNumber(0, 20);
+            int ent = (int)GetRandomNumber(0, 5 * _level);
             print("ent: " + ent);
             print("usc: " + usc);
             print("att :" + att);
