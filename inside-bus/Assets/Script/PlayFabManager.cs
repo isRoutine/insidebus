@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using PlayFab;
 using PlayFab.ClientModels;
+using UnityEngine.SceneManagement;
 using TMPro;
 
 public class PlayFabManager : MonoBehaviour
@@ -67,6 +68,9 @@ public class PlayFabManager : MonoBehaviour
         messageText.text = "Logged in!";
         Debug.Log("Successfull login/account create!");
         /* posso passare alla schermata di gioco */
+        /*string name = null;
+        if(result.InfoResultPayload.PlayerProfile != null)
+            name=result.InfoResultPayload.PlayerProfile.DisplayName;*/
     }
 
     public void ResetPasswordButton(){
@@ -111,6 +115,12 @@ public class PlayFabManager : MonoBehaviour
         ClearUI();
         resetPassUI.SetActive(true);
         passwordInputUI.SetActive(false);
+    }
+
+    public void MenuGiocoScreen()
+    {
+        SceneManager.LoadScene("MainMenu Scene");
+        Time.timeScale = 1f;
     }
 
 
@@ -166,7 +176,7 @@ public class PlayFabManager : MonoBehaviour
 
     void OnLeaderboardGet(GetLeaderboardResult result){
         foreach(var item in result.Leaderboard){
-            Debug.Log(item.Position + " " + item.PlayFabId + " " + item.StatValue);
+            Debug.Log(item.Position + " " + item.Profile.DisplayName + " " + item.StatValue);
         }
     }
 
