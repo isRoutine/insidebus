@@ -40,6 +40,7 @@ public class PlayFabManager : MonoBehaviour
         }
 
         var request = new RegisterPlayFabUserRequest(){
+            DisplayName = usernameInput.text,
             Username = usernameInput.text,
             Email = emailInput.text,
             Password = passwordInput.text,
@@ -176,7 +177,7 @@ public class PlayFabManager : MonoBehaviour
 
     void OnLeaderboardGet(GetLeaderboardResult result){
         foreach(var item in result.Leaderboard){
-            Debug.Log(item.Position + " " + item.Profile.DisplayName + " " + item.StatValue);
+            Debug.Log(item.Position + " " + item.DisplayName + " " + item.StatValue);
         }
     }
 
