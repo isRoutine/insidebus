@@ -21,6 +21,10 @@ public class PlayFabManager : MonoBehaviour
     private GameObject loginUI;
     [SerializeField]
     private GameObject registerUI;
+    [SerializeField]
+    private GameObject resetPassUI;
+    [SerializeField]
+    private GameObject passwordInputUI;
 
     public void RegisterButton(){
 
@@ -66,11 +70,15 @@ public class PlayFabManager : MonoBehaviour
     }
 
     public void ResetPasswordButton(){
-
+        var request = new SendAccountRecoveryEmailRequest {
+            Email = emailInput.text,
+            TitleId = "BBB84"
+        };
+        PlayFabClientAPI.SendAccountRecoveryEmail(request, OnPasswordReset, OnError);
     }
 
     void OnPasswordReset (SendAccountRecoveryEmailResult result){
-
+        messageText.text = "Richiesta per reset password inviata correttamente! Controlla la tua email";
     } 
 
     /* UI */
@@ -78,22 +86,32 @@ public class PlayFabManager : MonoBehaviour
     {
         loginUI.SetActive(false);
         registerUI.SetActive(false);
+        resetPassUI.SetActive(false);
         messageText.text = "";
+        emailInput.text = "";
+        passwordInput.text = "";
     }
 
     public void LoginScreen()
     {
         ClearUI();
+        passwordInputUI.SetActive(true);
         loginUI.SetActive(true);
     }
 
     public void RegisterScreen()
     {
         ClearUI();
+        passwordInputUI.SetActive(true);
         registerUI.SetActive(true);
     }
 
-
+    public void ResetPassScreen()
+    {
+        ClearUI();
+        resetPassUI.SetActive(true);
+        passwordInputUI.SetActive(false);
+    }
 
 
     // Start is called before the first frame update
