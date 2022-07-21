@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -23,6 +24,8 @@ public class MainScript : MonoBehaviour
     private bool _gameStarted;
     private int _difficulty;
     private int _level;
+
+    PlayFabManager playFabManager;
 
     private static System.Random random = new System.Random();
 
@@ -151,10 +154,13 @@ public class MainScript : MonoBehaviour
         if (_manager.IsGameOver())
         {
             int highScore = PlayerPrefs.GetInt("highscore");
+            playFabManager.SendLeaderboard(_endScoreValue);
             if (_endScoreValue > highScore)
             {
                 PlayerPrefs.SetInt("highscore", _endScoreValue);
                 _manager.SetHighScoreActive();
+                //invio il punteggio alla classifica generale su playfab
+                //playFabManager.SendLeaderboard(_endScoreValue);
             }
         }
 
@@ -176,6 +182,7 @@ public class MainScript : MonoBehaviour
         _endScoreValue = 0;
         _difficulty = 1;
         _level = 0;
+        playFabManager = GameObject.Find("game").GetComponent<PlayFabManager>();
     }
 
     // Update is called once per frame

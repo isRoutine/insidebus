@@ -21,11 +21,29 @@ public class PlayFabManager : MonoBehaviour
     }
 
     void OnSuccess(LoginResult result){
-        Debug.Log("Successful login/account create!");
+        Debug.Log("Successfull login/account create!");
     }
 
     void OnError(PlayFabError error){
         Debug.Log("Error while login/creating account!");
         Debug.Log(error.GenerateErrorReport());
+    }
+
+    //funzione per la classifica
+    public void SendLeaderboard(int score){
+        var request = new UpdatePlayerStatisticsRequest {
+            Statistics = new List<StatisticUpdate> {
+                new StatisticUpdate {
+                    StatisticName = "InsideBusScore",
+                    Value = score
+                }
+            }
+        };
+
+        PlayFabClientAPI.UpdatePlayerStatistics(request, OnLeaderboardUpdate, OnError);
+    }
+
+    void OnLeaderboardUpdate(UpdatePlayerStatisticsResult result){
+        Debug.Log("Successfull leaderboard sent");
     }
 }
