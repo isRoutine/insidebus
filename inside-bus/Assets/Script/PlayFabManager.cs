@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using PlayFab;
 using PlayFab.ClientModels;
 using UnityEngine.SceneManagement;
@@ -8,6 +9,10 @@ using TMPro;
 
 public class PlayFabManager : MonoBehaviour
 {
+
+    /* Leadeboard */
+    public GameObject rowPrefab;
+    public Transform rowsParent;
 
     /* login and register */
     [Header("UI")]
@@ -177,9 +182,23 @@ public class PlayFabManager : MonoBehaviour
     }
 
     void OnLeaderboardGet(GetLeaderboardResult result){
-        foreach(var item in result.Leaderboard){
-            Debug.Log(item.Position + " " + item.DisplayName + " " + item.StatValue);
+
+        foreach(Transform item in rowsParent){
+            Destroy(item.gameObject);
         }
+
+        foreach(var item in result.Leaderboard){
+
+            GameObject newGo = Instantiate(rowPrefab, rowsParent);
+            TMP_Text[] texts = newGo.GetComponentsInChildren<TMP_Text>();
+            texts[0].text = (item.Position + 1).ToString();
+            texts[1].text = item.DisplayName.ToString();
+            texts[2].text = item.StatValue.ToString();
+
+            Debug.Log(item.Position + " " + item.DisplayName + " " + item.StatValue);
+
+        }
+
     }
 
 

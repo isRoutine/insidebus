@@ -3789,6 +3789,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9496faaa86cb043e0b776849c092cf73, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rowPrefab: {fileID: 1945005709414503348, guid: 1a488f78322874dc584fe80d7be91cc2, type: 3}
+  rowsParent: {fileID: 0}
   messageText: {fileID: 227679819}
   usernameInput: {fileID: 224285140}
   emailInput: {fileID: 266931044}
