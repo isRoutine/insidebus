@@ -50,8 +50,8 @@ public class PlayFabManager : MonoBehaviour
     }
 
     void OnRegisterSuccess(RegisterPlayFabUserResult result){
-        messageText.text = "Registered and logged in!";
-        Debug.Log("Registered and logged in!");
+        messageText.text = "Registration successful!";
+        Debug.Log("Registration successful!");
         /* posso passare alla schermata di gioco o profilo */
     }
 
@@ -67,8 +67,9 @@ public class PlayFabManager : MonoBehaviour
 
     void OnLoginSuccess(LoginResult result){
         messageText.text = "Logged in!";
-        Debug.Log("Successfull login/account create!");
+        Debug.Log("Successful login!");
         /* posso passare alla schermata di gioco */
+        this.MenuGiocoScreen();
         /*string name = null;
         if(result.InfoResultPayload.PlayerProfile != null)
             name=result.InfoResultPayload.PlayerProfile.DisplayName;*/
