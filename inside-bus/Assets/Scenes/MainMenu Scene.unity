@@ -317,6 +317,18 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
+      - m_Target: {fileID: 415710055}
+        m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
+        m_MethodName: GoToRankingsPanel
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 415710057}
         m_TargetAssemblyTypeName: PlayFabManager, Assembly-CSharp
         m_MethodName: GetLeaderboard
@@ -837,7 +849,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: -500}
   m_SizeDelta: {x: 937.5, y: 531.25}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &354466872
@@ -1177,7 +1189,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -1053}
+  m_AnchoredPosition: {x: 0, y: -957}
   m_SizeDelta: {x: 517.3715, y: 253.74}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &407790957
@@ -1404,6 +1416,7 @@ MonoBehaviour:
   _areYouSureUI: {fileID: 0}
   _gameOverUI: {fileID: 0}
   _highScoreImage: {fileID: 0}
+  _playFabManager: {fileID: 415710057}
   _transition: {fileID: 415710056}
 --- !u!95 &415710056
 Animator:
