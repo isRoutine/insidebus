@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using PlayFab;
 using PlayFab.ClientModels;
 using UnityEngine.SceneManagement;
@@ -9,6 +10,14 @@ using TMPro;
 public class PlayFabManager : MonoBehaviour
 {
 
+    /* Leadeboard */
+    public GameObject rowPrefab;
+    public Transform rowsParent;
+
+    /* Profile */
+    public TMP_Text usernameText;
+    public TMP_Text playeridText;
+
     /* login and register */
     [Header("UI")]
     public TMP_Text messageText;
@@ -16,6 +25,8 @@ public class PlayFabManager : MonoBehaviour
     public TMP_InputField emailInput;
     public TMP_InputField passwordInput;
     public TMP_InputField confirmPasswordInput;
+
+    private string playFabId;
 
     [Header("SCREEN")]
     [SerializeField]
@@ -68,11 +79,10 @@ public class PlayFabManager : MonoBehaviour
     void OnLoginSuccess(LoginResult result){
         messageText.text = "Logged in!";
         Debug.Log("Successful login!");
+        playFabId = result.PlayFabId;
+        Debug.Log("id: " + playFabId);
         /* posso passare alla schermata di gioco */
         this.MenuGiocoScreen();
-        /*string name = null;
-        if(result.InfoResultPayload.PlayerProfile != null)
-            name=result.InfoResultPayload.PlayerProfile.DisplayName;*/
     }
 
     public void ResetPasswordButton(){
@@ -86,6 +96,23 @@ public class PlayFabManager : MonoBehaviour
     void OnPasswordReset (SendAccountRecoveryEmailResult result){
         messageText.text = "Richiesta per reset password inviata correttamente! Controlla la tua email";
     } 
+
+    public void ProfilePanelInfo(){
+        var request = new GetPlayerProfileRequest {
+            PlayFabId = playFabId
+        };
+        PlayFabClientAPI.GetPlayerProfile(request, OnProfileInfoReceived, OnError);
+    }
+
+    void OnProfileInfoReceived(GetPlayerProfileResult result){
+        Debug.Log("DisplayName :" + result.PlayerProfile.DisplayName);
+        //Debug.Log("last login :" + result.PlayerProfile.LastLogin);
+        Debug.Log("PlayerID :" + result.PlayerProfile.PlayerId);
+        //Debug.Log("Created :" + result.PlayerProfile.Created);
+
+        usernameText.text = result.PlayerProfile.DisplayName;
+        playeridText.text = result.PlayerProfile.PlayerId;
+    }
 
     /* UI */
     public void ClearUI()
@@ -177,9 +204,23 @@ public class PlayFabManager : MonoBehaviour
     }
 
     void OnLeaderboardGet(GetLeaderboardResult result){
-        foreach(var item in result.Leaderboard){
-            Debug.Log(item.Position + " " + item.DisplayName + " " + item.StatValue);
+
+        foreach(Transform item in rowsParent){
+            Destroy(item.gameObject);
         }
+
+        foreach(var item in result.Leaderboard){
+
+            GameObject newGo = Instantiate(rowPrefab, rowsParent);
+            TMP_Text[] texts = newGo.GetComponentsInChildren<TMP_Text>();
+            texts[0].text = (item.Position + 1).ToString();
+            texts[1].text = item.DisplayName.ToString();
+            texts[2].text = item.StatValue.ToString();
+
+            Debug.Log(item.Position + " " + item.DisplayName + " " + item.StatValue);
+
+        }
+
     }
 
 
