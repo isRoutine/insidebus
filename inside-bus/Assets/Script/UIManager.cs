@@ -6,7 +6,7 @@ using System.Collections;
 public class UIManager : MonoBehaviour
 {
     [SerializeField] private GameObject _optionsMenuUI;
-    [SerializeField] private GameObject _scoreboardMenuUI;
+    [SerializeField] private GameObject _leaderboardMenuUI;
     [SerializeField] private GameObject _pauseMenuUI;
     [SerializeField] private GameObject _areYouSureUI;
     [SerializeField] private GameObject _gameOverUI;
@@ -19,7 +19,7 @@ public class UIManager : MonoBehaviour
     private GameObject[] _menuUIObjects;
 
     private bool _isPaused = false;
-    private bool _onScoreboardPanel = false;
+    private bool _onLeaderboardPanel = false;
     private bool _inGame = false;
     private bool _onProfilePanel = false;
 
@@ -70,9 +70,9 @@ public class UIManager : MonoBehaviour
 
     public void GoToRankingsPanel()
     {
-        _onScoreboardPanel = true;
+        _onLeaderboardPanel = true;
         ClearUI();
-        _scoreboardMenuUI.SetActive(true);
+        _leaderboardMenuUI.SetActive(true);
 
         Time.timeScale = 0f;
     }
@@ -120,9 +120,9 @@ public class UIManager : MonoBehaviour
             Time.timeScale = 0f;
         }
 
-        else if (_onScoreboardPanel) {
-            _onScoreboardPanel = false;
-            this._scoreboardMenuUI.SetActive(false);
+        else if (_onLeaderboardPanel) {
+            _onLeaderboardPanel = false;
+            this._leaderboardMenuUI.SetActive(false);
             FillUI();
             Time.timeScale = 1f;
         }
