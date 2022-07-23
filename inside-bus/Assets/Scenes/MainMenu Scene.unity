@@ -1705,7 +1705,7 @@ MonoBehaviour:
   _areYouSureUI: {fileID: 0}
   _gameOverUI: {fileID: 0}
   _highScoreImage: {fileID: 0}
-  _playFabManager: {fileID: 0}
+  _profileMenuUI: {fileID: 1702427374}
   _transition: {fileID: 415710056}
 --- !u!95 &415710056
 Animator:
@@ -1887,7 +1887,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Player Profile
+  m_text: Profile
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 4b2115a1aa3ada74b92999592cb42035, type: 2}
   m_sharedMaterial: {fileID: -6222359108009917696, guid: 4b2115a1aa3ada74b92999592cb42035, type: 2}
@@ -2709,7 +2709,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 415710055}
         m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
-        m_MethodName: GoToLoginScene
+        m_MethodName: goToProfile
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
