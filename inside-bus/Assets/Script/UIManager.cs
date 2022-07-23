@@ -11,7 +11,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject _areYouSureUI;
     [SerializeField] private GameObject _gameOverUI;
     [SerializeField] private GameObject _highScoreImage;
-    [SerializeField] private PlayFabManager _playFabManager;
+    [SerializeField] private GameObject _profileMenuUI;
 
     [SerializeField] private Animator _transition;
 
@@ -21,6 +21,7 @@ public class UIManager : MonoBehaviour
     private bool _isPaused = false;
     private bool _onScoreboardPanel = false;
     private bool _inGame = false;
+    private bool _onProfilePanel = false;
 
     // Start is called before the first frame update
     void Start()
@@ -125,6 +126,14 @@ public class UIManager : MonoBehaviour
             FillUI();
             Time.timeScale = 1f;
         }
+
+        else if(_onProfilePanel)
+        {
+            _onProfilePanel = false;
+            this._profileMenuUI.SetActive(false);
+            this._optionsMenuUI.SetActive(true);
+            Time.timeScale = 1f;
+        }
         
         else
         {
@@ -204,5 +213,12 @@ public class UIManager : MonoBehaviour
     public void SetHighScoreActive()
     {
         _highScoreImage.SetActive(true);
+    }
+
+    public void goToProfile()
+    {
+        _optionsMenuUI.SetActive(false);
+        _profileMenuUI.SetActive(true);
+        _onProfilePanel = true;
     }
 }
