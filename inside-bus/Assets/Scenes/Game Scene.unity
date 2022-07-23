@@ -6864,7 +6864,6 @@ GameObject:
   - component: {fileID: 2142995967}
   - component: {fileID: 2142995966}
   - component: {fileID: 2142995969}
-  - component: {fileID: 2142995970}
   m_Layer: 5
   m_Name: game
   m_TagString: Untagged
@@ -6999,6 +6998,7 @@ MonoBehaviour:
   _areYouSureUI: {fileID: 842725798}
   _gameOverUI: {fileID: 1604846511}
   _highScoreImage: {fileID: 801790746}
+  _playFabManager: {fileID: 0}
   _transition: {fileID: 2142995969}
 --- !u!114 &2142995967
 MonoBehaviour:
@@ -7049,15 +7049,3 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &2142995970
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2142995960}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9496faaa86cb043e0b776849c092cf73, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
