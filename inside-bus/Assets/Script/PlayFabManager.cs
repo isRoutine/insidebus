@@ -14,6 +14,10 @@ public class PlayFabManager : MonoBehaviour
     public GameObject rowPrefab;
     public Transform rowsParent;
 
+    /* Profile */
+    public TMP_Text usernameText;
+    public TMP_Text playeridText;
+
     /* login and register */
     [Header("UI")]
     public TMP_Text messageText;
@@ -21,6 +25,8 @@ public class PlayFabManager : MonoBehaviour
     public TMP_InputField emailInput;
     public TMP_InputField passwordInput;
     public TMP_InputField confirmPasswordInput;
+
+    private string playFabId;
 
     [Header("SCREEN")]
     [SerializeField]
@@ -73,11 +79,10 @@ public class PlayFabManager : MonoBehaviour
     void OnLoginSuccess(LoginResult result){
         messageText.text = "Logged in!";
         Debug.Log("Successful login!");
+        playFabId = result.PlayFabId;
+        Debug.Log("id: " + playFabId);
         /* posso passare alla schermata di gioco */
         this.MenuGiocoScreen();
-        /*string name = null;
-        if(result.InfoResultPayload.PlayerProfile != null)
-            name=result.InfoResultPayload.PlayerProfile.DisplayName;*/
     }
 
     public void ResetPasswordButton(){
@@ -91,6 +96,23 @@ public class PlayFabManager : MonoBehaviour
     void OnPasswordReset (SendAccountRecoveryEmailResult result){
         messageText.text = "Richiesta per reset password inviata correttamente! Controlla la tua email";
     } 
+
+    public void ProfilePanelInfo(){
+        var request = new GetPlayerProfileRequest {
+            PlayFabId = playFabId
+        };
+        PlayFabClientAPI.GetPlayerProfile(request, OnProfileInfoReceived, OnError);
+    }
+
+    void OnProfileInfoReceived(GetPlayerProfileResult result){
+        Debug.Log("DisplayName :" + result.PlayerProfile.DisplayName);
+        //Debug.Log("last login :" + result.PlayerProfile.LastLogin);
+        Debug.Log("PlayerID :" + result.PlayerProfile.PlayerId);
+        //Debug.Log("Created :" + result.PlayerProfile.Created);
+
+        usernameText.text = result.PlayerProfile.DisplayName;
+        playeridText.text = result.PlayerProfile.PlayerId;
+    }
 
     /* UI */
     public void ClearUI()
