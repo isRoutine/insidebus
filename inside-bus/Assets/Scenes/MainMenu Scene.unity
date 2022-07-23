@@ -247,7 +247,7 @@ GameObject:
   - component: {fileID: 64477216}
   - component: {fileID: 64477215}
   m_Layer: 5
-  m_Name: Scoreboard button
+  m_Name: Leaderboard button
   m_TagString: menuUI
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1700,7 +1700,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _optionsMenuUI: {fileID: 349417858}
-  _scoreboardMenuUI: {fileID: 622244149}
+  _leaderboardMenuUI: {fileID: 622244149}
   _pauseMenuUI: {fileID: 0}
   _areYouSureUI: {fileID: 0}
   _gameOverUI: {fileID: 0}
@@ -2155,7 +2155,7 @@ GameObject:
   - component: {fileID: 609558935}
   - component: {fileID: 609558934}
   m_Layer: 5
-  m_Name: scoreboard text
+  m_Name: leaderboard text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2202,7 +2202,7 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 12800000, guid: 775ee1a79b50a4a32a6e0a044fc6e56e, type: 3}
-    m_FontSize: 200
+    m_FontSize: 180
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 0
@@ -2213,7 +2213,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: SCOREBOARD
+  m_Text: LEADERBOARD
 --- !u!222 &609558935
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2234,7 +2234,7 @@ GameObject:
   - component: {fileID: 622244152}
   - component: {fileID: 622244151}
   m_Layer: 5
-  m_Name: Scoreboard panel
+  m_Name: Leaderboard panel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2901,7 +2901,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: NOME
+  m_text: NAME
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 4b2115a1aa3ada74b92999592cb42035, type: 2}
   m_sharedMaterial: {fileID: -6222359108009917696, guid: 4b2115a1aa3ada74b92999592cb42035, type: 2}
@@ -3715,7 +3715,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: POSTO
+  m_text: POS
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 4b2115a1aa3ada74b92999592cb42035, type: 2}
   m_sharedMaterial: {fileID: -6222359108009917696, guid: 4b2115a1aa3ada74b92999592cb42035, type: 2}
@@ -3849,7 +3849,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: PUNTI
+  m_text: SCORE
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 4b2115a1aa3ada74b92999592cb42035, type: 2}
   m_sharedMaterial: {fileID: -6222359108009917696, guid: 4b2115a1aa3ada74b92999592cb42035, type: 2}
@@ -3938,9 +3938,8 @@ GameObject:
   - component: {fileID: 1525219269}
   - component: {fileID: 1525219268}
   - component: {fileID: 1525219267}
-  - component: {fileID: 1525219271}
   m_Layer: 5
-  m_Name: Scoreboard menu
+  m_Name: Leaderboard menu
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4027,18 +4026,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
---- !u!114 &1525219271
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1525219266}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9003436dead04be42a2d9796f339fe4f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1559317820
 GameObject:
   m_ObjectHideFlags: 0
