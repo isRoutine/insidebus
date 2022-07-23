@@ -11,6 +11,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject _areYouSureUI;
     [SerializeField] private GameObject _gameOverUI;
     [SerializeField] private GameObject _highScoreImage;
+    [SerializeField] private PlayFabManager _playFabManager;
 
     [SerializeField] private Animator _transition;
 
@@ -71,6 +72,7 @@ public class UIManager : MonoBehaviour
         _onScoreboardPanel = true;
         ClearUI();
         _scoreboardMenuUI.SetActive(true);
+
         Time.timeScale = 0f;
     }
 

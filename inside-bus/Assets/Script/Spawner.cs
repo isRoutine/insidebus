@@ -9,7 +9,7 @@ public class Spawner : MonoBehaviour
     // some reference coordinates...
     public static int MALE_ENTRANTE    = 1;
     public static int MALE_USCENTE   = 0;
-    private Vector2 MALE_MOVEMENT      = new Vector2(0 , 0.02f);
+    private Vector2 MALE_MOVEMENT      = new Vector2(0 , 0.03f);
     
     public static Vector2 MALE_ENTRANTE_START  = new Vector2(+1.4f,-7.0f);
     public static Vector2 MALE_ENTRANTE_STOP   = new Vector2(+1.4f,0);
@@ -54,6 +54,7 @@ public class Spawner : MonoBehaviour
             GameObject obj = Instantiate(_malePrefab, initPosition, Quaternion.identity);  
             list.AddFirst(obj); 
         } 
+        _spawnedEntranti.Last.Value.GetComponent<SpriteRenderer>().sortingOrder = 3;
         VisibleMale += qty;  
     }
 
@@ -61,7 +62,7 @@ public class Spawner : MonoBehaviour
     // Coroutine : Call Move() function for every object spawned
     public IEnumerator MoveAll(int level){
 
-        WaitForSeconds delay = new WaitForSeconds(0.5f); // default delay
+        WaitForSeconds delay = new WaitForSeconds(0.85f); // default delay
         LinkedListNode<GameObject> entrante = _spawnedEntranti.First;
         LinkedListNode<GameObject> uscente = _spawnedUscenti.First;       
 
@@ -73,7 +74,9 @@ public class Spawner : MonoBehaviour
                 maleHandler.SetAnimation("up");
                 entrante = entrante.Next;
                 MALE_MOVEMENT.y = MALE_MOVEMENT.y + (level / 100);
-                StartCoroutine(maleHandler.Move(MALE_ENTRANTE_START, MALE_ENTRANTE_STOP, MALE_MOVEMENT));  
+                StartCoroutine(maleHandler.Move(MALE_ENTRANTE_START, MALE_ENTRANTE_STOP, MALE_MOVEMENT)); 
+
+
             }
 
             if(uscente!=null){

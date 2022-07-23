@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -23,6 +24,8 @@ public class MainScript : MonoBehaviour
     private bool _gameStarted;
     private int _difficulty;
     private int _level;
+
+    PlayFabManager playFabManager;
 
     private static System.Random random = new System.Random();
 
@@ -151,10 +154,13 @@ public class MainScript : MonoBehaviour
         if (_manager.IsGameOver())
         {
             int highScore = PlayerPrefs.GetInt("highscore");
+            playFabManager.SendLeaderboard(_endScoreValue);
             if (_endScoreValue > highScore)
             {
                 PlayerPrefs.SetInt("highscore", _endScoreValue);
                 _manager.SetHighScoreActive();
+                //invio il punteggio alla classifica generale su playfab
+                //playFabManager.SendLeaderboard(_endScoreValue);
             }
         }
 
@@ -162,7 +168,7 @@ public class MainScript : MonoBehaviour
 
     private int CalculateScore()
     {
-        return 100 * ((GetLives() ^ 2) + GetDifficulty());
+        return 5 * ((GetLives() * 2) + GetDifficulty());
     }
 
 
@@ -175,7 +181,8 @@ public class MainScript : MonoBehaviour
         _scoreValue = 0;
         _endScoreValue = 0;
         _difficulty = 1;
-        _level = 0;
+        _level = 1;
+        playFabManager = GameObject.Find("game").GetComponent<PlayFabManager>();
     }
 
     // Update is called once per frame
@@ -188,9 +195,9 @@ public class MainScript : MonoBehaviour
             _level++;
             print("_level: " + _level);
             // generate 3 random number
-            int att = (int)GetRandomNumber(0, 5 * _level);
-            int usc = (int)GetRandomNumber(0, att);
-            int ent = (int)GetRandomNumber(0, 5 * _level);
+            int att = (int)GetRandomNumber(3, 5 * _level);
+            int usc = (int)GetRandomNumber(3, att);
+            int ent = (int)GetRandomNumber(3, 5 * _level);
             print("ent: " + ent);
             print("usc: " + usc);
             print("att :" + att);

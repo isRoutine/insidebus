@@ -6998,6 +6998,7 @@ MonoBehaviour:
   _areYouSureUI: {fileID: 842725798}
   _gameOverUI: {fileID: 1604846511}
   _highScoreImage: {fileID: 801790746}
+  _playFabManager: {fileID: 0}
   _transition: {fileID: 2142995969}
 --- !u!114 &2142995967
 MonoBehaviour:
