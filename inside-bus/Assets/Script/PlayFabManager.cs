@@ -17,6 +17,9 @@ public class PlayFabManager : MonoBehaviour
     /* Profile */
     public TMP_Text usernameText;
     public TMP_Text playeridText;
+    public TMP_Text createdOnText;
+    public TMP_Text lastLoginText;
+    public TMP_Text emailUtenteText;
 
     /* login and register */
     [Header("UI")]
@@ -27,6 +30,7 @@ public class PlayFabManager : MonoBehaviour
     public TMP_InputField confirmPasswordInput;
 
     private string playFabId;
+    private bool confirmed = true;
 
     [Header("SCREEN")]
     [SerializeField]
@@ -63,10 +67,17 @@ public class PlayFabManager : MonoBehaviour
     void OnRegisterSuccess(RegisterPlayFabUserResult result){
         messageText.text = "Registration successful!";
         Debug.Log("Registration successful!");
-        /* posso passare alla schermata di gioco o profilo */
+        
+        /* invio verifica dell'email */
+        AddOrUpdateContactEmail(result.PlayFabId, emailInput.text);
+
+        /* reindirizzo alla schermata di login */
+        this.LoginScreen();
     }
 
     public void LoginButton(){
+
+        /* se tutto va bene faccio la richiesta di login */
         var request = new LoginWithEmailAddressRequest {
             Email = emailInput.text,
             Password = passwordInput.text
@@ -81,8 +92,57 @@ public class PlayFabManager : MonoBehaviour
         Debug.Log("Successful login!");
         playFabId = result.PlayFabId;
         Debug.Log("id: " + playFabId);
-        /* posso passare alla schermata di gioco */
-        this.MenuGiocoScreen();
+
+        /* posso passare alla schermata di gioco se l'email è verificata */
+        ControlContactEmailStatus();
+
+        if(confirmed){
+            this.MenuGiocoScreen();
+        }
+    }
+
+    void AddOrUpdateContactEmail(string pFId, string emailAddress) {
+        var request = new AddOrUpdateContactEmailRequest {
+            /*PlayFabId = pFId,*/
+            EmailAddress = emailAddress
+        };
+
+        PlayFabClientAPI.AddOrUpdateContactEmail(request, result => {
+            Debug.Log("The player's account has been updated with a contact email");
+        }, OnError);
+    }
+
+    void ControlContactEmailStatus(){
+        var request = new GetPlayerProfileRequest {
+            PlayFabId = playFabId,
+            ProfileConstraints = new PlayerProfileViewConstraints(){
+                ShowContactEmailAddresses = true,
+                ShowLastLogin = true,
+                ShowCreated = true,
+                ShowDisplayName = true
+            }
+        };
+        PlayFabClientAPI.GetPlayerProfile(request, OnEmalInfoReceived, OnError);
+    }
+
+    void OnEmalInfoReceived(GetPlayerProfileResult result){
+        confirmed = false;
+
+        foreach(var item in result.PlayerProfile.ContactEmailAddresses){
+            if(item.EmailAddress == emailInput.text){
+                if(item.VerificationStatus == PlayFab.ClientModels.EmailVerificationStatus.Confirmed) {
+                    confirmed = true;
+                }
+            }
+        }
+
+        if(confirmed){
+            Debug.Log("L'Email inserita è stata verificata!");
+        }else{
+            Debug.Log("L'Email inserita non è stata ancora verificata!");
+            messageText.text = "Email non verificata!";
+        }
+        
     }
 
     public void ResetPasswordButton(){
@@ -99,19 +159,34 @@ public class PlayFabManager : MonoBehaviour
 
     public void ProfilePanelInfo(){
         var request = new GetPlayerProfileRequest {
-            PlayFabId = playFabId
+            PlayFabId = playFabId,
+            ProfileConstraints = new PlayerProfileViewConstraints(){
+                ShowContactEmailAddresses = true,
+                ShowLastLogin = true,
+                ShowCreated = true,
+                ShowDisplayName = true
+            }
         };
         PlayFabClientAPI.GetPlayerProfile(request, OnProfileInfoReceived, OnError);
     }
 
     void OnProfileInfoReceived(GetPlayerProfileResult result){
         Debug.Log("DisplayName :" + result.PlayerProfile.DisplayName);
-        //Debug.Log("last login :" + result.PlayerProfile.LastLogin);
+        Debug.Log("last login :" + result.PlayerProfile.LastLogin);
         Debug.Log("PlayerID :" + result.PlayerProfile.PlayerId);
-        //Debug.Log("Created :" + result.PlayerProfile.Created);
+        Debug.Log("Created :" + result.PlayerProfile.Created);
 
         usernameText.text = result.PlayerProfile.DisplayName;
         playeridText.text = result.PlayerProfile.PlayerId;
+
+        createdOnText.text = result.PlayerProfile.Created.ToString();
+        lastLoginText.text = result.PlayerProfile.LastLogin.ToString();
+        
+        foreach(var item in result.PlayerProfile.ContactEmailAddresses){
+            emailUtenteText.text=item.EmailAddress;
+        }
+
+
     }
 
     /* UI */
